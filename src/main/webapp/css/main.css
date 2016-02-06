@@ -23,6 +23,10 @@ p{
     line-height: 1.1em;
 }
 
+span {
+    width: auto;
+}
+
 input {
     border: #f5f5f5 solid 1px;
     border-radius: 0;
@@ -238,22 +242,35 @@ label{
     padding: 24px !important;
 }
 
+.panelitems span.glyphicon{
+    font-size: 10px;
+    margin-left: 4px;
+}
+
 a {
     text-decoration: none !important;
-    
+    -webkit-transition: color 0.05s ease-in-out;
+    -moz-transition: color 0.05s ease-in-out;
+    transition: color 0.05s ease-in-out;
+    cursor: pointer;
+    color: #000;
+}
+
+a:hover {
+    color: #31b0d5;
+}
+
+a:active, a:visited, a:focus {
+    text-decoration: none !important;
+    color: inherit;
+    outline: none;
 }
 
 a.glyphicon {
     text-decoration: none !important;
-    top: 1px;
-    font-size: 10px;
-    outline: 0;
-    line-height: 1em;
-    color: #5bc0de;
-}
-
-a.glyphicon:hover {
-    color: #31b0d5;
+    -webkit-transition: color 0.05s ease-in-out;
+    -moz-transition: color 0.05s ease-in-out;
+    transition: color 0.05s ease-in-out;
 }
 
 .nav, .pagination, .carousel, .panel-title a { 
@@ -283,13 +300,24 @@ a.glyphicon:hover {
     padding-right: 0 !important;
 }
 
+.optionheight a.glyphicon {
+    color: #5bc0de;
+    font-size: 10px;
+    top: 1px;
+    margin-left: 2px;
+}
+
+.optionheight a.glyphicon:hover {
+    color: #31b0d5;
+}
+
 .btn, .btn-info, .btn-warning {
     padding: .8em !important;
     border-radius: 0;
     border: 0;
     outline: none !important;
     z-index: 10;
-    font-size: 14px !important;
+    font-size: 13px !important;
     font-weight: 600 !important;
     line-height: 1em !important;
     font-style: normal;
@@ -340,6 +368,12 @@ a.glyphicon:hover {
     line-height: 1em !important;
 }
 
+#controldiv span.glyphicon {
+    line-height: 1em;
+    top: 2px;
+    margin-right: 4px;
+}
+
 .btn-group.open .dropdown-toggle {
     box-shadow: none;
 }
@@ -353,7 +387,7 @@ a.glyphicon:hover {
     font-size: 13px !important;
     line-height: 1 !important;
     padding: 1.5em !important;
-    width: 300px !important;
+    width: 180px !important;
     z-index: 11000;
 }
 
@@ -372,6 +406,7 @@ a.glyphicon:hover {
     padding: 0;
     margin-left: 16px !important;
     margin-right: 16px !important;
+    z-index: 12000;
 }
 
 #optionForm {
@@ -380,8 +415,7 @@ a.glyphicon:hover {
 }
 
 #accordion-options {
-    padding-top: 16px !important;
-    padding-bottom: 16px !important;
+    padding: 16px !important;
 }
 
 #optionForm::-webkit-scrollbar {
@@ -482,7 +516,22 @@ a.glyphicon:hover {
     background-color: rgb(51,51,51);
     z-index: 12003;
     width: 100%;
-    padding: 0;
+    min-height: 80px;
+    height: auto;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+}
+
+#hero-header-text, .hero-header-adres {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+}
+
+.hero-header-adres {
+    display: inline-block;
+    width: auto;
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
 }
 
 #hero-header-inside {
@@ -493,12 +542,6 @@ a.glyphicon:hover {
     max-width: 1000px;
     height: 100%;
     z-index: 12002;
-}
-
-#hero-header-text {
-    width: 100%;
-    margin-left: 2em;
-    margin-right: 2em;
 }
 
 #hero-header-inside-text {
@@ -515,9 +558,9 @@ a.glyphicon:hover {
     font-weight: 600;
     font-size: 37px;
     text-transform: uppercase;
-    line-height: 1em;
+    line-height: .8em;
     color: rgb(254, 165, 40);
-    padding-top: 10px;
+    padding-top: 16px;
     margin: 0;
 }
 
@@ -525,13 +568,34 @@ a.glyphicon:hover {
     color: rgb(255, 255, 255);
     text-transform: capitalize;
     line-height: 1em;
+    padding-top: 5px;
     padding-bottom: 16px;
     font-size: 14px;
     margin: 0;
     font-weight: 300;
 }
 
-#hero-text {
+.hero-adres-text{
+    color: rgb(160, 160, 160) !important;
+    line-height: 24px;
+    font-size: 13px;
+    margin: 0;
+    font-weight: 300;
+    padding-top: auto;
+    padding-bottom: auto;
+}
+
+a.hero-adres-text:hover {
+    color: rgb(255, 255, 255) !important;
+}
+
+.hero-header-adres span.glyphicon {
+    font-size: 10px;
+    color: rgb(100, 100, 100);
+    margin-right: 4px;
+}
+
+.hero-text {
     font-family: 'Lobster Two', cursive;
     line-height: 1em;
     font-size: 44px;

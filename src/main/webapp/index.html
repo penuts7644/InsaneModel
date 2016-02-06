@@ -28,6 +28,8 @@ All rights reserved.
         <script src="js/app-directives.js" type="text/javascript"></script>
         <script src="js/scroll.min.js" type="text/javascript"></script>
         <script src="js/JSmol.min.js" type="text/javascript"></script>
+        <script src="js/Blob.js" type="text/javascript"></script>
+        <script src="js/FileSaver.min.js" type="text/javascript"></script>
 
         <!-- Add cascading styling sheets. -->
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -41,20 +43,28 @@ All rights reserved.
         
         <!-- Site header -->
         <div id="site-header" set-full-height>
-            <div id="hero-header">
+            <div id="hero-header" class="col-lg-12">
                 
                 <!-- Site application name located top left. -->
-                <div id="hero-header-text">
+                <div id="hero-header-text" class="col-lg-5 pull-left">
                     <p id="hero-title">{{option.general.title}}</p>
                     <p id="hero-subtitle">{{option.general.subtitle}}</p>
+                </div>
+                <div class="col-lg-7 hidden-xs">
+                <div ng-repeat="(author, info) in option.general.head_authors" class="hero-header-adres pull-right">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <a class="hero-adres-text" href="{{info.linkedin}}" target="_blank">{{author}}</a><br />
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <a class="hero-adres-text" href="mailto:{{info.mail}}">{{info.mail}}</a>
+                </div>
                 </div>
             </div>
             <div id="hero-header-inside">
                 
                 <!-- Description for both screen sizes, including scroll button when screen larger than 900px wide. -->
                 <div id="hero-header-inside-text" fade-out="0.4">
-                    <p id="hero-text" class="visible-lg">{{option.general.description_large}}</p>
-                    <p id="hero-text" class="hidden-lg">{{option.general.description_small}}</p>
+                    <p class="hero-text visible-lg">{{option.general.description_large}}</p>
+                    <p class="hero-text hidden-lg">{{option.general.description_small}}</p>
                 </div>
                 <div id="scroll-button" class="visible-lg" fade-out="0.86">
                     <a class="scroll glyphicon glyphicon-menu-down" href="#optionForm"></a>
@@ -77,7 +87,7 @@ All rights reserved.
                         <uib-accordion-heading ng-click="menu.expanded=!menu.expanded">
                             <div class="panelitems">
                                 {{menu.name}}
-                                <button href class="pull-right btn btn-info" ng-click="$event.preventDefault(); $event.stopPropagation(); advancedDisabled = !advancedDisabled" ng-disabled="!menu.expanded">{{option.general.advanced}}</button>
+                                <button class="pull-right btn btn-info" ng-click="$event.preventDefault(); $event.stopPropagation(); advancedDisabled = !advancedDisabled" ng-disabled="!menu.expanded">{{option.general.advanced}}<span class="glyphicon glyphicon-triangle-bottom"></span></button>
                             </div>
                         </uib-accordion-heading>
 
@@ -166,13 +176,19 @@ All rights reserved.
                     <div id="controldiv" class="col-lg-12">
 
                         <!-- Submit button as well as download file if available. -->
-                        <button id="submitFormButton" class="btn btn-info" type="button" ng-click="update(input)" ng-disabled="submitDisabled || optionForm.$invalid">{{option.general.submit}}</button>
-                        <a href="{{outFilePath}}" ng-show="outFilePath.length && outFilePath !== 'no_output_file_available'" download="{{option.general.download_file}}" class="btn btn-info">{{option.general.download}}</a>
+                        <button id="submitFormButton" class="btn btn-info" type="button" ng-click="update(input)" ng-disabled="submitDisabled || optionForm.$invalid"><span class="glyphicon glyphicon-refresh"></span>{{option.general.submit}}</button>
+                        <div class="btn-group" uib-dropdown ng-show="outFilePath.length && outFilePath !== 'no_output_file_available'">
+                            <button id="downloadButton" uib-dropdown-toggle class="btn btn-info" type="button"><span class="glyphicon glyphicon-cloud-download"></span>{{option.general.download[0]}}</button>
+                            <ul uib-dropdown-menu role="menu" aria-labelledby="downloadButton">
+                                <a role="menuitem" href="{{outFilePath}}" download="insane_model.gro">{{option.general.download[1]}}</a>
+                                <li class="divider"></li>
+                                <a role="menuitem" config-download>{{option.general.download[2]}}</a>
+                            </ul>
+                        </div>
 
                         <!-- Dropdown button containing warning messages. -->
                         <div class="btn-group" uib-dropdown ng-show="warningMessages.length">
-                            <button id="warningButton" uib-dropdown-toggle class="btn btn-warning" type="button">{{option.general.warning}}
-                            <span class="caret"></span></button>
+                            <button id="warningButton" uib-dropdown-toggle class="btn btn-warning" type="button"><span class="glyphicon glyphicon-fire"></span>{{option.general.warning}}</button>
                             <ul uib-dropdown-menu role="menu" aria-labelledby="warningButton">
                                 <li role="menuitem" ng-repeat-start="warningMessage in warningMessages">{{warningMessage}}</li>
                                 <li class="divider" ng-show="!$last" ng-repeat-end></li>

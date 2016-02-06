@@ -3,14 +3,27 @@
         "head_title": "INSANE M\u21BBDEL",
         "head_description": "A new membrane, just a few clicks away ...",
         "head_keywords": "INSANE,Modeling,Protein,Membrane,Gridsize,Solvent,Jmol,JSmol,Bilayer,Lipids,Bioinformatics,Online,Tool,Application,Web",
-        "head_authors": "Lonneke Scheffer \u0026 Wout van Helvoirt",
+        "head_authors": {
+            "Wout van Helvoirt": {
+                "mail": "w.van.helvoirt@st.hanze.nl",
+                "linkedin": "https://nl.linkedin.com/in/wvanhelvoirt"
+            },
+            "Lonneke Scheffer": {
+                "mail": "l.scheffer@st.hanze.nl",
+                "linkedin": "https://nl.linkedin.com/in/lonneke-scheffer-67998aa0"
+            }
+        },
         "title": "INSANE M\u21BBDEL",
         "subtitle": "The INSANE Online Membrane Modeling Tool",
         "description_large": "A new membrane, just a few clicks away ...",
         "description_small": "A new membrane, just a 900 pixel wide display and a few clicks away ...",
         "default_selected": "-- nothing selected",
         "advanced": "Advanced Options",
-        "download": "Download .gro File",
+        "download": [
+            "Downloads",
+            "Insane model Gromacs file.",
+            "Configuration JSON file."
+        ],
         "download_file": "output_insane.gro",
         "warning": "Warnings",
         "submit": "Create View"

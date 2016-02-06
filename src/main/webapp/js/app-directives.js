@@ -113,4 +113,16 @@
             }
         };
     });
+
+    app.directive('configDownload', function($window){
+        return{
+            restrict: 'A',
+            link: function(scope, element, attrs){
+                element.bind('click', function () {
+                    var blob = new Blob([JSON.stringify(scope.master)], {type: "text/plain;charset=utf-8"});
+                    saveAs(blob, "config.json");
+                });
+            }
+        };
+    });
 })();
