@@ -1,9 +1,6 @@
 [
     {
-        "head_title": "INSANE M\u21BBDEL",
-        "head_description": "A new membrane, just a few clicks away ...",
-        "head_keywords": "INSANE,Modeling,Protein,Membrane,Gridsize,Solvent,Jmol,JSmol,Bilayer,Lipids,Bioinformatics,Online,Tool,Application,Web",
-        "head_authors": {
+        "authors": {
             "Wout van Helvoirt": {
                 "mail": "w.van.helvoirt@st.hanze.nl",
                 "linkedin": "https://nl.linkedin.com/in/wvanhelvoirt"

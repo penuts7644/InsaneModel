@@ -92,7 +92,7 @@
     /*
      * fadeOut directive which is able to get a value from 0.1 - 1.0 lets
      * corresponding element it's opacity being faded when scrolling page.
-     * Defeult value is 1.
+     * Default value is 1.
      */
     app.directive('fadeOut', function($window){
         return{
@@ -114,6 +114,10 @@
         };
     });
 
+    /*
+     * configDownload directive which generates a config file containing all
+     * used setting for the model. File get created in memory.
+     */
     app.directive('configDownload', function($window){
         return{
             restrict: 'A',

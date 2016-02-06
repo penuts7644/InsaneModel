@@ -229,6 +229,10 @@ label{
     line-height: 1.5em;
 }
 
+.panel-title a:hover, .panel-title a:active, .panel-title a:focus, .panel-title a:visited{
+    color: #000 !important;
+}
+
 .panel-body{
     padding: 24px !important;
 }
@@ -262,7 +266,7 @@ a:hover {
 
 a:active, a:visited, a:focus {
     text-decoration: none !important;
-    color: inherit;
+    color: #000;
     outline: none;
 }
 

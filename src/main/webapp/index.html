@@ -7,11 +7,11 @@ All rights reserved.
 
     <!-- Head of web page. -->
     <head>
-        <title>{{option.general.head_title}}</title>
+        <title>INSANE M&#8635;DEL</title>
         <meta charset="UTF-8">
-        <meta name="description" content="{{option.general.head_description}}">
-        <meta name="keywords" content="{{option.general.head_keywords}}">
-        <meta name="author" content="{{option.general.head_authors}}">
+        <meta name="description" content="A new membrane, just a few clicks away ...">
+        <meta name="keywords" content="INSANE,Modeling,Protein,Membrane,Gridsize,Solvent,Jmol,JSmol,Bilayer,Lipids,Bioinformatics,Online,Tool,Application,Web">
+        <meta name="author" content="Lonneke Scheffer &#0038; Wout van Helvoirt">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <!-- Disable caching, causes problems with chrome in rare cases. -->
@@ -36,6 +36,7 @@ All rights reserved.
         <link href="css/main.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400italic,700italic|Lato:400,700,100,300,900" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" href="img/favicon.ico">
+        <link rel="apple-touch-icon" href="img/favicon.ico">
     </head>
 
     <!-- Body of web page -->
@@ -51,7 +52,7 @@ All rights reserved.
                     <p id="hero-subtitle">{{option.general.subtitle}}</p>
                 </div>
                 <div class="col-lg-7 hidden-xs">
-                <div ng-repeat="(author, info) in option.general.head_authors" class="hero-header-adres pull-right">
+                <div ng-repeat="(author, info) in option.general.authors" class="hero-header-adres pull-right">
                     <span class="glyphicon glyphicon-user"></span>
                     <a class="hero-adres-text" href="{{info.linkedin}}" target="_blank">{{author}}</a><br />
                     <span class="glyphicon glyphicon-pencil"></span>
@@ -180,9 +181,9 @@ All rights reserved.
                         <div class="btn-group" uib-dropdown ng-show="outFilePath.length && outFilePath !== 'no_output_file_available'">
                             <button id="downloadButton" uib-dropdown-toggle class="btn btn-info" type="button"><span class="glyphicon glyphicon-cloud-download"></span>{{option.general.download[0]}}</button>
                             <ul uib-dropdown-menu role="menu" aria-labelledby="downloadButton">
-                                <a role="menuitem" href="{{outFilePath}}" download="insane_model.gro">{{option.general.download[1]}}</a>
+                                <a role="menuitem" href="{{outFilePath}}" download="insane_model.gro" target="_blank">{{option.general.download[1]}}</a>
                                 <li class="divider"></li>
-                                <a role="menuitem" config-download>{{option.general.download[2]}}</a>
+                                <a role="menuitem" config-download target="_blank">{{option.general.download[2]}}</a>
                             </ul>
                         </div>
 
