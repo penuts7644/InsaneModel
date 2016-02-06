@@ -12,9 +12,7 @@
 
 * This web application requires at least [Java 8](https://www.oracle.com/downloads/index.html) to function.
 * [Apache Tomcat](http://tomcat.apache.org/download-80.cgi) version 8.0.28 has been used to create a local host server. Newer versions might work too, but have not been tested.
-* Download this version of [JSON simple](https://bitbucket.org/penuts7644/insaneweb/downloads/json-simple-1.1.1.jar).
-* There are a few paths that must exist in order for Insane Model to work. To temporarily store the user input files you need the directory '<your home folder>/insanewebfiles/insanewebfiles'. Also, your 'NetBeansProjects' folder must be inside your home folder. If you want to use different paths (for instance: you don't want to have the 'insanewebfiles' or 'NetBeansProjects' folders inside your home folder, or you don't use NetBeans), all you have to do is change the paths in the java class 'ConfigurationPaths'. (More information can be found in the javadoc of this class.)
-* The complete distribution including Javadoc can be downloaded [here](https://bitbucket.org/penuts7644/insaneweb/downloads/insane_web_dist.zip).
+* There are a few paths that must exist in order for Insane Model to work. To temporarily store the user input files you need the directory '<your home folder>/insanewebfiles/insanemodelfiles'. Also, your 'NetBeansProjects' folder must be inside your home folder. If you want to use different paths (for instance: you don't want to have the 'insanemodelfiles' or 'NetBeansProjects' folders inside your home folder, or you don't use NetBeans), all you have to do is change the paths in the java class 'ConfigurationPaths'. (More information can be found in the javadoc of this class.)
 
 ### How do I use this web application? ###
 
