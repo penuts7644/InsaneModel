@@ -9,7 +9,7 @@ package nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.model;
  * This enum class contains all possible lipid types that can be used in insane.py.
  *
  * @author Lonneke Scheffer
- * @version 1.0
+ * @version 1.0.0
  */
 public enum ValidLipidType {
     /** All possible solvent types. */

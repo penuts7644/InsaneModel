@@ -12,7 +12,7 @@ import java.util.List;
  * This class contains an array of all used valid solvent types, and other solvent related parameters.
  *
  * @author Lonneke Scheffer
- * @version 1.0
+ * @version 1.0.0
  */
 public class Solvent {
     /** The solvent types to use. */

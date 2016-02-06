@@ -14,7 +14,7 @@ import java.util.Set;
  * The user input (headgroups, linkergroups and tailgroups) is validated so insane doesn crash.
  *
  * @author Lonneke Scheffer
- * @version 1.0
+ * @version 1.0.0
  */
 public class AdditionalLipid {
     /** The AdditionalLipids are counted to create unique names. */

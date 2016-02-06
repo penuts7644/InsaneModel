@@ -91,7 +91,7 @@
         $scope.createView = function() {
             $http({
                 method: 'POST',
-                url: 'InsaneWebServlet',
+                url: 'InsaneModelServlet',
                 headers: {'Content-Type': undefined},
                 /*
                  * This method will change how the data is sent to the server.

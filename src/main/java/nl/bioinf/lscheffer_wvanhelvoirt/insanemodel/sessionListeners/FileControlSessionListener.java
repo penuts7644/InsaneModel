@@ -15,6 +15,7 @@ import nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.configuration.ConfigurationP
 /**
  *
  * @author Lonneke Scheffer
+ * @version 1.0.0
  */
 public class FileControlSessionListener implements HttpSessionListener {
 

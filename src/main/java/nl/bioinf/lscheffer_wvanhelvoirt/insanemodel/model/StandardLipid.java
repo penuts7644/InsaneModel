@@ -12,7 +12,7 @@ import java.util.List;
  * The class must have a valid lipid type, and has an upper- and lower membrane leaflet lipid ratio.
  *
  * @author Lonneke Scheffer
- * @version 1.0
+ * @version 1.0.0
  */
 public class StandardLipid {
     /** The type of the standard lipid. */

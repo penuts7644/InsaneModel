@@ -11,7 +11,7 @@ import java.util.List;
  * This class validates and stores all grid size related parameters that can be used in insane.py.
  *
  * @author Lonneke Scheffer
- * @version 1.0
+ * @version 1.0.0
  */
 public class GridSize {
     /** The maximum axis size. */

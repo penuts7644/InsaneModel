@@ -9,10 +9,11 @@ import java.util.List;
 
 /**
  * This class represents the membrane and all membrane related parameters that can be set in insane.py.
- * It contains arrays of standard lipids and additional lipids, and validates the parameters that might cause an exception in insane.
+ * It contains arrays of standard lipids and additional lipids, and validates the parameters that might cause an
+ * exception in insane.
  *
  * @author Lonneke Scheffer
- * @version 1.0
+ * @version 1.0.0
  */
 public class Membrane {
     /** The array of StandardLipids. */

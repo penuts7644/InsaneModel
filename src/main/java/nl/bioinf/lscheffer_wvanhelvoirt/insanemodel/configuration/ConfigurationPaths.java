@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) 2016 Wout van Helvoirt [w.van.helvoirt@st.hanze.nl] & Lonneke Scheffer [l.scheffer@st.hanze.nl]
+ * All rights reserved.
+ *
  */
 package nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.configuration;
 
@@ -11,7 +11,7 @@ package nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.configuration;
  * Be very careful when changing paths, and read the description well.
  *
  * @author Lonneke Scheffer
- * @version 1.0
+ * @version 1.0.0
  */
 public final class ConfigurationPaths {
     /**
@@ -24,7 +24,7 @@ public final class ConfigurationPaths {
      * "NetBeansProjects"
      */
     static final private String INSANEFOLDER = String.join(System.getProperty("file.separator"),
-            System.getProperty("user.home"), "NetBeansProjects", "InsaneModel", "src", "main", "webapp", "insane");
+            System.getProperty("user.home"), "Documents", "NetBeansProjects", "InsaneModel", "src", "main", "resources", "insane");
     /**
      * This is the absolute path to the folder containing insane.py, INSIDE your project.
      * This is the INSANEFOLDER path, with a file separator at the end.
@@ -35,13 +35,13 @@ public final class ConfigurationPaths {
      * If you change this path, you also have to change the path WEBOUTFILE so the absolute and relative paths match.
      */
     static final private String OUTFILE = String.join(
-            System.getProperty("file.separator"), INSANEFOLDER, "userOutFiles", "");
+            System.getProperty("file.separator"), "../../../", INSANEFOLDER, "userOutputFiles", "");
     /**
      * This is the relative path to the folder where output files will be stored.
      * It is relative from your project root. If you change this path, you also have to change OUTFILE.
      */
     static final private String WEBOUTFILE = String.join(
-            System.getProperty("file.separator"), "insane", "userOutFiles", "");
+            System.getProperty("file.separator"), "../../../", "userOutputFiles", "");
     /**
      * This is the absolute path to the folder where input files will be stored, OUTSIDE your project.
      * You can change this path to anything you like, as long as the path exists and is not inside your project folder.
@@ -57,6 +57,8 @@ public final class ConfigurationPaths {
      * @return INSANEROOT, see: {@link ConfigurationPaths#INSANEROOT}
      */
     public static String getRootPath() {
+        System.out.println(INSANEROOT);
+        System.out.println(INSANEFOLDER);        
         return ConfigurationPaths.INSANEROOT;
     }
 

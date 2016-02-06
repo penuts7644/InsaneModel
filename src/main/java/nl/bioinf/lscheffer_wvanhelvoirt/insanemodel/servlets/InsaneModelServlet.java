@@ -38,9 +38,9 @@ import org.json.simple.parser.ParseException;
  *
  * @author Wout van Helvoirt
  */
-@WebServlet(name = "InsaneWebServlet", urlPatterns = {"/InsaneWebServlet"})
+@WebServlet(name = "InsaneModelServlet", urlPatterns = {"/InsaneModelServlet"})
 @MultipartConfig
-public class InsaneWebServlet extends HttpServlet {
+public class InsaneModelServlet extends HttpServlet {
 
     private String streamToString(InputStream stream) throws IOException {
         StringBuilder builder;
@@ -136,10 +136,10 @@ public class InsaneWebServlet extends HttpServlet {
             out.flush();
             out.close();
         } catch (ParseException ex) {
-            //Logger.getLogger(InsaneWebServlet.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(InsaneModelServlet.class.getName()).log(Level.SEVERE, null, ex);
             // iets aan de warnings toevoegen?
         } catch (InterruptedException ex) {
-            Logger.getLogger(InsaneWebServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InsaneModelServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

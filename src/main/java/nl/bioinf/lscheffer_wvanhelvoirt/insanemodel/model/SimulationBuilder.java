@@ -15,7 +15,7 @@ import org.json.simple.JSONObject;
  * This class parses the given insane settings (a JSON object), and calls insane.py.
  *
  * @author Lonneke Scheffer
- * @version 1.0
+ * @version 1.0.0
  */
 public class SimulationBuilder {
     /** The error message list all classes add error messages to. */
