@@ -1,0 +1,5 @@
+The location 'userOutFiles' contains all generated output files necessary.
+These files are will be loaded into Jmol via Javascript. Files will be removed
+automatically after a session ends.
+
+Note: the files in this location are save to delete.

@@ -1,0 +1,906 @@
+[
+    {
+        "head_title": "INSANE M\u21BBDEL",
+        "head_description": "A new membrane, just a few clicks away ...",
+        "head_keywords": "INSANE,Modeling,Protein,Membrane,Gridsize,Solvent,Jmol,JSmol,Bilayer,Lipids,Bioinformatics,Online,Tool,Application,Web",
+        "head_authors": "Lonneke Scheffer \u0026 Wout van Helvoirt",
+        "title": "INSANE M\u21BBDEL",
+        "subtitle": "The INSANE Online Membrane Modeling Tool",
+        "description_large": "A new membrane, just a few clicks away ...",
+        "description_small": "A new membrane, just a 900 pixel wide display and a few clicks away ...",
+        "default_selected": "-- nothing selected",
+        "advanced": "Advanced Options",
+        "download": "Download .gro File",
+        "download_file": "output_insane.gro",
+        "warning": "Warnings",
+        "submit": "Create View"
+    },
+    [
+        { 
+            "id": "gridsizing_menu",
+            "name": "Grid Sizing",
+            "expanded": "collapse in",
+            "inputs": [
+                { 
+                    "id": "parameter_d",
+                    "description": "Distance between periodic images",
+                    "input_type": "number",
+                    "min": "1.0",
+                    "max": "25.0",
+                    "step": "0.5",
+                    "default": "",
+                    "placeholder": "e.g. 10",
+                    "information": "Size of the simulation in nanometer, for the x, y and z axes. This value must be between 1 and 25, the default value is 10.",
+                    "class": "standard"
+                },
+                {
+                    "id": "parameter_x",
+                    "description":"Distance between periodic images in direction x",
+                    "input_type": "number",
+                    "min": "1.0",
+                    "max": "25.0",
+                    "step": "0.5",
+                    "default": "",
+                    "placeholder": "e.g. 10",
+                    "information": "Size of the simulation in nanometer, for the x axis. This value must be between 1 and 25.",
+                    "class": "advanced"
+                },
+                {
+                    "id": "parameter_y",
+                    "description":"Distance between periodic images in direction y",
+                    "input_type": "number",
+                    "min": "1.0",
+                    "max": "25.0",
+                    "step": "0.5",
+                    "default": "",
+                    "placeholder": "e.g. 10",
+                    "information": "Size of the simulation in nanometer, for the y axis. This value must be between 1 and 25.",
+                    "class": "advanced"
+                },
+                {
+                    "id": "parameter_z",
+                    "description":"Distance between periodic images in direction z",
+                    "input_type": "number",
+                    "min": "1.0",
+                    "max": "25.0",
+                    "step": "0.5",
+                    "default": "",
+                    "placeholder": "e.g. 10",
+                    "information": "Size of the simulation in nanometer, for the z axis. This value must be between 1 and 25.",
+                    "class": "advanced"
+                },
+                {
+                    "id": "parameter_dz",
+                    "description": "Use z-distance plus protein size for z",
+                    "input_type": "radio",
+                    "default": "false",
+                    "information": "If z is given: z is replaced by z + protein size.",
+                    "class": "advanced",
+                    "options": [
+                        {
+                            "label" : "Yes",
+                            "value" : "true"
+                        },
+                        {
+                            "label" : "No",
+                            "value" : "false"
+                        }
+                    ]
+                },
+                {
+                    "id": "parameter_pbc",
+                    "description":"Periodic boundary condition",
+                    "input_type": "select",
+                    "default": "",
+                    "information": "The shape of the unit cell (note that this does not affect the image created by JSmol)",
+                    "class": "advanced",
+                    "options": [
+                        {
+                            "label":"Hexagonal",
+                            "value" : "hexagonal"
+                        },
+                        {
+                            "label" : "Rectangular",
+                            "value" : "rectangular"
+                        },
+                        {
+                            "label" : "Square",
+                            "value" : "square"
+                        },
+                        {
+                            "label" : "Cubic",
+                            "value" : "cubic"
+                        },
+                        {
+                            "label" : "Optimal",
+                            "value" : "optimal"
+                        },
+                        {
+                            "label" : "Keep",
+                            "value" : "keep"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "membrane_menu",
+            "name": "Membrane",
+            "expanded": "collapse",
+            "inputs": [
+                { 
+                    "id": "parameter_l",
+                    "description": "Membrane lipids",
+                    "input_type": "multiselect_text",
+                    "default": [[null, ""]],
+                    "placeholder": "e.g. 3, 1:2",
+                    "information": "The lipid types and optionally relative abundance you want to use. You can set the relative abundance by giving one number, or a ratio between 'upper leaflet abundance':'lower leaflet abundance'",
+                    "class": "standard",
+                    "options": {
+                        "Phospholipids": [
+                            {
+                                "label":"DTPC",
+                                "value":"DTPC"
+                            },
+                            {
+                                "label":"DLPC",
+                                "value":"DLPC"
+                            },
+                            {
+                                "label":"DPPC",
+                                "value":"DPPC"
+                            },
+                            {
+                                "label":"DBPC",
+                                "value":"DBPC"
+                            },
+                            {
+                                "label":"POPC",
+                                "value":"POPC"
+                            },
+                            {
+                                "label":"DOPC",
+                                "value":"DOPC"
+                            },
+                            {
+                                "label":"DAPC",
+                                "value":"DAPC"
+                            },
+                            {
+                                "label":"DIPC",
+                                "value":"DIPC"
+                            },
+                            {
+                                "label":"DGPC",
+                                "value":"DGPC"
+                            },
+                            {
+                                "label":"DNPC",
+                                "value":"DNPC"
+                            },
+                            {
+                                "label":"DTPE",
+                                "value":"DTPE"
+                            },
+                            {
+                                "label":"DLPE",
+                                "value":"DLPE"
+                            },
+                            {
+                                "label":"DPPE",
+                                "value":"DPPE"
+                            },
+                            {
+                                "label":"DBPE",
+                                "value":"DBPE"
+                            },
+                            {
+                                "label":"POPE",
+                                "value":"POPE"
+                            },
+                            {
+                                "label":"DOPE",
+                                "value":"DOPE"
+                            },
+                            {
+                                "label":"POPG",
+                                "value":"POPG"
+                            },
+                            {
+                                "label":"DOPG",
+                                "value":"DOPG"
+                            },
+                            {
+                                "label":"POPS",
+                                "value":"POPS"
+                            },
+                            {
+                                "label":"DOPS",
+                                "value":"DOPS"
+                            },
+                            {
+                                "label":"DPSM",
+                                "value":"DPSM"
+                            },
+                            {
+                                "label":"DBSM",
+                                "value":"DBSM"
+                            },
+                            {
+                                "label":"BNSM",
+                                "value":"BNSM"
+                            },
+                            {
+                                "label":"OPPG",
+                                "value":"OPPG"
+                            },
+                            {
+                                "label":"JPPG",
+                                "value":"JPPG"
+                            },
+                            {
+                                "label":"JFPG",
+                                "value":"JFPG"
+                            },
+                            {
+                                "label":"GMO (Monoacylglycerol)",
+                                "value":"GMO"
+                            }
+                        ],
+                        "Inositollipids": [
+                            {
+                                "label":"DPPI",
+                                "value":"DPPI"
+                            },
+                            {
+                                "label":"POPI",
+                                "value":"POPI"
+                            },
+                            {
+                                "label":"PIPI",
+                                "value":"PIPI"
+                            },
+                            {
+                                "label":"PAPI",
+                                "value":"PAPI"
+                            },
+                            {
+                                "label":"PUPI",
+                                "value":"PUPI"
+                            },
+                            {
+                                "label":"POP1",
+                                "value":"POP1"
+                            },
+                            {
+                                "label":"POP2",
+                                "value":"POP2"
+                            },
+                            {
+                                "label":"POP3",
+                                "value":"POP3"
+                            }
+                        ],
+                        "Glycolipids": [
+                            {
+                                "label":"DPG1",
+                                "value":"DPG1"
+                            },
+                            {
+                                "label":"DXG1",
+                                "value":"DXG1"
+                            },
+                            {
+                                "label":"PNG1",
+                                "value":"PNG1"
+                            },
+                            {
+                                "label":"XNG1",
+                                "value":"XNG1"
+                            },
+                            {
+                                "label":"DPG3",
+                                "value":"DPG3"
+                            },
+                            {
+                                "label":"DXG3",
+                                "value":"DXG3"
+                            },
+                            {
+                                "label":"PNG3",
+                                "value":"PNG3"
+                            },
+                            {
+                                "label":"XNG3",
+                                "value":"XNG3"
+                            },
+                            {
+                                "label":"DPCE",
+                                "value":"DPCE"
+                            },
+                            {
+                                "label":"DPGS",
+                                "value":"DPGS"
+                            },
+                            {
+                                "label":"DPMG",
+                                "value":"DPMG"
+                            },
+                            {
+                                "label":"DPSG",
+                                "value":"DPSG"
+                            },
+                            {
+                                "label":"DPGG",
+                                "value":"DPGG"
+                            },
+                            {
+                                "label":"OPMG",
+                                "value":"OPMG"
+                            },
+                            {
+                                "label":"OPSG",
+                                "value":"OPSG"
+                            },
+                            {
+                                "label":"OPGG",
+                                "value":"OPGG"
+                            },
+                            {
+                                "label":"FPMG",
+                                "value":"FPMG"
+                            },
+                            {
+                                "label":"DFMG",
+                                "value":"DFMG"
+                            },
+                            {
+                                "label":"FPSG",
+                                "value":"FPSG"
+                            },
+                            {
+                                "label":"FPGG",
+                                "value":"FPGG"
+                            },
+                            {
+                                "label":"DFGG",
+                                "value":"DFGG"
+                            }
+                        ],
+                        "Quinones": [
+                            {
+                                "label":"PLQ",
+                                "value":"PLQ"
+                            }
+                        ],
+                        "Cardiolipins": [
+                            {
+                                "label":"CDL0",
+                                "value":"CDL0"
+                            },
+                            {
+                                "label":"CDL1",
+                                "value":"CDL1"
+                            },
+                            {
+                                "label":"CDL2",
+                                "value":"CDL2"
+                            },
+                            {
+                                "label":"CL4P",
+                                "value":"CL4P"
+                            },
+                            {
+                                "label":"CL4M",
+                                "value":"CL4M"
+                            }
+                        ],
+                        "Mycolic Acids": [
+                            {
+                                "label":"AMA",
+                                "value":"AMA"
+                            },
+                            {
+                                "label":"KMA",
+                                "value":"KMA"
+                            },
+                            {
+                                "label":"MMA",
+                                "value":"MMA"
+                            }
+                        ],
+                        "Sterols": [
+                            {
+                                "label":"CHOL",
+                                "value":"CHOL"
+                            }
+                        ]
+                    }
+                },
+                { 
+                    "id": "parameter_al",
+                    "description": "Create your own lipid",
+                    "input_type": "multitext",
+                    "default": [["", "", "", ""]],
+                    "information": "Create your own lipids by defining your head groups, linker groups and tail groups; separated by spaces. Relative abundance is optional (see: Membrane lipids). Head (optional): possible groups are C, E, G, S, P. Linker (required): possible groups are A, G. Tail (required): groups can consist of multiple tail beads, possible tail beads are C, D, T. The amount of tails must be equal to the amount of linkers.",
+                    "class": "advanced",
+                    "placeholders": [
+                        "head e.g. 'C E G S P'",
+                        "linker e.g. 'A G'",
+                        "tail e.g. 'CCC CDT'",
+                        "ratio e.g. 4:1"
+                    ]
+                },
+                { 
+                    "id": "parameter_rand",
+                    "description": "Membrane random kick",
+                    "input_type": "number",
+                    "min": "",
+                    "max": "",
+                    "step": "0.1",
+                    "default": "",
+                    "placeholder": "e.g. 2",
+                    "information": "Gives the membrane lipids a random kick, so they appear more natural.",
+                    "class": "advanced"
+                },
+                { 
+                    "id": "parameter_a",
+                    "description": "Area per lipid",
+                    "input_type": "number",
+                    "min": "0.1",
+                    "max": "",
+                    "step": "0.1",
+                    "default": "",
+                    "placeholder": "e.g. 0.6",
+                    "information": "Area per lipid in nm * nm. This parameter is used for both leaflets, unless 'Area per lipid in upper leaflet' is given. The default value is 0.6 nm.",
+                    "class": "advanced"
+                },
+                { 
+                    "id": "parameter_au",
+                    "description": "Area per lipid in upper leaflet",
+                    "input_type": "number",
+                    "min": "0.1",
+                    "max": "",
+                    "step": "0.1",
+                    "default": "",
+                    "placeholder": "e.g. 0.6",
+                    "information": "Area per lipid in nm * nm. If this parameter is set, 'Area per lipid' will only describe the lipids in the lower leaflet.",
+                    "class": "advanced"
+                },
+                { 
+                    "id": "parameter_asym",
+                    "description": "Membrane asymmetry (number of lipids)",
+                    "input_type": "number",
+                    "min": "",
+                    "max": "",
+                    "step": "1",
+                    "default": "",
+                    "placeholder": "e.g. 5, -20",
+                    "information": "Creates an asymmetric amount of lipids in the upper and lower membrane leaflets. Positive values will result in more lipids in the lower membrane, negative values will create more lipids in the upper membrane.",
+                    "class": "advanced"
+
+                },
+                { 
+                    "id": "parameter_hole",
+                    "description": "Hole size",
+                    "input_type": "number",
+                    "min": "0",
+                    "max": "",
+                    "step": "0.1",
+                    "default": "",
+                    "placeholder": "e.g. 4",
+                    "information": "Creates a hole with the given radius in nm. Can be used in combination with 'disc size'.",
+                    "class": "advanced"
+
+                },
+                { 
+                    "id": "parameter_disc",
+                    "description": "Disc size",
+                    "input_type": "number",
+                    "min": "0",
+                    "max": "",
+                    "step": "0.1",
+                    "default": "",
+                    "placeholder": "e.g. 5",
+                    "information": "Creates a disc (opposite of hole) with the given radius in nm. Can be used in combination with 'hole size'.",
+                    "class": "advanced"
+
+                },
+                { 
+                    "id": "parameter_bd",
+                    "description": "Bead distance unit",
+                    "input_type": "number",
+                    "min": "0.1",
+                    "max": "",
+                    "step": "0.1",
+                    "default": "",
+                    "placeholder": "e.g. 0.3",
+                    "information": "Bead distance unit for scaling the z-coordinates in nm. The default value is 0.3.",
+                    "class": "advanced"
+                }
+
+            ]
+        },
+        { 
+            "id": "protein_menu",
+            "name": "Protein",
+            "expanded": "collapse",
+            "inputs": [
+                { 
+                    "id": "parameter_f",
+                    "description": "Protein",
+                    "input_type": "file",
+                    "default": null,
+                    "accept": ".pdb,.gro",
+                    "placeholder": "",
+                    "information": "Protein PDB or GRO file.",
+                    "class": "standard"
+
+                },
+                { 
+                    "id": "parameter_ring",
+                    "description": "Ring shaped protein",
+                    "input_type": "radio",
+                    "default": "false",
+                    "information": "If the given protein is a ring shaped protein, this value can be set to 'yes' so membrane lipids are allowed to form inside the protein.",
+                    "class": "standard",
+                    "options": [
+                        {
+                            "label" : "Yes",
+                            "value" : "true"
+                        },
+                        {
+                            "label" : "No",
+                            "value" : "false"
+                        }
+                    ]
+                },
+                { 
+                    "id": "parameter_center",
+                    "description": "Center protein",
+                    "input_type": "radio",
+                    "default": "false",
+                    "information": "Centers the protein along the z-axis inside the membrane.",
+                    "class": "standard",
+                    "options": [
+                        {
+                            "label" : "Yes",
+                            "value" : "true"
+                        },
+                        {
+                            "label" : "No",
+                            "value" : "false"
+                        }
+                    ]
+                },
+                { 
+                    "id": "parameter_rotate",
+                    "description": "Rotate protein",
+                    "input_type": "select",
+                    "default": "",
+                    "information": "Rotate the protein randomly, along the principal axis or by a specific angle.",
+                    "class": "advanced",
+                    "options": [
+                        {
+                            "label" : "Random",
+                            "value" : "random"
+                        },
+                        {
+                            "label" : "Principal axis to x",
+                            "value" : "princ"
+                        },
+                        {
+                            "label" : "15°",
+                            "value" : "15"
+                        },
+                        {
+                            "label" : "30°",
+                            "value" : "30"
+                        },
+                        {
+                            "label" : "45°",
+                            "value" : "45"
+                        },
+                        {
+                            "label" : "90°",
+                            "value" : "90"
+                        },
+                        {
+                            "label" : "135°",
+                            "value" : "135"
+                        },
+                        {
+                            "label" : "180°",
+                            "value" : "180"
+                        },
+                        {
+                            "label" : "225°",
+                            "value" : "225"
+                        },
+                        {
+                            "label" : "270°",
+                            "value" : "270"
+                        },
+                        {
+                            "label" : "315°",
+                            "value" : "315"
+                        },
+                        {
+                            "label" : "330°",
+                            "value" : "330"
+                        },
+                        {
+                            "label" : "345°",
+                            "value" : "345"
+                        }
+                    ]
+                },
+                { 
+                    "id": "parameter_fudge",
+                    "description": "Fudge factor for lipid-protein overlap",
+                    "input_type": "number",
+                    "min": "0.0",
+                    "max": "",
+                    "step": "0.1",
+                    "default": "",
+                    "placeholder": "e.g. 0.1",
+                    "information": "A higher fudge factor allows for more lipid-protein overlap. The fudge factor default is 0.1.",
+                    "class": "advanced"
+                },
+                { 
+                    "id": "parameter_dm",
+                    "description": "Shift protein with respect to membrane",
+                    "input_type": "number",
+                    "min": "",
+                    "max": "",
+                    "step": "0.5",
+                    "default": "",
+                    "placeholder": "e.g. -2, 0.5",
+                    "information": "Positive values will result in a protein that hovers above the membrane, negative values will place the protein under the membrane..",
+                    "class": "advanced"
+                }
+            ]
+        },
+        { 
+            "id": "solvent_menu",
+            "name": "Solvent",
+            "expanded": "collapse",
+            "inputs": [
+                { 
+                    "id": "parameter_sol",
+                    "description": "Solvent",
+                    "input_type": "multiselect_text",
+                    "default": [[null, ""]],
+                    "placeholder" : "e.g. 3",
+                    "information": "The type of solvent you want to add, and the relative abundance.",
+                    "class": "standard",
+                    "options": {
+                        "Water": [
+                            {
+                                "label":"Simple water",
+                                "value":"W"
+                            },
+                            {
+                                "label":"Polarizable water",
+                                "value":"PW"
+                            },
+                            {
+                                "label":"BMW",
+                                "value":"BMW"
+                            },
+                            {
+                                "label":"SPC",
+                                "value":"SPC"
+                            },
+                            {
+                                "label":"Multiscale/Martini SPC",
+                                "value":"SPCM"
+                            },
+                            {
+                                "label":"Bundled water",
+                                "value":"FG4W"
+                            },
+                            {
+                                "label":"Bundled water, multiscaled",
+                                "value":"FG4W_MS"
+                            }
+                        ],
+                        "Saccharides": [
+                            {
+                                "label":"Glucose",
+                                "value":"GLUC"
+                            },
+                            {
+                                "label":"Fructose",
+                                "value":"FRUC"
+                            },
+                            {
+                                "label":"Sucrose",
+                                "value":"SUCR"
+                            },
+                            {
+                                "label":"Maltose",
+                                "value":"MALT"
+                            },
+                            {
+                                "label":"Cellobiose",
+                                "value":"CELL"
+                            },
+                            {
+                                "label":"Kojibiose",
+                                "value":"KOJI"
+                            },
+                            {
+                                "label":"Sophorose",
+                                "value":"SOPH"
+                            },
+                            {
+                                "label":"Nigerose",
+                                "value":"NIGE"
+                            },
+                            {
+                                "label":"Laminaribiose",
+                                "value":"LAMI"
+                            },
+                            {
+                                "label":"Trehalose",
+                                "value":"TREH"
+                            }
+                        ],
+                        "Amino acids": [
+                            {
+                                "label":"Glycine",
+                                "value":"GLY"
+                            },
+                            {
+                                "label":"Alanine",
+                                "value":"ALA"
+                            },
+                            {
+                                "label":"Asparagine",
+                                "value":"ASN"
+                            },
+                            {
+                                "label":"Aspartic acid",
+                                "value":"ASP"
+                            },
+                            {
+                                "label":"Glutamic acid",
+                                "value":"GLU"
+                            },
+                            {
+                                "label":"Glutamine",
+                                "value":"GLN"
+                            },
+                            {
+                                "label":"Leucine",
+                                "value":"LEU"
+                            },
+                            {
+                                "label":"Isoleucine",
+                                "value":"ILE"
+                            },
+                            {
+                                "label":"Valine",
+                                "value":"VAL"
+                            },
+                            {
+                                "label":"Serine",
+                                "value":"SER"
+                            },
+                            {
+                                "label":"Threonine",
+                                "value":"THR"
+                            },
+                            {
+                                "label":"Cysteine",
+                                "value":"CYS"
+                            },
+                            {
+                                "label":"Methionine",
+                                "value":"MET"
+                            },
+                            {
+                                "label":"Lysine",
+                                "value":"LYS"
+                            },
+                            {
+                                "label":"Proline",
+                                "value":"PRO"
+                            },
+                            {
+                                "label":"Hydroxyproline",
+                                "value":"HYP"
+                            },
+                            {
+                                "label":"Arginine",
+                                "value":"ARG"
+                            },
+                            {
+                                "label":"Phenylalanine",
+                                "value":"PHE"
+                            },
+                            {
+                                "label":"Tyrosine",
+                                "value":"TYR"
+                            },
+                            {
+                                "label":"Tryptophan",
+                                "value":"TRP"
+                            }
+                        ],
+                        "Other": [
+                            {
+                                "label":"Sodium",
+                                "value":"NA"
+                            },
+                            {
+                                "label":"Chlorine",
+                                "value":"CL"
+                            },
+                            {
+                                "label":"Magnesium",
+                                "value":"MG"
+                            },
+                            {
+                                "label":"Potassium",
+                                "value":"K"
+                            },
+                            {
+                                "label":"Butane",
+                                "value":"BUT"
+                            }
+                        ]
+                    }
+                },
+                { 
+                    "id": "parameter_solr",
+                    "description": "Solvent random kick",
+                    "input_type": "number",
+                    "min": "",
+                    "max": "",
+                    "step": "0.1",
+                    "placeholder": "e.g. 2, -1",
+                    "information": "Gives the solvent particles a random kick, so it appears more natural.",
+                    "class": "advanced"
+                },
+                { 
+                    "id": "parameter_sold",
+                    "description": "Solvent diameter in nm",
+                    "input_type": "number",
+                    "min": "0.35",
+                    "max": "",
+                    "step": "0.05",
+                    "default": "",
+                    "placeholder": "e.g. 0.5",
+                    "information": "The diameter of the solvent particles in nm. The default value is 0.5 nm, the smallest value allowed is 0.35 nm.",
+                    "class": "advanced"
+                },
+                { 
+                    "id": "parameter_salt",
+                    "description": "Salt concentration",
+                    "input_type": "number",
+                    "min": "0.0",
+                    "max": "",
+                    "step": "0.05",
+                    "default": "",
+                    "placeholder": "e.g. 0.15",
+                    "information": "The concentration of charged natrium and chlorine molecules.",
+                    "class": "advanced"
+                },
+                { 
+                    "id": "parameter_charge",
+                    "description": "Charge",
+                    "input_type": "number",
+                    "min": "",
+                    "max": "",
+                    "step": "1",
+                    "default": "",
+                    "placeholder": "e.g. -5, 25",
+                    "information": "The overall charge of the simulation, affects the ratio between positively and negatively charged solvent molecules.",
+                    "class": "advanced"
+                }
+            ]
+        }
+    ]
+]
