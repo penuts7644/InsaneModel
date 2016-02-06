@@ -11,7 +11,7 @@ import java.util.List;
  * This class contains the file location of a protein pdb file, and some protein related parameters for insane.py.
  *
  * @author Lonneke Scheffer
- * @version 1.0
+ * @version 1.0.0
  */
 public class Protein {
     /** The pdb file location. */
