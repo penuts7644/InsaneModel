@@ -118,10 +118,10 @@
      * configDownload directive which generates a config file containing all
      * used setting for the model. File get created in memory.
      */
-    app.directive('configDownload', function($window){
-        return{
+    app.directive('configDownload', function() {
+        return {
             restrict: 'A',
-            link: function(scope, element, attrs){
+            link: function(scope, element, attrs) {
                 element.bind('click', function () {
                     var blob = new Blob([JSON.stringify(scope.master)], {type: "text/plain;charset=utf-8"});
                     saveAs(blob, "config.json");
