@@ -30,6 +30,7 @@
         $scope.advancedDisabled = true;
         $scope.radio = false;
         $scope.submitDisabled = false;
+        $scope.downloadButton = false;
 
         /*
          * Retrieve the date from our external JSON file containing all settings.
@@ -137,10 +138,22 @@
                  * Succesfully obtained date from servlet, load into Jmol script.
                  */
                 console.log("Successfully obtained data from server.");
-                jmol_applet_insane._loadFile(data.outfile);
-                $scope.outFilePath = data.outfile;
+                if (data.display){
+                    jmol_applet_insane._loadFile(data.outfile);
+                    Jmol.script(jmol_applet_insane, 'moveto 0.0 bottom');
+                } else {
+                    jmol_applet_insane._loadFile("no_output_available");
+                }
+                
+
+                if (data.download){
+                    $scope.downloadButton = true;
+                    $scope.outFilePath = data.outfile;
+                } else{
+                    $scope.downloadButton = false;
+                }
+                
                 $scope.warningMessages = JSON.parse(data.errorMessages);
-                Jmol.script(jmol_applet_insane, 'moveto 0.0 bottom');
             }).error(function (data, status, headers, config) {
                 /*
                  * Something went wrong, no data.

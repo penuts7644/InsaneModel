@@ -387,4 +387,13 @@ public class SimulationBuilder {
     public List<String> getArguments() {
         return this.arguments;
     }
+    
+        /**
+     * Checks if the given grid size is 'too big' for JSmol to view.
+     *
+     * @return boolean whether grid is > MAX_GRID_SIZE_WITH_VIEW
+     */
+    public boolean isTooBig(){
+        return this.gridSize.isTooBig();
+    }
 }
