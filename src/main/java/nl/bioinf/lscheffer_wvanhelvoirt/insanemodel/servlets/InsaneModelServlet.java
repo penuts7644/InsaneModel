@@ -124,10 +124,19 @@ public class InsaneModelServlet extends HttpServlet {
                 errors.add("insane.py exited with a non-zero exit value, so no output file has been written. Please"
                         + " check your given arguments and/or input file and try again.");
                 outputJson.put("errorMessages", JSONArray.toJSONString(errors));
-                outputJson.put("outfile", "no_output_file_available");
+                outputJson.put("outfile", "no_output_available");
+                outputJson.put("download", false);
+                outputJson.put("display", false);
             } else {
                 outputJson.put("errorMessages", JSONArray.toJSONString(simbuild.getErrorMessages()));
                 outputJson.put("outfile", ConfigurationPaths.getWebOutFilePath(session.getId()));
+                outputJson.put("download", true);
+                // Only display if the grid is not too big
+                if (simbuild.isTooBig()){
+                    outputJson.put("display", false);
+                } else {
+                    outputJson.put("display", true);
+                }
             }
 
             response.setContentType("text/html");

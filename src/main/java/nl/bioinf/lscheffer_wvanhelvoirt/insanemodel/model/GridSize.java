@@ -14,8 +14,10 @@ import java.util.List;
  * @version 1.0.0
  */
 public class GridSize {
-    /** The maximum axis size. */
-    private static final double MAXGRIDSIZE = 25;
+    /** The maximum axis size that will be used to run insane. */
+    private static final double MAX_GRID_SIZE = 100;
+    /** The maximum axis size that will be used to show output. */
+    private static final double MAX_GRID_SIZE_WITH_VIEW = 25;
     /** Distance value for x, y and z axis. */
     private final double d;
     /** The x axis distance. */
@@ -29,9 +31,14 @@ public class GridSize {
     /** The periodic boundary condition type (hexagonal, rectangular, square, cubic, optimal or keep). */
     private final String pbc;
 
+    /** This boolean tells if the created output is too big to display (>MAX_GRID_SIZE_WITH_VIEW).*/
+    private boolean tooBigToDisplay;
+    
     /** The list to add error messages to. */
     private final List<String> errorMessages;
 
+    
+    
     /**
      * Create a new grid size.
      *
@@ -51,53 +58,85 @@ public class GridSize {
                     final boolean dz,
                     final String pbc) {
         this.errorMessages = errorMessages;
-        this.d = this.validateD(Math.abs(d), 10);
-        this.x = this.validateXyz(Math.abs(x));
-        this.y = this.validateXyz(Math.abs(y));
-        this.z = this.validateXyz(Math.abs(z));
+        this.tooBigToDisplay = false;
+        this.d = this.validateAnyDistance(Math.abs(d), 10);
+        this.x = this.validateAnyDistance(Math.abs(x), this.d);
+        this.y = this.validateAnyDistance(Math.abs(y), this.d);
+        this.z = this.validateAnyDistance(Math.abs(z), this.d);
         this.dz = dz;
         this.pbc = pbc;
     }
 
     /**
      * Validate the given distance size.
+     * The distance can not be bigger than MAX_GRID_SIZE,
+     * and an error message is given if the distance is bigger than MAX_GRID_SIZE_WITH_VIEW.
      *
-     * @param givenD       the given distance value
-     * @param defaultValue the default value to return if no distance value is given
-     * @return             a valid distance value
+     * @param givenDistance the given distance value
+     * @param defaultValue  the default value to return if no distance value is given
+     * @return              a valid distance value
      */
-    private double validateD(final double givenD, final double defaultValue) {
-        if ((givenD) == 0) {
+    private double validateAnyDistance(final double givenDistance, final double defaultValue){
+        String errorMessage = "";
+        
+        if ((givenDistance) == 0) {
             return defaultValue;
-        } else if (givenD > GridSize.MAXGRIDSIZE) {
-            // given d value is too big, set to MAXGRIDSIZE and add an error message
-            errorMessages.add("Given grid size '" + givenD + "' is too big and has been set to "
-                            + GridSize.MAXGRIDSIZE + ".");
-            return GridSize.MAXGRIDSIZE;
-        } else {
-            return givenD;
+        } else if (givenDistance > GridSize.MAX_GRID_SIZE_WITH_VIEW) {
+            this.tooBigToDisplay = true;
+            
+            errorMessage += "Note that grid size values above " + GridSize.MAX_GRID_SIZE_WITH_VIEW 
+                    + " will not be displayed by JSmol, there is only a downloadable output file available.";
+            
+            if (givenDistance > GridSize.MAX_GRID_SIZE){
+                errorMessage = "Given grid size '" + givenDistance + "' is too big and has been set to "
+                            + GridSize.MAX_GRID_SIZE + errorMessage + ". ";
+                this.errorMessages.add(errorMessage);
+                return GridSize.MAX_GRID_SIZE;
+            }
+            this.errorMessages.add(errorMessage);
         }
-    }
-
-    /**
-     * Validate the given x, y or z axis distance.
-     *
-     * @param givenXyz the given x, y or z axis distance
-     * @return         a valid x, y or z axis distance
-     */
-    private double validateXyz(final double givenXyz) {
-        if ((givenXyz) == 0) {
-            // if no x, y or z value is given, return the default d value
-            return this.d;
-        } else if (givenXyz > GridSize.MAXGRIDSIZE) {
-            // given axis value is too big, set to MAXGRIDSIZE and add an error message
-            errorMessages.add("Given axis size '" + givenXyz + "' is too big and has been set to"
-                    + GridSize.MAXGRIDSIZE + ".");
-            return GridSize.MAXGRIDSIZE;
-        } else {
-            return givenXyz;
-        }
-    }
+        return givenDistance;
+    }    
+//    
+//    /**
+//     * Validate the given distance size.
+//     *
+//     * @param givenD       the given distance value
+//     * @param defaultValue the default value to return if no distance value is given
+//     * @return             a valid distance value
+//     */
+//    private double validateD(final double givenD, final double defaultValue) {
+//        if ((givenD) == 0) {
+//            return defaultValue;
+//        } else if (givenD > GridSize.MAXGRIDSIZE) {
+//            // given d value is too big, set to MAXGRIDSIZE and add an error message
+//            errorMessages.add("Given grid size '" + givenD + "' is too big and has been set to "
+//                            + GridSize.MAXGRIDSIZE + ".");
+//            return GridSize.MAXGRIDSIZE;
+//        } else {
+//            return givenD;
+//        }
+//    }
+//
+//    /**
+//     * Validate the given x, y or z axis distance.
+//     *
+//     * @param givenXyz the given x, y or z axis distance
+//     * @return         a valid x, y or z axis distance
+//     */
+//    private double validateXyz(final double givenXyz) {
+//        if ((givenXyz) == 0) {
+//            // if no x, y or z value is given, return the default d value
+//            return this.d;
+//        } else if (givenXyz > GridSize.MAXGRIDSIZE) {
+//            // given axis value is too big, set to MAXGRIDSIZE and add an error message
+//            errorMessages.add("Given axis size '" + givenXyz + "' is too big and has been set to"
+//                    + GridSize.MAXGRIDSIZE + ".");
+//            return GridSize.MAXGRIDSIZE;
+//        } else {
+//            return givenXyz;
+//        }
+//    }
 
     /**
      * Get the minimal vertical distance.
@@ -155,5 +194,14 @@ public class GridSize {
             arguments.add(this.pbc);
         }
 
+    }
+
+    /**
+     * Checks if the given grid size is 'too big' for JSmol to view.
+     *
+     * @return boolean whether grid is > MAX_GRID_SIZE_WITH_VIEW
+     */
+    public boolean isTooBig(){
+        return this.tooBigToDisplay;
     }
 }

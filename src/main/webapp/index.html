@@ -187,7 +187,7 @@ All rights reserved.
 
                         <!-- Submit button as well as download file if available. -->
                         <button id="submitFormButton" class="btn btn-info" type="button" ng-click="update(input)" ng-disabled="submitDisabled || optionForm.$invalid"><span class="glyphicon glyphicon-refresh"></span>{{option.general.submit}}</button>
-                        <div class="btn-group" uib-dropdown ng-show="outFilePath.length && outFilePath !== 'no_output_file_available'">
+                        <div class="btn-group" uib-dropdown ng-show="outFilePath.length && downloadButton">
                             <button id="downloadButton" uib-dropdown-toggle class="btn btn-info" type="button"><span class="glyphicon glyphicon-cloud-download"></span>{{option.general.download[0]}}</button>
                             <ul uib-dropdown-menu role="menu" aria-labelledby="downloadButton">
                                 <a role="menuitem" href="{{outFilePath}}" download="{{option.general.download_file}}" target="_blank">{{option.general.download[1]}}</a>
