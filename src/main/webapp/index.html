@@ -3,7 +3,7 @@
 Copyright (c) 2016 Wout van Helvoirt [w.van.helvoirt@st.hanze.nl] & Lonneke Scheffer [l.scheffer@st.hanze.nl]
 All rights reserved.
 -->
-<html ng-app="insaneVizualisation" ng-controller="PageController as option">
+<html ng-app="insaneVizualisation">
 
     <!-- Head of web page. -->
     <head>
@@ -40,7 +40,7 @@ All rights reserved.
     </head>
 
     <!-- Body of web page -->
-    <body>
+    <body ng-controller="PageController as option">
         
         <!-- Site header -->
         <div id="site-header" set-full-height>
@@ -80,97 +80,106 @@ All rights reserved.
         <div class="container-fluid visible-lg" set-full-height="false">
             <form id="optionForm" name="optionForm" method="post" set-full-height="false">   
 
-                <!-- Accordion style for all options. Date is gathered from external JSON file. -->
-                <uib-accordion class="col-lg-6" id="accordion-options" close-others="oneAtATime">
-                    <uib-accordion-group ng-repeat="menu in option.settings" is-open="menu.expanded">
+                <div class="col-lg-6" id="input-block">
+                    <div id="config-upload-block" config-upload>
+                        <p>Have an existing configuration? Drop your configuration file here to import it.</p>
+                        <label id="config_file_upload">Or upload manually.
+                            <input type="file" class="hidden" config-upload="manual" />
+                        </label>
+                    </div>
+                    
+                    <!-- Accordion style for all options. Date is gathered from external JSON file. -->
+                    <uib-accordion close-others="oneAtATime">
+                        <uib-accordion-group ng-repeat="menu in option.settings" is-open="menu.expanded">
 
-                        <!-- Heading for the panel including advanced toggle button. -->
-                        <uib-accordion-heading ng-click="menu.expanded=!menu.expanded">
-                            <div class="panelitems">
-                                {{menu.name}}
-                                <button class="pull-right btn btn-info" ng-click="$event.preventDefault(); $event.stopPropagation(); advancedDisabled = !advancedDisabled" ng-disabled="!menu.expanded">{{option.general.advanced}}<span class="glyphicon glyphicon-triangle-bottom"></span></button>
-                            </div>
-                        </uib-accordion-heading>
-
-                        <!-- Body for the proper panel heading. -->
-                        <div class="btn-sm" ng-repeat="setting in menu.inputs" ng-show="setting.class !== 'advanced'" ng-hide="setting.class === 'advanced' && advancedDisabled">
-
-                            <!-- Switch for each type of input available, defined in JSON file. -->
-                            <div class="col-lg-8 menuitems" ng-switch="setting.input_type">
-
-                                <!-- If input type is number. -->
-                                <div ng-switch-when="number">
-                                    <input class="col-lg-12" type="number" min="{{setting.min}}" max="{{setting.max}}" step="{{setting.step}}" name="{{setting.id}}" placeholder="{{setting.placeholder}}" ng-model="input[setting.id]" />
+                            <!-- Heading for the panel including advanced toggle button. -->
+                            <uib-accordion-heading ng-click="menu.expanded=!menu.expanded">
+                                <div class="panelitems">
+                                    {{menu.name}}
+                                    <button class="pull-right btn btn-info" ng-click="$event.preventDefault(); $event.stopPropagation(); advancedDisabled = !advancedDisabled" ng-disabled="!menu.expanded">{{option.general.advanced}}<span class="glyphicon glyphicon-triangle-bottom"></span></button>
                                 </div>
+                            </uib-accordion-heading>
 
-                                <!-- If input type is text field. -->
-                                <div ng-switch-when="text">
-                                    <input class="col-lg-12" type="text" name="{{setting.id}}" placeholder="{{setting.placeholder}}" ng-model="input[setting.id]" />
-                                </div>
+                            <!-- Body for the proper panel heading. -->
+                            <div class="btn-sm" ng-repeat="setting in menu.inputs" ng-show="setting.class !== 'advanced'" ng-hide="setting.class === 'advanced' && advancedDisabled">
 
-                                <!-- If input type is a select box. -->
-                                <div ng-switch-when="select">
-                                    <select class="col-lg-12" ng-model="input[setting.id]" ng-options="option.value as option.label for option in setting.options">
-                                        <option value="">{{option.general.default_selected}}</option>
-                                    </select>
-                                </div>
+                                <!-- Switch for each type of input available, defined in JSON file. -->
+                                <div class="col-lg-8 menuitems" ng-switch="setting.input_type">
 
-                                <!-- If input type contains both selects and text fields. Including add and remove buttons. -->
-                                <div ng-switch-when="multiselect_text" ng-model="item" ng-repeat="item in input[setting.id] track by $index">
-                                    <div>
-                                        <select class="col-lg-5" id="option" ng-model="outeroption" ng-options="option for (option, outeroption) in setting.options">
+                                    <!-- If input type is number. -->
+                                    <div ng-switch-when="number">
+                                        <input class="col-lg-12" type="number" min="{{setting.min}}" max="{{setting.max}}" step="{{setting.step}}" name="{{setting.id}}" placeholder="{{setting.placeholder}}" ng-model="input[setting.id]" />
+                                    </div>
+
+                                    <!-- If input type is text field. -->
+                                    <div ng-switch-when="text">
+                                        <input class="col-lg-12" type="text" name="{{setting.id}}" placeholder="{{setting.placeholder}}" ng-model="input[setting.id]" />
+                                    </div>
+
+                                    <!-- If input type is a select box. -->
+                                    <div ng-switch-when="select">
+                                        <select class="col-lg-12" ng-model="input[setting.id]" ng-options="option.value as option.label for option in setting.options">
                                             <option value="">{{option.general.default_selected}}</option>
                                         </select>
-                                        <select class="col-lg-5" ng-model="input[setting.id][$index][0]" ng-disabled="!outeroption" ng-options="inneroption.value as inneroption.label for inneroption in outeroption">
-                                            <option value="">{{option.general.default_selected}}</option>
-                                        </select>
+                                    </div>
+
+                                    <!-- If input type contains both selects and text fields. Including add and remove buttons. -->
+                                    <div ng-switch-when="multiselect_text" ng-model="item" ng-repeat="item in input[setting.id] track by $index">
                                         <div>
-                                            <input class="col-lg-1" type="text" name="input[setting.id]" placeholder="{{setting.placeholder}}" ng-model="input[setting.id][$index][1]" />
+                                            <select class="col-lg-5" id="option" ng-model="input[setting.id][$index][0]" ng-options="name as name for (name, outeroption) in setting.options">
+                                                <option value="">{{option.general.default_selected}}</option>
+                                            </select>
+                                            <select class="col-lg-5" ng-model="input[setting.id][$index][1]" ng-disabled="!input[setting.id][$index][0]" ng-options="inneroption.value as inneroption.label for inneroption in setting.options[input[setting.id][$index][0]]">
+                                                <option value="">{{option.general.default_selected}}</option>
+                                            </select>
+                                            <div>
+                                                <input class="col-lg-1" type="text" name="{{input[setting.id]}}" placeholder="{{setting.placeholder}}" ng-model="input[setting.id][$index][2]" />
+                                                <a class="col-lg-1 removeButton glyphicon glyphicon-remove" ng-if="$last && $index !== 0" ng-click="removeSelectTag(input, setting.id, $index)" ></a>
+                                            </div>
+                                        </div>
+                                        <a class="col-lg-1 addButton glyphicon glyphicon-plus" ng-if="$index === 0" ng-click="duplicateSelectTag(input, setting.id, 0)" ></a>
+                                    </div>
+
+                                    <!-- If input type contains multiple text fields. Including add and remove buttons. -->
+                                    <div ng-switch-when="multitext" ng-model="item" ng-repeat="item in input[setting.id] track by $index">
+                                        <div>
+                                            <input class="col-lg-3" type="text" name="{{input[setting.id]}}" placeholder="{{setting.placeholders[0]}}" ng-model="input[setting.id][$index][0]" />
+                                            <input class="col-lg-3" type="text" name="{{input[setting.id]}}" placeholder="{{setting.placeholders[1]}}" ng-model="input[setting.id][$index][1]" />
+                                            <input class="col-lg-3" type="text" name="{{input[setting.id]}}" placeholder="{{setting.placeholders[2]}}" ng-model="input[setting.id][$index][2]" />
+                                            <input class="col-lg-2" type="text" name="{{input[setting.id]}}" placeholder="{{setting.placeholders[3]}}" ng-model="input[setting.id][$index][3]" />
                                             <a class="col-lg-1 removeButton glyphicon glyphicon-remove" ng-if="$last && $index !== 0" ng-click="removeSelectTag(input, setting.id, $index)" ></a>
                                         </div>
+                                        <a class="col-lg-1 addButton glyphicon glyphicon-plus" ng-if="$index === 0" ng-click="duplicateSelectTag(input, setting.id, 1)" ></a>
                                     </div>
-                                    <a class="col-lg-1 addButton glyphicon glyphicon-plus" ng-if="$index === 0" ng-click="duplicateSelectTag(input, setting.id, 0)" ></a>
-                                </div>
 
-                                <!-- If input type contains multiple text fields. Including add and remove buttons. -->
-                                <div ng-switch-when="multitext" ng-model="item" ng-repeat="item in input[setting.id] track by $index">
-                                    <div>
-                                        <input class="col-lg-3" type="text" name="input[setting.id]" placeholder="{{setting.placeholders[0]}}" ng-model="input[setting.id][$index][0]" />
-                                        <input class="col-lg-3" type="text" name="input[setting.id]" placeholder="{{setting.placeholders[1]}}" ng-model="input[setting.id][$index][1]" />
-                                        <input class="col-lg-3" type="text" name="input[setting.id]" placeholder="{{setting.placeholders[2]}}" ng-model="input[setting.id][$index][2]" />
-                                        <input class="col-lg-2" type="text" name="input[setting.id]" placeholder="{{setting.placeholders[3]}}" ng-model="input[setting.id][$index][3]" />
-                                        <a class="col-lg-1 removeButton glyphicon glyphicon-remove" ng-if="$last && $index !== 0" ng-click="removeSelectTag(input, setting.id, $index)" ></a>
+                                    <!-- If input type is file upload. -->
+                                    <div ng-switch-when="file">
+                                        <input class="col-lg-11" type="file" accept="{{setting.accept}}" name="{{setting.id}}" placeholder="{{setting.placeholder}}" file-upload />
+                                        <a class="col-lg-1 removeButton glyphicon glyphicon-remove" remove-selected-file ></a>
                                     </div>
-                                    <a class="col-lg-1 addButton glyphicon glyphicon-plus" ng-if="$index === 0" ng-click="duplicateSelectTag(input, setting.id, 1)" ></a>
+
+                                    <!-- If input type is radio buttons. -->
+                                    <div class="col-lg-12 radioitems" ng-switch-when="radio">
+                                        <label class="col-lg-6" ng-repeat="radio in setting.options">
+                                            <input ng-model="input[setting.id]" type="radio" name="{{setting.id}}" value="{{radio.value}}" />{{radio.label}}<br />
+                                        </label>
+                                    </div>
                                 </div>
 
-                                <!-- If input type is file upload. -->
-                                <div ng-switch-when="file">
-                                    <input class="col-lg-11" type="file" accept="{{setting.accept}}" name="{{setting.id}}" placeholder="{{setting.placeholder}}" file-upload />
-                                    <a class="col-lg-1 removeButton glyphicon glyphicon-remove" remove-selected-file ></a>
-                                </div>
+                                <!-- The description box after each switch input type specified above. -->
+                                <div class="optionheight col-lg-4">
+                                    <p class="descriptiontext">
+                                    {{setting.description}}
 
-                                <!-- If input type is radio buttons. -->
-                                <div class="col-lg-12 radioitems" ng-switch-when="radio">
-                                    <label class="col-lg-6" ng-repeat="radio in setting.options">
-                                        <input ng-model="input[setting.id]" type="radio" name="{{setting.id}}" value="{{radio.value}}" />{{radio.label}}<br />
-                                    </label>
+                                    <!-- Popover info buttons if in need for a more detailed description -->
+                                    <a href class="glyphicon glyphicon-info-sign" uib-popover="{{setting.information}}"type="button" popover-trigger="mouseenter" popover-placement="right" popover-append-to-body="true"></a>
+                                </p>
                                 </div>
                             </div>
 
-                            <!-- The description box after each switch input type specified above. -->
-                            <div class="optionheight col-lg-4">
-                                <p class="descriptiontext">
-                                {{setting.description}}
-
-                                <!-- Popover info buttons if in need for a more detailed description -->
-                                <a href class="glyphicon glyphicon-info-sign" uib-popover="{{setting.information}}"type="button" popover-trigger="mouseenter" popover-placement="right" popover-append-to-body="true"></a>
-                            </p>
-                            </div>
-                        </div>
-
-                    </uib-accordion-group>
-                </uib-accordion>
+                        </uib-accordion-group>
+                    </uib-accordion>
+                </div>
 
                 <!-- The fixed container containing submit buttons and Jmol web viewer. -->
                 <div id="fixeddiv" class="col-lg-6" set-full-height="false">
@@ -181,7 +190,7 @@ All rights reserved.
                         <div class="btn-group" uib-dropdown ng-show="outFilePath.length && outFilePath !== 'no_output_file_available'">
                             <button id="downloadButton" uib-dropdown-toggle class="btn btn-info" type="button"><span class="glyphicon glyphicon-cloud-download"></span>{{option.general.download[0]}}</button>
                             <ul uib-dropdown-menu role="menu" aria-labelledby="downloadButton">
-                                <a role="menuitem" href="{{outFilePath}}" download="insane_model.gro" target="_blank">{{option.general.download[1]}}</a>
+                                <a role="menuitem" href="{{outFilePath}}" download="{{option.general.download_file}}" target="_blank">{{option.general.download[1]}}</a>
                                 <li class="divider"></li>
                                 <a role="menuitem" config-download target="_blank">{{option.general.download[2]}}</a>
                             </ul>

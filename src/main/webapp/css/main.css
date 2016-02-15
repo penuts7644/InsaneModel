@@ -21,6 +21,8 @@ p{
     margin: 0 !important;
     font-size: 16px;
     line-height: 1.1em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 span {
@@ -418,8 +420,24 @@ a.glyphicon {
     overflow-x: hidden;
 }
 
-#accordion-options {
+#input-block {
     padding: 16px !important;
+}
+
+#config-upload-block {
+    text-align: center;
+    width: 100%;
+    padding: 16px;
+    margin-top: 16px;
+    border: #ddd dashed 2px;
+}
+
+#config-upload-block p, #config-upload-block label {
+    font-size: 14px;
+}
+
+#config_file_upload {
+    cursor: pointer;
 }
 
 #optionForm::-webkit-scrollbar {

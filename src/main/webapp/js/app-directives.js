@@ -129,4 +129,53 @@
             }
         };
     });
+
+    app.directive('configUpload', ['$http', function($http) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                if (attrs.configUpload === 'manual') {
+                    element.bind('change', function() {
+                        var file = element[0].files[0];
+                        var reader = new FileReader();
+                        reader.readAsText(file);
+                        reader.onload = function (evt) {
+                            angular.forEach(JSON.parse(evt.target.result), function(value, key) {
+                                scope.input[key] = value;
+                            });
+                            scope.$apply();
+                        };
+                        reader.onerror = function (evt) {
+                            console.log('Error reading configuration file');
+                        };
+                    });
+                } else if (attrs.configUpload === '') {
+                    element.on('dragover', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    });
+                    element.on('dragenter', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    });
+                    element.on('drop', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        var file = e.dataTransfer.files[0];
+                        var reader = new FileReader();
+                        reader.readAsText(file);
+                        reader.onload = function (evt) {
+                            angular.forEach(JSON.parse(evt.target.result), function(value, key) {
+                                scope.input[key] = value;
+                            });
+                            scope.$apply();
+                        };
+                        reader.onerror = function (evt) {
+                            console.log('Error reading configuration file');
+                        };
+                    });
+                }
+            }
+        };
+    }]);
 })();

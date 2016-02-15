@@ -122,20 +122,20 @@ public class SimulationBuilder {
         ValidLipidType type;
         Integer[] upperLowerRatio;
 
-        // [["type", "ratio"], ["type", "ratio"], ["type", "ratio"]]
+        // [["supertype", "subtype", "ratio"], ["supertype", "subtype", "ratio"], ["supertype", "subtype", "ratio"]]
         JSONArray lipidArray = (JSONArray) this.insaneSettings.get("parameter_l");
         List<StandardLipid> listStandLip = new LinkedList();
 
         for (Object lipid : lipidArray) {
-            // ["type", "ratio"]
+            // ["supertype", "subtype", "ratio"]
             JSONArray singleLipid = (JSONArray) (lipid);
 
             try {
-                // the first element is the lipid type
-                type = ValidLipidType.valueOf(singleLipid.get(0).toString());
+                // the second element is the lipid type
+                type = ValidLipidType.valueOf(singleLipid.get(1).toString());
 
-                // the second element are the ratios (single number or #:#)
-                upperLowerRatio = this.getValidRatios(singleLipid.get(1).toString());
+                // the third element are the ratios (single number or #:#)
+                upperLowerRatio = this.getValidRatios(singleLipid.get(2).toString());
 
                 listStandLip.add(new StandardLipid(type, upperLowerRatio[0], upperLowerRatio[1]));
 
@@ -233,22 +233,22 @@ public class SimulationBuilder {
      * @return the created Solvent
      */
     private Solvent defineSolvent() {
-        // solventArray contains [[type, ratio], [type, ratio]]
+        // solventArray contains [[supertype, subtype, ratio], [supertype, subtype, ratio]]
         JSONArray solventArray = (JSONArray) insaneSettings.get("parameter_sol");
 
         List<ValidSolventType> solventTypes = new LinkedList();
         List<Integer> solventRatios = new LinkedList();
 
         for (Object solventObject : solventArray) {
-            // singleSolvent contains [type, ratio]
+            // singleSolvent contains [supertype, subtype, ratio]
             JSONArray singleSolvent = (JSONArray) (solventObject);
             try {
-                // try to add the types and ratios to the solventTypes and solventRatios arrays
-                solventTypes.add(ValidSolventType.valueOf(singleSolvent.get(0).toString()));
-                solventRatios.add(getRatioInt(singleSolvent.get(1).toString()));
+                // try to add the types and ratios to the solventsubTypes (1) and solventRatios (2) arrays
+                solventTypes.add(ValidSolventType.valueOf(singleSolvent.get(1).toString()));
+                solventRatios.add(getRatioInt(singleSolvent.get(2).toString()));
             } catch (IllegalArgumentException illArg) {
-                // if the solvent is a not-empty string, show an error message and ignore the solvent
-                if (!"".equals(singleSolvent.get(0).toString())) {
+                // if the solvent subtype (1) is a not-empty string, show an error message and ignore the solvent
+                if (!"".equals(singleSolvent.get(1).toString())) {
                     errorMessages.add("Solvent type '" + singleSolvent.get(0).toString()
                             + "' could not be recognized and has been ignored.");
                 }
