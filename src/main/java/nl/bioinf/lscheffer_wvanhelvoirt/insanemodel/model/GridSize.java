@@ -33,12 +33,10 @@ public class GridSize {
 
     /** This boolean tells if the created output is too big to display (>MAX_GRID_SIZE_WITH_VIEW).*/
     private boolean tooBigToDisplay;
-    
+
     /** The list to add error messages to. */
     private final List<String> errorMessages;
 
-    
-    
     /**
      * Create a new grid size.
      *
@@ -78,16 +76,16 @@ public class GridSize {
      */
     private double validateAnyDistance(final double givenDistance, final double defaultValue){
         String errorMessage = "";
-        
+
         if ((givenDistance) == 0) {
             return defaultValue;
         } else if (givenDistance > GridSize.MAX_GRID_SIZE_WITH_VIEW) {
             this.tooBigToDisplay = true;
-            
+
             errorMessage += "Note that grid size values above " + GridSize.MAX_GRID_SIZE_WITH_VIEW 
                     + " will not be displayed by JSmol, there is only a downloadable output file available.";
-            
-            if (givenDistance > GridSize.MAX_GRID_SIZE){
+
+            if (givenDistance > GridSize.MAX_GRID_SIZE) {
                 errorMessage = "Given grid size '" + givenDistance + "' is too big and has been set to "
                             + GridSize.MAX_GRID_SIZE + errorMessage + ". ";
                 this.errorMessages.add(errorMessage);
@@ -96,8 +94,8 @@ public class GridSize {
             this.errorMessages.add(errorMessage);
         }
         return givenDistance;
-    }    
-//    
+    }
+//
 //    /**
 //     * Validate the given distance size.
 //     *
@@ -199,9 +197,9 @@ public class GridSize {
     /**
      * Checks if the given grid size is 'too big' for JSmol to view.
      *
-     * @return boolean whether grid is > MAX_GRID_SIZE_WITH_VIEW
+     * @return boolean whether grid is larger than MAX_GRID_SIZE_WITH_VIEW
      */
-    public boolean isTooBig(){
+    public boolean isTooBig() {
         return this.tooBigToDisplay;
     }
 }
