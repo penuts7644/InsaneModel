@@ -434,6 +434,11 @@ a.glyphicon {
 
 #config-upload-block p, #config-upload-block label {
     font-size: 14px;
+    font-weight: 500 !important;
+}
+
+#config-upload-block label {
+    font-weight: 600 !important;
 }
 
 #config_file_upload {
