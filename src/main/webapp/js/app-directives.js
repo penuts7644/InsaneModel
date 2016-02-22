@@ -10,8 +10,10 @@
     
     /*
      * Create the module that can be imported in the main app.
+     * Set bottom of page reached to false.
      */
     var app = angular.module('app-directives', []);
+    var bottomReached = false;
 
     /*
      * fileUpload directive which adds the selected file to a JSON array on change.
@@ -20,10 +22,8 @@
         return {
             restrict: 'A',
             link: function (scope, element, attrs) {
-                /*
-                 * On change, new file is added with correct name.
-                 * Old file is removed from the JSON array.
-                 */
+                // On change, new file is added with correct name.
+                // Old file is removed from the JSON array.
                 element.bind('change', function (event) {
                     var file = event.target.files[0];
                     var parname = attrs.name;
@@ -42,9 +42,7 @@
         return {
             restrict: 'A',
             link: function (scope, element, attrs) {
-                /*
-                 * On click of button, both value and JSON array are being cleared.
-                 */
+                // On click of button, both value and JSON array are being cleared.
                 element.bind('click', function () {
                     var inputElement = element.parent().find('input');
                     inputElement.val(null);
@@ -59,15 +57,13 @@
      * setFullHeight directive, sets the height for corresponding element.
      * Can be done either with or without sites header.
      */
-    app.directive('setFullHeight', function($window){
-        return{
+    app.directive('setFullHeight', function($window) {
+        return {
             restrict: 'A',
             scope: {},
-            link: function(scope, element, attrs){
+            link: function(scope, element, attrs) {
 
-                /*
-                 * When false given as parameter, exclude site header from window height.
-                 */
+                // When false given as parameter, exclude site header from window height.
                 scope.onResize = function() {
                     if (attrs.setFullHeight === 'false') {
                         element.css('height', ($window.innerHeight - $('#hero-header').outerHeight(true)) + 'px');
@@ -76,15 +72,37 @@
                     }
                 };
 
-                /*
-                 * Call onResize method and resize to window for automatic resize.
-                 * Also resize the Jmol viewer element.
-                 */
+                // Call onResize method and resize to window for automatic resize.
+                // Also resize the Jmol viewer element.
                 scope.onResize();
                 angular.element($window).bind('resize', function() {
                     scope.onResize();
                     $('#jmol_applet_insane_appletinfotablediv').css('height', ($('#fixeddiv').height() - $('#controldiv').outerHeight(true) - 2) +'px');
+
+                    // When bottom of page reached, keep bottom page visible.
+                    if (bottomReached === true) {
+                        document.body.scrollTop = document.body.scrollHeight;
+                    } 
                 });
+            }
+        };
+    });
+
+    /*
+     * lockAtBottom directive which locks the page by setting overflow hidden.
+     */
+    app.directive('lockAtBottom', function($window) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+
+                // When scrolling, if bottom reached, prevent page from scrolling.
+                $window.onscroll = function() {
+                    if (($window.innerHeight + $window.scrollY) >= document.body.offsetHeight) {
+                        element.css('overflow', 'hidden');
+                        bottomReached = true;
+                    }
+                };
             }
         };
     });
@@ -130,10 +148,16 @@
         };
     });
 
+    /*
+     * configUpload directive which enables the configuration file to be
+     * uploaded by drag and drop or manual upload.
+     */
     app.directive('configUpload', ['$http', function($http) {
         return {
             restrict: 'A',
             link: function(scope, element, attrs) {
+
+                // Manual upload and add values to input scope.
                 if (attrs.configUpload === 'manual') {
                     element.bind('change', function() {
                         var file = element[0].files[0];
@@ -149,6 +173,8 @@
                             console.log('Error reading configuration file');
                         };
                     });
+
+                // Disable dragover and dragenter and upload on drop.
                 } else if (attrs.configUpload === '') {
                     element.on('dragover', function(e) {
                         e.preventDefault();

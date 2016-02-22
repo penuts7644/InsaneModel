@@ -40,7 +40,7 @@ All rights reserved.
     </head>
 
     <!-- Body of web page -->
-    <body ng-controller="PageController as option">
+    <body ng-controller="PageController as option" lock-at-bottom>
         
         <!-- Site header -->
         <div id="site-header" set-full-height>
@@ -48,8 +48,10 @@ All rights reserved.
                 
                 <!-- Site application name located top left. -->
                 <div id="hero-header-text" class="col-lg-5 pull-left">
-                    <p id="hero-title">{{option.general.title}}</p>
-                    <p id="hero-subtitle">{{option.general.subtitle}}</p>
+                    <a id="hero-header-text-link" href="{{option.general.webadres}}">
+                        <p id="hero-title">{{option.general.title}}</p>
+                        <p id="hero-subtitle">{{option.general.subtitle}}</p>
+                    </a>
                 </div>
                 <div class="col-lg-7 hidden-xs">
                 <div ng-repeat="(author, info) in option.general.authors" class="hero-header-adres pull-right">

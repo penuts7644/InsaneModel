@@ -2,18 +2,18 @@
     {
         "authors": {
             "Wout van Helvoirt": {
-                "mail": "w.van.helvoirt@st.hanze.nl",
+                "mail": "wout.van.helvoirt@gmail.com",
                 "linkedin": "https://nl.linkedin.com/in/wvanhelvoirt"
             },
             "Lonneke Scheffer": {
-                "mail": "l.scheffer@st.hanze.nl",
+                "mail": "lonsch96@live.nl",
                 "linkedin": "https://nl.linkedin.com/in/lonnekescheffer"
             }
         },
         "title": "INSANE M\u21BBDEL",
         "subtitle": "The INSANE Online Membrane Modeling Tool",
-        "description_large": "A new membrane, just a few clicks away ...",
-        "description_small": "A new membrane, just a 900 pixel wide display and a few clicks away ...",
+        "description_large": "A new membrane, just a few clicks away...",
+        "description_small": "A new membrane, just a 900 pixel wide display and a few clicks away...",
         "default_selected": "-- nothing selected",
         "advanced": "Advanced Options",
         "download": [
@@ -23,7 +23,8 @@
         ],
         "download_file": "output_insane.gro",
         "warning": "Warnings",
-        "submit": "Create View"
+        "submit": "Create View",
+        "webadres": "http://localhost:8080/InsaneModel/"
     },
     [
         { 
