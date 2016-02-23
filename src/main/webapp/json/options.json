@@ -29,7 +29,7 @@
     [
         { 
             "id": "gridsizing_menu",
-            "name": "Grid Sizing",
+            "name": "Unit Cell",
             "expanded": "collapse in",
             "inputs": [
                 { 
