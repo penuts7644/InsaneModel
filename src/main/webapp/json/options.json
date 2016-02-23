@@ -143,10 +143,11 @@
                     "id": "parameter_l",
                     "description": "Membrane lipids",
                     "input_type": "multiselect_text",
-                    "default": [[null, null, ""]],
+                    "default": [[null, null, "1:1"]],
                     "placeholder": "e.g. 3, 1:2",
                     "information": "The lipid types and optionally relative abundance you want to use. You can set the relative abundance by giving one number, or a ratio between 'upper leaflet abundance':'lower leaflet abundance'",
                     "class": "standard",
+                    "pattern": "\\d+(\\:\\d+)?",
                     "options": {
                         "Phospholipids": [
                             {
@@ -432,7 +433,7 @@
                     "id": "parameter_al",
                     "description": "Create your own lipid",
                     "input_type": "multitext",
-                    "default": [["", "", "", ""]],
+                    "default": [["", "", "", "1:1"]],
                     "information": "Create your own lipids by defining your head groups, linker groups and tail groups; separated by spaces. Relative abundance is optional (see: Membrane lipids). Head (optional): possible groups are C, E, G, S, P. Linker (required): possible groups are A, G. Tail (required): groups can consist of multiple tail beads, possible tail beads are C, D, T. The amount of tails must be equal to the amount of linkers.",
                     "class": "advanced",
                     "placeholders": [
@@ -440,6 +441,12 @@
                         "linker e.g. 'A G'",
                         "tail e.g. 'CCC CDT'",
                         "ratio e.g. 4:1"
+                    ],
+                    "patterns": [
+                        "([CEGSPcegsp])( +[CEGSPcegsp])*",
+                        "([AGag])( +[AGag])*",
+                        "[CDTcdt ]*",
+                        "\\d+(\\:\\d+)?"
                     ]
                 },
                 { 
@@ -685,6 +692,7 @@
                     "placeholder" : "e.g. 3",
                     "information": "The type of solvent you want to add, and the relative abundance.",
                     "class": "standard",
+                    "pattern": "\\d+",
                     "options": {
                         "Water": [
                             {

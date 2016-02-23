@@ -110,12 +110,12 @@ All rights reserved.
 
                                     <!-- If input type is number. -->
                                     <div ng-switch-when="number">
-                                        <input class="col-lg-12" type="number" min="{{setting.min}}" max="{{setting.max}}" step="{{setting.step}}" name="{{setting.id}}" placeholder="{{setting.placeholder}}" ng-model="input[setting.id]" />
+                                        <input class="col-lg-12" type="number" value="{{setting.default}}" min="{{setting.min}}" max="{{setting.max}}" step="{{setting.step}}" name="{{setting.id}}" placeholder="{{setting.placeholder}}" ng-model="input[setting.id]" />
                                     </div>
 
                                     <!-- If input type is text field. -->
                                     <div ng-switch-when="text">
-                                        <input class="col-lg-12" type="text" name="{{setting.id}}" placeholder="{{setting.placeholder}}" ng-model="input[setting.id]" />
+                                        <input class="col-lg-12" type="text" value="{{setting.default}}" name="{{setting.id}}" placeholder="{{setting.placeholder}}" ng-model="input[setting.id]" />
                                     </div>
 
                                     <!-- If input type is a select box. -->
@@ -135,7 +135,7 @@ All rights reserved.
                                                 <option value="">{{option.general.default_selected}}</option>
                                             </select>
                                             <div>
-                                                <input class="col-lg-1" type="text" name="{{input[setting.id]}}" placeholder="{{setting.placeholder}}" ng-model="input[setting.id][$index][2]" />
+                                                <input class="col-lg-1" type="text" name="{{input[setting.id]}}" placeholder="{{setting.placeholder}}" pattern="{{setting.pattern}}" ng-model="input[setting.id][$index][2]" />
                                                 <a class="col-lg-1 removeButton glyphicon glyphicon-remove" ng-if="$last && $index !== 0" ng-click="removeSelectTag(input, setting.id, $index)" ></a>
                                             </div>
                                         </div>
@@ -145,10 +145,10 @@ All rights reserved.
                                     <!-- If input type contains multiple text fields. Including add and remove buttons. -->
                                     <div ng-switch-when="multitext" ng-model="item" ng-repeat="item in input[setting.id] track by $index">
                                         <div>
-                                            <input class="col-lg-3" type="text" name="{{input[setting.id]}}" placeholder="{{setting.placeholders[0]}}" ng-model="input[setting.id][$index][0]" />
-                                            <input class="col-lg-3" type="text" name="{{input[setting.id]}}" placeholder="{{setting.placeholders[1]}}" ng-model="input[setting.id][$index][1]" />
-                                            <input class="col-lg-3" type="text" name="{{input[setting.id]}}" placeholder="{{setting.placeholders[2]}}" ng-model="input[setting.id][$index][2]" />
-                                            <input class="col-lg-2" type="text" name="{{input[setting.id]}}" placeholder="{{setting.placeholders[3]}}" ng-model="input[setting.id][$index][3]" />
+                                            <input class="col-lg-3" type="text" name="{{input[setting.id]}}" placeholder="{{setting.placeholders[0]}}" pattern="{{setting.patterns[0]}}" ng-model="input[setting.id][$index][0]" />
+                                            <input class="col-lg-3" type="text" name="{{input[setting.id]}}" placeholder="{{setting.placeholders[1]}}" pattern="{{setting.patterns[1]}}" ng-model="input[setting.id][$index][1]" />
+                                            <input class="col-lg-3" type="text" name="{{input[setting.id]}}" placeholder="{{setting.placeholders[2]}}" pattern="{{setting.patterns[2]}}" ng-model="input[setting.id][$index][2]" />
+                                            <input class="col-lg-2" type="text" name="{{input[setting.id]}}" placeholder="{{setting.placeholders[3]}}" pattern="{{setting.patterns[3]}}" ng-model="input[setting.id][$index][3]" />
                                             <a class="col-lg-1 removeButton glyphicon glyphicon-remove" ng-if="$last && $index !== 0" ng-click="removeSelectTag(input, setting.id, $index)" ></a>
                                         </div>
                                         <a class="col-lg-1 addButton glyphicon glyphicon-plus" ng-if="$index === 0" ng-click="duplicateSelectTag(input, setting.id, 1)" ></a>
