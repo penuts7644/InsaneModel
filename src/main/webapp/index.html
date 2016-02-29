@@ -127,11 +127,11 @@ All rights reserved.
 
                                     <!-- If input type contains both selects and text fields. Including add and remove buttons. -->
                                     <div ng-switch-when="multiselect_text" ng-model="item" ng-repeat="item in input[setting.id] track by $index">
-                                        <div>
+                                        <div class="{{setting.id}}">
                                             <select class="col-lg-5" id="option" ng-model="input[setting.id][$index][0]" ng-options="name as name for (name, outeroption) in setting.options">
                                                 <option value="">{{option.general.default_selected}}</option>
                                             </select>
-                                            <select class="col-lg-5" ng-model="input[setting.id][$index][1]" ng-disabled="!input[setting.id][$index][0]" ng-options="inneroption.value as inneroption.label for inneroption in setting.options[input[setting.id][$index][0]]">
+                                            <select class="col-lg-5 innerselect" ng-model="input[setting.id][$index][1]" ng-disabled="!input[setting.id][$index][0]" ng-options="inneroption.value as inneroption.label disable when inneroption.disabled === 'disabled' for inneroption in setting.options[input[setting.id][$index][0]]">
                                                 <option value="">{{option.general.default_selected}}</option>
                                             </select>
                                             <div>

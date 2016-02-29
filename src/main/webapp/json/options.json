@@ -151,6 +151,11 @@
                     "options": {
                         "Phospholipids": [
                             {
+                                "label":"Phosphatidylcholine",
+                                "value":"",
+                                "disabled":"disabled"
+                            },
+                            {
                                 "label":"DTPC",
                                 "value":"DTPC"
                             },
@@ -191,6 +196,11 @@
                                 "value":"DNPC"
                             },
                             {
+                                "label":"Phosphatidylethanolamine",
+                                "value":"",
+                                "disabled":"disabled"
+                            },
+                            {
                                 "label":"DTPE",
                                 "value":"DTPE"
                             },
@@ -215,32 +225,17 @@
                                 "value":"DOPE"
                             },
                             {
+                                "label":"Phosphatidylglycerol",
+                                "value":"",
+                                "disabled":"disabled"
+                            },
+                            {
                                 "label":"POPG",
                                 "value":"POPG"
                             },
                             {
                                 "label":"DOPG",
                                 "value":"DOPG"
-                            },
-                            {
-                                "label":"POPS",
-                                "value":"POPS"
-                            },
-                            {
-                                "label":"DOPS",
-                                "value":"DOPS"
-                            },
-                            {
-                                "label":"DPSM",
-                                "value":"DPSM"
-                            },
-                            {
-                                "label":"DBSM",
-                                "value":"DBSM"
-                            },
-                            {
-                                "label":"BNSM",
-                                "value":"BNSM"
                             },
                             {
                                 "label":"OPPG",
@@ -255,11 +250,51 @@
                                 "value":"JFPG"
                             },
                             {
-                                "label":"GMO (Monoacylglycerol)",
+                                "label":"Phosphatidylserine",
+                                "value":"",
+                                "disabled":"disabled"
+                            },
+                            {
+                                "label":"POPS",
+                                "value":"POPS"
+                            },
+                            {
+                                "label":"DOPS",
+                                "value":"DOPS"
+                            },
+                            {
+                                "label":"Sphingomyelin",
+                                "value":"",
+                                "disabled":"disabled"
+                            },
+                            {
+                                "label":"DPSM",
+                                "value":"DPSM"
+                            },
+                            {
+                                "label":"DBSM",
+                                "value":"DBSM"
+                            },
+                            {
+                                "label":"BNSM",
+                                "value":"BNSM"
+                            },
+                            {
+                                "label":"Monoacylglycerol",
+                                "value":"",
+                                "disabled":"disabled"
+                            },
+                            {
+                                "label":"GMO",
                                 "value":"GMO"
                             }
                         ],
                         "Inositollipids": [
+                            {
+                                "label":"phosphatidylinositol",
+                                "value":"",
+                                "disabled":"disabled"
+                            },
                             {
                                 "label":"DPPI",
                                 "value":"DPPI"
@@ -281,12 +316,27 @@
                                 "value":"PUPI"
                             },
                             {
+                                "label":"phosphatidylinositol phosphate",
+                                "value":"",
+                                "disabled":"disabled"
+                            },
+                            {
                                 "label":"POP1",
                                 "value":"POP1"
                             },
                             {
+                                "label":"phosphatidylinositol bisphosphate",
+                                "value":"",
+                                "disabled":"disabled"
+                            },
+                            {
                                 "label":"POP2",
                                 "value":"POP2"
+                            },
+                            {
+                                "label":"phosphatidylinositol trisphosphate",
+                                "value":"",
+                                "disabled":"disabled"
                             },
                             {
                                 "label":"POP3",
@@ -294,6 +344,29 @@
                             }
                         ],
                         "Glycolipids": [
+                            {
+                                "label":"Ceramide",
+                                "value":"",
+                                "disabled":"disabled"
+                            },
+                            {
+                                "label":"DPCE",
+                                "value":"DPCE"
+                            },
+                            {
+                                "label":"Glucosylceramide",
+                                "value":"",
+                                "disabled":"disabled"
+                            },
+                            {
+                                "label":"DPGS",
+                                "value":"DPGS"
+                            },
+                            {
+                                "label":"Monosialotetrahexosylganglioside",
+                                "value":"",
+                                "disabled":"disabled"
+                            },
                             {
                                 "label":"DPG1",
                                 "value":"DPG1"
@@ -309,6 +382,11 @@
                             {
                                 "label":"XNG1",
                                 "value":"XNG1"
+                            },
+                            {
+                                "label":"Monosialodihexosylganglioside",
+                                "value":"",
+                                "disabled":"disabled"
                             },
                             {
                                 "label":"DPG3",
@@ -327,56 +405,63 @@
                                 "value":"XNG3"
                             },
                             {
-                                "label":"DPCE",
-                                "value":"DPCE"
-                            },
-                            {
-                                "label":"DPGS",
-                                "value":"DPGS"
+                                "label":"Monogalactosy diacylglycerol",
+                                "value":"",
+                                "disabled":"disabled"
                             },
                             {
                                 "label":"DPMG",
                                 "value":"DPMG"
                             },
                             {
-                                "label":"DPSG",
-                                "value":"DPSG"
-                            },
-                            {
-                                "label":"DPGG",
-                                "value":"DPGG"
-                            },
-                            {
                                 "label":"OPMG",
                                 "value":"OPMG"
-                            },
-                            {
-                                "label":"OPSG",
-                                "value":"OPSG"
-                            },
-                            {
-                                "label":"OPGG",
-                                "value":"OPGG"
-                            },
-                            {
-                                "label":"FPMG",
-                                "value":"FPMG"
                             },
                             {
                                 "label":"DFMG",
                                 "value":"DFMG"
                             },
                             {
+                                "label":"FPMG",
+                                "value":"FPMG"
+                            },
+                            {
+                                "label":"Sulfoquinovosyl diacylglycerol",
+                                "value":"",
+                                "disabled":"disabled"
+                            },
+                            {
+                                "label":"DPSG",
+                                "value":"DPSG"
+                            },
+                            {
+                                "label":"OPSG",
+                                "value":"OPSG"
+                            },
+                            {
                                 "label":"FPSG",
                                 "value":"FPSG"
                             },
                             {
-                                "label":"FPGG",
-                                "value":"FPGG"
+                                "label":"Digalactosyl diacylglycerol",
+                                "value":"",
+                                "disabled":"disabled"
+                            },
+                            {
+                                "label":"DPGG",
+                                "value":"DPGG"
+                            },
+                            {
+                                "label":"OPGG",
+                                "value":"OPGG"
                             },
                             {
                                 "label":"DFGG",
                                 "value":"DFGG"
+                            },
+                            {
+                                "label":"FPGG",
+                                "value":"FPGG"
                             }
                         ],
                         "Quinones": [
@@ -423,7 +508,7 @@
                         ],
                         "Sterols": [
                             {
-                                "label":"CHOL",
+                                "label":"Cholesterol",
                                 "value":"CHOL"
                             }
                         ]

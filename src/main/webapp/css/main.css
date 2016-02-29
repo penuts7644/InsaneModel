@@ -96,6 +96,22 @@ select[disabled]{
     color: rgb(180,180,180);
 }
 
+select option[disabled]{
+    color: #000;
+    font-weight: 600;
+    font-style: italic;
+}
+
+/*remove the default select option (--nothing selected) on the inner select button*/
+.innerselect option:first-of-type{
+    display: none;
+}
+
+ /*Add padding to all lipid names*/
+.parameter_l .innerselect option:enabled{
+    padding-left: 1em !important;
+}
+
 button[disabled]:hover {
     background-color: #5bc0de !important;
 }
