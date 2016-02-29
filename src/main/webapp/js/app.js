@@ -72,9 +72,9 @@
         /*
          * Add another input field for multiselect field like solvents.
          */
-        $scope.duplicateSelectTag = function(input, value, option) {
-            $scope.default = [[null, null, "1:1"], ["", "", "", "1:1"]];
-            input[value].push($scope.default[option]);
+        $scope.duplicateSelectTag = function(input, value, emptyOption) {
+            //$scope.default = [[null, null, "1:1"], ["", "", "", "1:1"]];
+            input[value].push(emptyOption);
 	};
 
         /*

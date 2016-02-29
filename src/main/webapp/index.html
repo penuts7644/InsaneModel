@@ -139,7 +139,8 @@ All rights reserved.
                                                 <a class="col-lg-1 removeButton glyphicon glyphicon-remove" ng-if="$last && $index !== 0" ng-click="removeSelectTag(input, setting.id, $index)" ></a>
                                             </div>
                                         </div>
-                                        <a class="col-lg-1 addButton glyphicon glyphicon-plus" ng-if="$index === 0" ng-click="duplicateSelectTag(input, setting.id, 0)" ></a>
+                                        <!-- input = total input json, setting.id can be parameter_l, setting.default can be [[null, null, "1:1"]] so setting.default[0] is [null, null, "1:1"]-->
+                                        <a class="col-lg-1 addButton glyphicon glyphicon-plus" ng-if="$index === 0" ng-click="duplicateSelectTag(input, setting.id, setting.default[0])" ></a>
                                     </div>
 
                                     <!-- If input type contains multiple text fields. Including add and remove buttons. -->
@@ -151,7 +152,7 @@ All rights reserved.
                                             <input class="col-lg-2" type="text" name="{{input[setting.id]}}" placeholder="{{setting.placeholders[3]}}" pattern="{{setting.patterns[3]}}" ng-model="input[setting.id][$index][3]" />
                                             <a class="col-lg-1 removeButton glyphicon glyphicon-remove" ng-if="$last && $index !== 0" ng-click="removeSelectTag(input, setting.id, $index)" ></a>
                                         </div>
-                                        <a class="col-lg-1 addButton glyphicon glyphicon-plus" ng-if="$index === 0" ng-click="duplicateSelectTag(input, setting.id, 1)" ></a>
+                                        <a class="col-lg-1 addButton glyphicon glyphicon-plus" ng-if="$index === 0" ng-click="duplicateSelectTag(input, setting.id, setting.default[0])" ></a>
                                     </div>
 
                                     <!-- If input type is file upload. -->
