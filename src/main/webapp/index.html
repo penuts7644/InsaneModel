@@ -8,7 +8,7 @@ All rights reserved.
     <!-- Head of web page. -->
     <head>
         <title>INSANE M&#8635;DEL</title>
-        <meta charset="UTF-8">
+        <meta charset=utf-8>
         <meta name="description" content="A new membrane, just a few clicks away ...">
         <meta name="keywords" content="INSANE,Modeling,Protein,Membrane,Gridsize,Solvent,Jmol,JSmol,Bilayer,Lipids,Bioinformatics,Online,Tool,Application,Web">
         <meta name="author" content="Lonneke Scheffer &#0038; Wout van Helvoirt">
@@ -106,7 +106,7 @@ All rights reserved.
                             <div class="btn-sm" ng-repeat="setting in menu.inputs" ng-show="setting.class !== 'advanced'" ng-hide="setting.class === 'advanced' && advancedDisabled">
 
                                 <!-- Switch for each type of input available, defined in JSON file. -->
-                                <div class="col-lg-8 menuitems" ng-switch="setting.input_type">
+                                <div class="col-lg-9 menuitems" ng-switch="setting.input_type">
 
                                     <!-- If input type is number. -->
                                     <div ng-switch-when="number">
@@ -128,14 +128,14 @@ All rights reserved.
                                     <!-- If input type contains both selects and text fields. Including add and remove buttons. -->
                                     <div ng-switch-when="multiselect_text" ng-model="item" ng-repeat="item in input[setting.id] track by $index">
                                         <div class="{{setting.id}}">
-                                            <select class="col-lg-5" id="option" ng-model="input[setting.id][$index][0]" ng-options="name as name for (name, outeroption) in setting.options">
+                                            <select class="col-lg-4" id="option" ng-model="input[setting.id][$index][0]" ng-options="name as name for (name, outeroption) in setting.options">
                                                 <option value="">{{option.general.default_selected}}</option>
                                             </select>
                                             <select class="col-lg-5 innerselect" ng-model="input[setting.id][$index][1]" ng-disabled="!input[setting.id][$index][0]" ng-options="inneroption.value as inneroption.label disable when inneroption.disabled === 'disabled' for inneroption in setting.options[input[setting.id][$index][0]]">
                                                 <option value="">{{option.general.default_selected}}</option>
                                             </select>
                                             <div>
-                                                <input class="col-lg-1" type="text" name="{{input[setting.id]}}" placeholder="{{setting.placeholder}}" pattern="{{setting.pattern}}" ng-model="input[setting.id][$index][2]" />
+                                                <input class="col-lg-2" type="text" name="{{input[setting.id]}}" placeholder="{{setting.placeholder}}" pattern="{{setting.pattern}}" ng-model="input[setting.id][$index][2]" />
                                                 <a class="col-lg-1 removeButton glyphicon glyphicon-remove" ng-if="$last && $index !== 0" ng-click="removeSelectTag(input, setting.id, $index)" ></a>
                                             </div>
                                         </div>
@@ -170,7 +170,7 @@ All rights reserved.
                                 </div>
 
                                 <!-- The description box after each switch input type specified above. -->
-                                <div class="optionheight col-lg-4">
+                                <div class="optionheight col-lg-3">
                                     <p class="descriptiontext">
                                     {{setting.description}}
 

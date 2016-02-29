@@ -77,11 +77,11 @@ select{
     padding-top: .32em !important;
     padding-bottom: .32em !important;
     padding-left: .64em !important;
-    padding-right: 1.28em !important;
+    padding-right: 0.96em !important;
     background-image: url("../img/dropdown_arrow_icon.png");
     background-repeat: no-repeat;
     background-size: .64em;
-    background-position: right .24em center;
+    background-position: right .16em center;
     border: #f5f5f5 solid 1px;
     border-radius: 0;
     outline: none !important;
@@ -329,7 +329,7 @@ a.glyphicon {
     color: #5bc0de;
     font-size: 10px;
     top: 1px;
-    margin-left: 2px;
+    margin-left: 1px;
 }
 
 .optionheight a.glyphicon:hover {
@@ -602,7 +602,7 @@ a.glyphicon {
 
 #hero-title {
     font-weight: 600;
-    font-size: 37px;
+    font-size: 37px !important;
     text-transform: uppercase;
     line-height: .8em;
     color: rgb(254, 165, 40);
