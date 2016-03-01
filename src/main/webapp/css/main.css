@@ -601,6 +601,7 @@ a.glyphicon {
 }
 
 #hero-title {
+    font-family: "Arial Unicode MS", Arial, arial, sans-serif;
     font-weight: 600;
     font-size: 37px !important;
     text-transform: uppercase;
