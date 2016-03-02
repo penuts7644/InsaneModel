@@ -405,7 +405,7 @@
                                 "value":"XNG3"
                             },
                             {
-                                "label":"Monogalactosy diacylglycerol",
+                                "label":"Monogalactosyldiacylglycerol",
                                 "value":"",
                                 "disabled":"disabled"
                             },
@@ -426,7 +426,7 @@
                                 "value":"FPMG"
                             },
                             {
-                                "label":"Sulfoquinovosyl diacylglycerol",
+                                "label":"Sulfoquinovosyldiacylglycerol",
                                 "value":"",
                                 "disabled":"disabled"
                             },
@@ -443,7 +443,7 @@
                                 "value":"FPSG"
                             },
                             {
-                                "label":"Digalactosyl diacylglycerol",
+                                "label":"Digalactosyldiacylglycerol",
                                 "value":"",
                                 "disabled":"disabled"
                             },
