@@ -161,17 +161,19 @@
                 if (attrs.configUpload === 'manual') {
                     element.bind('change', function() {
                         var file = element[0].files[0];
-                        var reader = new FileReader();
-                        reader.readAsText(file);
-                        reader.onload = function (evt) {
-                            angular.forEach(JSON.parse(evt.target.result), function(value, key) {
-                                scope.input[key] = value;
-                            });
-                            scope.$apply();
-                        };
-                        reader.onerror = function (evt) {
-                            console.log('Error reading configuration file');
-                        };
+                        if (file.name.endsWith('.json')) {
+                            var reader = new FileReader();
+                            reader.readAsText(file);
+                            reader.onload = function (evt) {
+                                angular.forEach(JSON.parse(evt.target.result), function(value, key) {
+                                    scope.input[key] = value;
+                                });
+                                scope.$apply();
+                            };
+                            reader.onerror = function (evt) {
+                                console.log('Error reading configuration file');
+                            };
+                        }
                     });
 
                 // Disable dragover and dragenter and upload on drop.
@@ -188,17 +190,19 @@
                         e.preventDefault();
                         e.stopPropagation();
                         var file = e.dataTransfer.files[0];
-                        var reader = new FileReader();
-                        reader.readAsText(file);
-                        reader.onload = function (evt) {
-                            angular.forEach(JSON.parse(evt.target.result), function(value, key) {
-                                scope.input[key] = value;
-                            });
-                            scope.$apply();
-                        };
-                        reader.onerror = function (evt) {
-                            console.log('Error reading configuration file');
-                        };
+                        if (file.name.endsWith('.json')) {
+                            var reader = new FileReader();
+                            reader.readAsText(file);
+                            reader.onload = function (evt) {
+                                angular.forEach(JSON.parse(evt.target.result), function(value, key) {
+                                    scope.input[key] = value;
+                                });
+                                scope.$apply();
+                            };
+                            reader.onerror = function (evt) {
+                                console.log('Error reading configuration file');
+                            };
+                        }
                     });
                 }
             }
