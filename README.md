@@ -18,7 +18,7 @@
 
 ### How do I use this web application? ###
 
-The tool is easy to navigate. When first visiting the site through server (or localhost), your greeted with an overview including a small description. The menu and Jmol viewer are shown when scrolling down, or by clicking the arrow button.
+The tool is easy to navigate. When first visiting the site through server (or localhost), you're greeted with an overview including a small description. The menu and JSmol viewer are shown when scrolling down, or by clicking the arrow button.
 
 On the left side of the window is the input field in which all necessary values can be given. Each panel (Gridsize, Membrane, Protein and Solvent) can be opened or closed by clicking on the panel title. By clicking on the 'Advanced options' button, extra input fields are given for the corresponding panel. These 'Advanced options' are not required. All input field shown on default are required, altho default values are used by the web application.
 
