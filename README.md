@@ -13,6 +13,7 @@
 * This web application requires at least [Java 8](https://www.oracle.com/downloads/index.html) to function.
 * [Python 2](https://www.python.org/downloads/release/python-2711/) is needed to run insane.
 * [Apache Tomcat](http://tomcat.apache.org/download-80.cgi) version 8.0.28 has been used to create a local host server. Newer versions might work too, but have not been tested.
+* The project has been built using the IDE [NetBeans](https://netbeans.org/), it should also be possible to recreate the project without NetBeans, but then you would have to change some paths in the code as described below.
 * There are a few paths that must exist in order for Insane Model to work. To temporarily store the user input files you need the directory '<your home folder>/insanewebfiles/insanemodelfiles'. Also, your 'NetBeansProjects' folder must be inside your home folder. If you want to use different paths (for instance: you don't want to have the 'insanemodelfiles' or 'NetBeansProjects' folders inside your home folder, or you don't use NetBeans), all you have to do is change the paths in the java class 'ConfigurationPaths'. (More information can be found in the javadoc of this class.)
 
 ### How do I use this web application? ###
