@@ -573,6 +573,10 @@ a.glyphicon {
     padding-right: 16px !important;
 }
 
+#hero-header-text-block {
+    max-width: 285px;
+}
+
 .hero-header-adres {
     display: inline-block;
     width: auto;
@@ -609,6 +613,9 @@ a.glyphicon {
     color: rgb(254, 165, 40);
     padding-top: 16px;
     margin: 0;
+    -webkit-transition: color 0.05s ease-in-out;
+    -moz-transition: color 0.05s ease-in-out;
+    transition: color 0.05s ease-in-out;
 }
 
 #hero-subtitle{
@@ -650,4 +657,40 @@ a.hero-adres-text:hover {
     color: rgb(255, 255, 255);
     text-align: center;
     font-style: italic;
+}
+
+#hero-header-text-link:hover #hero-title {
+    color: #ec971f;
+}
+
+#betatag {
+    position: absolute;
+    background-color: #31b0d5;
+    border-radius: 14px;
+    z-index: 1;
+    width: 28px;
+    height: 28px;
+    top: 4px;
+    left: 274px;
+    -webkit-transform: rotate(6deg);
+    -moz-transform: rotate(6deg);
+    -ms-transform: rotate(6deg);
+    -o-transform: rotate(6deg);
+    transform: rotate(6deg);
+    box-shadow: 0 0 2px 2px rgba(60,60,60, .6);
+    -moz-box-shadow: 0 0 2px 2px rgba(60,60,60, .6);
+    -webkit-box-shadow: 0 0 2px 2px rgba(60,60,60, .6);
+    -o-box-shadow: 0 0 2px 2px rgba(60, 60,60, .6);
+}
+
+#betatag p {
+    text-align: center;
+    font-family: 'Lobster Two', cursive;
+    color: rgb(255, 255, 255);
+    text-transform: lowercase;
+    line-height: 1em;
+    padding-top: 7px;
+    font-size: 14px;
+    margin: 0;
+    font-weight: 700;
 }

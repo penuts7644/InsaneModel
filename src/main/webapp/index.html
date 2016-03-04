@@ -48,10 +48,15 @@ All rights reserved.
                 
                 <!-- Site application name located top left. -->
                 <div id="hero-header-text" class="col-lg-5 pull-left">
-                    <a id="hero-header-text-link" href="{{option.general.webadres}}">
-                        <p id="hero-title">{{option.general.title}}</p>
-                        <p id="hero-subtitle">{{option.general.subtitle}}</p>
-                    </a>
+                    <div id="hero-header-text-block">
+                        <a id="hero-header-text-link" href="{{option.general.webadres}}">
+                            <p id="hero-title">{{option.general.title}}</p>
+                            <p id="hero-subtitle">{{option.general.subtitle}}</p>
+                            <div id="betatag">
+                                <p>beta</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
                 <div class="col-lg-7 hidden-xs">
                 <div ng-repeat="(author, info) in option.general.authors" class="hero-header-adres pull-right">
@@ -110,12 +115,12 @@ All rights reserved.
 
                                     <!-- If input type is number. -->
                                     <div ng-switch-when="number">
-                                        <input class="col-lg-12" type="number" value="{{setting.default}}" min="{{setting.min}}" max="{{setting.max}}" step="{{setting.step}}" name="{{setting.id}}" placeholder="{{setting.placeholder}}" ng-model="input[setting.id]" />
+                                        <input class="col-lg-12" type="number" ng-value="{{setting.default}}" min="{{setting.min}}" max="{{setting.max}}" step="{{setting.step}}" name="{{setting.id}}" placeholder="{{setting.placeholder}}" ng-model="input[setting.id]" />
                                     </div>
 
                                     <!-- If input type is text field. -->
                                     <div ng-switch-when="text">
-                                        <input class="col-lg-12" type="text" value="{{setting.default}}" name="{{setting.id}}" placeholder="{{setting.placeholder}}" ng-model="input[setting.id]" />
+                                        <input class="col-lg-12" type="text" ng-value="{{setting.default}}" name="{{setting.id}}" placeholder="{{setting.placeholder}}" ng-model="input[setting.id]" />
                                     </div>
 
                                     <!-- If input type is a select box. -->

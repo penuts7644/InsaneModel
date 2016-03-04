@@ -9,6 +9,31 @@
 
     <name>InsaneModel</name>
 
+    <developers>
+        <developer>
+            <id>wvh</id>
+            <name>Wout van Helvoirt</name>
+            <email>wout.van.helvoirt@gmail.com</email>
+            <url>http://www.bioinf.nl/~wvanhelvoirt</url>
+            <roles>
+                    <role>architect</role>
+                    <role>developer</role>
+            </roles>
+            <timezone>+1</timezone>
+        </developer>
+        <developer>
+            <id>ls</id>
+            <name>Lonneke Scheffer</name>
+            <email>lonsch96@live.nl</email>
+            <url>http://www.bioinf.nl/~lscheffer</url>
+            <roles>
+                    <role>architect</role>
+                    <role>developer</role>
+            </roles>
+            <timezone>+1</timezone>
+        </developer>
+    </developers>
+
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
