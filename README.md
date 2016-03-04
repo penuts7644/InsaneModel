@@ -20,7 +20,7 @@
 
 The tool is easy to navigate. When first visiting the site through server (or localhost), you're greeted with an overview including a small description. The menu and JSmol viewer are shown when scrolling down, or by clicking the arrow button.
 
-On the left side of the window is the input field in which all necessary values can be given. Each panel (Gridsize, Membrane, Protein and Solvent) can be opened or closed by clicking on the panel title. By clicking on the 'Advanced options' button, extra input fields are given for the corresponding panel. These 'Advanced options' are not required. All input field shown on default are required, altho default values are used by the web application.
+On the left side of the window is the input field in which all necessary values can be given. Each panel (Gridsize, Membrane, Protein and Solvent) can be opened or closed by clicking on the panel title. By clicking on the 'Advanced options' button, extra input fields are given for the corresponding panel. These 'Advanced options' are not required. All input field shown on default are required, although default values are used by the web application.
 
 The submit button as well as Jmol viewer are located on the right side of the window. When pressing 'Create View/Update View', all given input values will be processed and the created model will be shown in the viewer. This process could take some time depending on the amount processing power available and the complexity of the model. The submit button will be disabled when pressed or when a input value is not correct. A download button will be shown at the right side of the 'Create View/Update View' button. Pressing the button lets you download the output .gro file.
 
