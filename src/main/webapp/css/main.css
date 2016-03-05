@@ -552,9 +552,11 @@ a.glyphicon {
     filter: brightness(70%);
     background-attachment: fixed;
     z-index: 12001;
-    -webkit-transform: translateZ(0);
-    -moz-transform: translateZ(0);
-    transform: translateZ(0);
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
 
 #hero-header {
@@ -574,7 +576,8 @@ a.glyphicon {
 }
 
 #hero-header-text-block {
-    max-width: 285px;
+    position: relative;
+    width: 285px;
 }
 
 .hero-header-adres {
@@ -605,7 +608,6 @@ a.glyphicon {
 }
 
 #hero-title {
-    font-family: "Arial Unicode MS", Arial, arial, sans-serif;
     font-weight: 600;
     font-size: 37px !important;
     text-transform: uppercase;
@@ -616,6 +618,7 @@ a.glyphicon {
     -webkit-transition: color 0.05s ease-in-out;
     -moz-transition: color 0.05s ease-in-out;
     transition: color 0.05s ease-in-out;
+    letter-spacing: normal;
 }
 
 #hero-subtitle{
@@ -653,7 +656,7 @@ a.hero-adres-text:hover {
     font-family: 'Lobster Two', cursive;
     line-height: 1em;
     font-size: 44px;
-    font-weight: 600;
+    font-weight: 700;
     color: rgb(255, 255, 255);
     text-align: center;
     font-style: italic;
@@ -671,7 +674,7 @@ a.hero-adres-text:hover {
     width: 28px;
     height: 28px;
     top: 4px;
-    left: 274px;
+    right: 0;
     -webkit-transform: rotate(6deg);
     -moz-transform: rotate(6deg);
     -ms-transform: rotate(6deg);
@@ -693,4 +696,5 @@ a.hero-adres-text:hover {
     font-size: 14px;
     margin: 0;
     font-weight: 700;
+    font-style: italic;
 }
