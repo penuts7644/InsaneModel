@@ -13,7 +13,7 @@ import java.util.List;
  * @author Lonneke Scheffer
  * @version 1.0.0
  */
-public class GridSize {
+public final class GridSize {
     /** The maximum axis size that will be used to run insane. */
     private static final double MAX_GRID_SIZE = 100;
     /** The maximum axis size that will be used to show output. */
@@ -175,16 +175,17 @@ public class GridSize {
             arguments.add("-y");
             arguments.add(Double.toString(this.y));
         }
-        if (this.z != this.d) {
-            // if this.dz is set to true, use -dz (z = z + protein size)
-            if (this.dz) {
-                arguments.add("-dz");
-            } else {
-                // otherwise, use -z (z = z)
-                arguments.add("-z");
-            }
-            arguments.add(Double.toString(this.z));
+
+        // always add z, to make the difference between dz and z
+        // if this.dz is set to true, use -dz (z = z + protein size)
+        if (this.dz) {
+            arguments.add("-dz");
+        } else {
+            // otherwise, use -z (z = z)
+            arguments.add("-z");
         }
+        arguments.add(Double.toString(this.z));
+
 
         // if a -pbc value is given, add it
         if (!this.pbc.equals("")) {

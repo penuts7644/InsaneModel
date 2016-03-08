@@ -144,10 +144,16 @@ public class Solvent {
     /**
      * Test if there are only simple solvents given.
      * Simple solvents are not always displayed by JSmol.
+     * A random kick of at least 0.4 might help too.
      *
      * @return boolean value whether or not there are only simple solvents
      */
     public boolean onlySimpleSolvents() {
+//        // check the random kick
+//        if (this.randomKick < 0.4){
+//            return 
+//        }
+        
         // loop over the types
         for (ValidSolventType type : this.types) {
             // if there is one not-simple solvent given, return false

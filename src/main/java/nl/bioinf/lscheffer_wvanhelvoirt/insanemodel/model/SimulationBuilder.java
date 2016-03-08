@@ -271,9 +271,9 @@ public class SimulationBuilder {
 
     private void testIfSimple() {
         if (!this.protein.isFileGiven() && this.solvent.onlySimpleSolvents() && this.membrane.onlySimpleLipids()) {
-            this.errorMessages.add("There are no 'complex' molecules given (proteins, lipids containing a headgroup or"
-                    + " complex solvent molecules). JSmol often doesn't display such simulations. To prevent this:"
-                    + " please add at least one complex molecule.");
+            this.errorMessages.add("JSmol has trouble showing simulations containing only 'simple' solvents, "
+                    + "user created lipids and some predefined lipids. "
+                    + "To prevent this: add different molecules or increase the membrane/solvent random kick.");
         }
     }
 

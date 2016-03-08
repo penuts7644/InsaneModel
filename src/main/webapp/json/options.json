@@ -84,7 +84,7 @@
                     "id": "parameter_dz",
                     "description": "Use z-distance plus protein size for z",
                     "input_type": "radio",
-                    "default": "false",
+                    "default": "true",
                     "information": "If z is given: z is replaced by z + protein size.",
                     "class": "advanced",
                     "options": [

@@ -210,7 +210,8 @@ public class AdditionalLipid {
      * @return boolean whether or not the lipid is simple
      */
     public boolean isSimple() {
-        return String.join("", this.headGroups).length() == 0;
+        //return String.join("", this.headGroups).length() == 0;
+        return true;
     }
 
     /**
