@@ -5,7 +5,7 @@
 ### What is this repository for? ###
 
 * Authors: Lonneke Scheffer & Wout van Helvoirt
-* Version: 1.1
+* Version: 1.1 Beta
 * This web application makes use of Insane (included in this repository), a Python program from the [Martini](http://md.chem.rug.nl/) package, to create various 3D models. Models created by Insane can be modified and viewed from within the web browser to suit your needs.
 
 ### How do I get set up? ###
