@@ -1,4 +1,4 @@
-# INSANE M↻DEL #
+# INSANE MODEL #
 
 ---------------------
 
