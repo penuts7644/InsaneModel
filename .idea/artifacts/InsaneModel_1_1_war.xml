@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="InsaneModel_1.1:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/InsaneModel_1_1_war</output-path>
+    <root id="archive" name="InsaneModel_1.1_war.war">
+      <element id="artifact" artifact-name="InsaneModel:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>nl.bioinf.lscheffer_wvanhelvoirt</groupId>
-    <artifactId>insanemodel</artifactId>
+    <artifactId>InsaneModel</artifactId>
     <version>1.1</version>
     <packaging>war</packaging>
 
