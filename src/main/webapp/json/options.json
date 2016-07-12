@@ -34,7 +34,7 @@
             "expanded": "collapse in",
             "inputs": [
                 { 
-                    "id": "parameter_d",
+                    "id": "insane_d",
                     "description": "Distance between periodic images",
                     "input_type": "number",
                     "min": "1.0",
@@ -46,7 +46,7 @@
                     "class": "standard"
                 },
                 {
-                    "id": "parameter_x",
+                    "id": "insane_x",
                     "description":"Distance between periodic images in direction x",
                     "input_type": "number",
                     "min": "1.0",
@@ -58,7 +58,7 @@
                     "class": "advanced"
                 },
                 {
-                    "id": "parameter_y",
+                    "id": "insane_y",
                     "description":"Distance between periodic images in direction y",
                     "input_type": "number",
                     "min": "1.0",
@@ -70,7 +70,7 @@
                     "class": "advanced"
                 },
                 {
-                    "id": "parameter_z",
+                    "id": "insane_z",
                     "description":"Distance between periodic images in direction z",
                     "input_type": "number",
                     "min": "1.0",
@@ -82,7 +82,7 @@
                     "class": "advanced"
                 },
                 {
-                    "id": "parameter_dz",
+                    "id": "insane_dz",
                     "description": "Use z-distance plus protein size for z",
                     "input_type": "radio",
                     "default": "true",
@@ -100,7 +100,7 @@
                     ]
                 },
                 {
-                    "id": "parameter_pbc",
+                    "id": "insane_pbc",
                     "description":"Periodic boundary condition",
                     "input_type": "select",
                     "default": "",
@@ -141,7 +141,7 @@
             "expanded": "collapse",
             "inputs": [
                 { 
-                    "id": "parameter_l",
+                    "id": "insane_l",
                     "description": "Membrane lipids",
                     "input_type": "multiselect_text",
                     "default": [[null, null, "1:1"]],
@@ -516,7 +516,7 @@
                     }
                 },
                 { 
-                    "id": "parameter_al",
+                    "id": "insane_al",
                     "description": "Create your own lipid",
                     "input_type": "multitext",
                     "default": [["", "", "", "1:1"]],
@@ -536,7 +536,7 @@
                     ]
                 },
                 { 
-                    "id": "parameter_rand",
+                    "id": "insane_rand",
                     "description": "Membrane random kick",
                     "input_type": "number",
                     "min": "",
@@ -548,7 +548,7 @@
                     "class": "advanced"
                 },
                 { 
-                    "id": "parameter_a",
+                    "id": "insane_a",
                     "description": "Area per lipid",
                     "input_type": "number",
                     "min": "0.1",
@@ -560,7 +560,7 @@
                     "class": "advanced"
                 },
                 { 
-                    "id": "parameter_au",
+                    "id": "insane_au",
                     "description": "Area per lipid in upper leaflet",
                     "input_type": "number",
                     "min": "0.1",
@@ -572,7 +572,7 @@
                     "class": "advanced"
                 },
                 { 
-                    "id": "parameter_asym",
+                    "id": "insane_asym",
                     "description": "Membrane asymmetry (number of lipids)",
                     "input_type": "number",
                     "min": "",
@@ -585,7 +585,7 @@
 
                 },
                 { 
-                    "id": "parameter_hole",
+                    "id": "insane_hole",
                     "description": "Hole size",
                     "input_type": "number",
                     "min": "0",
@@ -598,7 +598,7 @@
 
                 },
                 { 
-                    "id": "parameter_disc",
+                    "id": "insane_disc",
                     "description": "Disc size",
                     "input_type": "number",
                     "min": "0",
@@ -611,7 +611,7 @@
 
                 },
                 { 
-                    "id": "parameter_bd",
+                    "id": "insane_bd",
                     "description": "Bead distance unit",
                     "input_type": "number",
                     "min": "0.1",
@@ -631,7 +631,7 @@
             "expanded": "collapse",
             "inputs": [
                 { 
-                    "id": "parameter_f",
+                    "id": "insane_f",
                     "description": "Protein",
                     "input_type": "file",
                     "default": null,
@@ -642,7 +642,7 @@
 
                 },
                 { 
-                    "id": "parameter_ring",
+                    "id": "insane_ring",
                     "description": "Ring shaped protein",
                     "input_type": "radio",
                     "default": "false",
@@ -660,7 +660,7 @@
                     ]
                 },
                 { 
-                    "id": "parameter_center",
+                    "id": "insane_center",
                     "description": "Center protein",
                     "input_type": "radio",
                     "default": "false",
@@ -678,7 +678,63 @@
                     ]
                 },
                 { 
-                    "id": "parameter_rotate",
+                    "id": "martinize",
+                    "description": "Course graining (with Martinize)",
+                    "input_type": "radio",
+                    "default": "false",
+                    "information": "Martinize is a tool that can be used to simplify a high resolution protein file to a course grained model. This way the protein and membrane can be simulated for a short period of time. Setting this parameter to 'true' will make the martinate parameters available.",
+                    "class": "standard",
+                    "options": [
+                        {
+                            "label" : "Yes",
+                            "value" : "true"
+                        },
+                        {
+                            "label" : "No",
+                            "value" : "false"
+                        }
+                    ]
+                },
+                { 
+                    "id": "martinize_ss",
+                    "description": "ss test",
+                    "input_type": "radio",
+                    "default": "false",
+                    "information": "test",
+                    "class": "standard",
+                    "is_martini_option":true,
+                    "options": [
+                        {
+                            "label" : "Yes",
+                            "value" : "true"
+                        },
+                        {
+                            "label" : "No",
+                            "value" : "false"
+                        }
+                    ]
+                },
+                { 
+                    "id": "martinize_test",
+                    "description": "sslolol test advanced martini option",
+                    "input_type": "radio",
+                    "default": "false",
+                    "information": "test",
+                    "class": "advanced",
+                    "is_martini_option":true,
+                    "options": [
+                        {
+                            "label" : "Yes",
+                            "value" : "true"
+                        },
+                        {
+                            "label" : "No",
+                            "value" : "false"
+                        }
+                    ]
+                },
+                { 
+                    "id": "insane_rotate",
                     "description": "Rotate protein",
                     "input_type": "select",
                     "default": "",
@@ -740,7 +796,7 @@
                     ]
                 },
                 { 
-                    "id": "parameter_fudge",
+                    "id": "insane_fudge",
                     "description": "Fudge factor for lipid-protein overlap",
                     "input_type": "number",
                     "min": "0.0",
@@ -752,7 +808,7 @@
                     "class": "advanced"
                 },
                 { 
-                    "id": "parameter_dm",
+                    "id": "insane_dm",
                     "description": "Shift protein with respect to membrane",
                     "input_type": "number",
                     "min": "",
@@ -771,7 +827,7 @@
             "expanded": "collapse",
             "inputs": [
                 { 
-                    "id": "parameter_sol",
+                    "id": "insane_sol",
                     "description": "Solvent",
                     "input_type": "multiselect_text",
                     "default": [[null, null, "1"]],
@@ -959,7 +1015,7 @@
                     }
                 },
                 { 
-                    "id": "parameter_solr",
+                    "id": "insane_solr",
                     "description": "Solvent random kick",
                     "input_type": "number",
                     "min": "",
@@ -970,7 +1026,7 @@
                     "class": "advanced"
                 },
                 { 
-                    "id": "parameter_sold",
+                    "id": "insane_sold",
                     "description": "Solvent diameter in nm",
                     "input_type": "number",
                     "min": "0.35",
@@ -982,7 +1038,7 @@
                     "class": "advanced"
                 },
                 { 
-                    "id": "parameter_salt",
+                    "id": "insane_salt",
                     "description": "Salt concentration",
                     "input_type": "number",
                     "min": "0.0",
@@ -994,7 +1050,7 @@
                     "class": "advanced"
                 },
                 { 
-                    "id": "parameter_charge",
+                    "id": "insane_charge",
                     "description": "Charge",
                     "input_type": "number",
                     "min": "",
