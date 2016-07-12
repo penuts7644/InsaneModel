@@ -682,46 +682,8 @@
                     "description": "Course graining (with Martinize)",
                     "input_type": "radio",
                     "default": "false",
-                    "information": "Martinize is a tool that can be used to simplify a high resolution protein file to a course grained model. This way the protein and membrane can be simulated for a short period of time. Setting this parameter to 'true' will make the martinate parameters available.",
+                    "information": "Martinize is a tool that can be used to simplify a high resolution protein file to a course grained model. This way the protein and membrane can be simulated for a short period of time. Setting this parameter to 'true' will make the martinize parameters available.",
                     "class": "standard",
-                    "options": [
-                        {
-                            "label" : "Yes",
-                            "value" : "true"
-                        },
-                        {
-                            "label" : "No",
-                            "value" : "false"
-                        }
-                    ]
-                },
-                { 
-                    "id": "martinize_ss",
-                    "description": "ss test",
-                    "input_type": "radio",
-                    "default": "false",
-                    "information": "test",
-                    "class": "standard",
-                    "is_martini_option":true,
-                    "options": [
-                        {
-                            "label" : "Yes",
-                            "value" : "true"
-                        },
-                        {
-                            "label" : "No",
-                            "value" : "false"
-                        }
-                    ]
-                },
-                { 
-                    "id": "martinize_test",
-                    "description": "sslolol test advanced martini option",
-                    "input_type": "radio",
-                    "default": "false",
-                    "information": "test",
-                    "class": "advanced",
-                    "is_martini_option":true,
                     "options": [
                         {
                             "label" : "Yes",
@@ -818,6 +780,238 @@
                     "placeholder": "e.g. -2, 0.5",
                     "information": "Positive values will result in a protein that hovers above the membrane, negative values will place the protein under the membrane..",
                     "class": "advanced"
+                },
+                { 
+                    "id": "martinize_ss",
+                    "description": "Martinize secondary structure",
+                    "input_type": "text",
+                    "default": "",
+                    "information": "NA",
+                    "class": "advanced",
+                    "is_martini_option":true
+                },
+                { 
+                    "id": "martinize_collagen",
+                    "description": "Martinize collagen parameters",
+                    "input_type": "radio",
+                    "default": "false",
+                    "information": "NA",
+                    "class": "advanced",
+                    "is_martini_option":true,
+                    "options": [
+                        {
+                            "label" : "Yes",
+                            "value" : "true"
+                        },
+                        {
+                            "label" : "No",
+                            "value" : "false"
+                        }
+                    ]
+                },
+                { 
+                    "id": "martinize_nt",
+                    "description": "Martinize neutral termini",
+                    "input_type": "radio",
+                    "default": "false",
+                    "information": "NA",
+                    "class": "advanced",
+                    "is_martini_option":true,
+                    "options": [
+                        {
+                            "label" : "Yes",
+                            "value" : "true"
+                        },
+                        {
+                            "label" : "No",
+                            "value" : "false"
+                        }
+                    ]
+                },
+                { 
+                    "id": "martinize_cb",
+                    "description": "Martinize charges at chain breaks",
+                    "input_type": "radio",
+                    "default": "false",
+                    "information": "NA",
+                    "class": "advanced",
+                    "is_martini_option":true,
+                    "options": [
+                        {
+                            "label" : "Yes",
+                            "value" : "true"
+                        },
+                        {
+                            "label" : "No",
+                            "value" : "false"
+                        }
+                    ]
+                },
+                { 
+                    "id": "martinize_cys",
+                    "description": "Martinize disulphide bond",
+                    "input_type": "radio",
+                    "default": "false",
+                    "information": "NA",
+                    "class": "advanced",
+                    "is_martini_option":true,
+                    "options": [
+                        {
+                            "label" : "Yes",
+                            "value" : "true"
+                        },
+                        {
+                            "label" : "No",
+                            "value" : "false"
+                        }
+                    ]
+                },
+                { 
+                    "id": "martinize_link",
+                    "description": "Martinize link",
+                    "input_type": "radio",
+                    "default": "false",
+                    "information": "NA",
+                    "class": "advanced",
+                    "is_martini_option":true,
+                    "options": [
+                        {
+                            "label" : "Yes",
+                            "value" : "true"
+                        },
+                        {
+                            "label" : "No",
+                            "value" : "false"
+                        }
+                    ]
+                },
+                { 
+                    "id": "martinize_merge",
+                    "description": "Martinize merge chains",
+                    "input_type": "radio",
+                    "default": "false",
+                    "information": "NA",
+                    "class": "advanced",
+                    "is_martini_option":true,
+                    "options": [
+                        {
+                            "label" : "Yes",
+                            "value" : "true"
+                        },
+                        {
+                            "label" : "No",
+                            "value" : "false"
+                        }
+                    ]
+                },
+                { 
+                    "id": "martinize_p",
+                    "description": "Martinize output position restraints",
+                    "input_type": "select",
+                    "default": "None",
+                    "information": "NA",
+                    "class": "advanced",
+                    "is_martini_option":true,
+                    "options": [
+                        {
+                            "label" : "None",
+                            "value" : "None"
+                        },
+                        {
+                            "label" : "All",
+                            "value" : "All"
+                        },
+                        {
+                            "label" : "Backbone",
+                            "value" : "Backbone"
+                        }
+                    ]
+                },
+                { 
+                    "id": "martinize_pf",
+                    "description": "Martinize position restraints force constant",
+                    "input_type": "number",
+                    "default": "1000",
+                    "information": "NA",
+                    "class": "advanced",
+                    "is_martini_option":true
+                },
+                { 
+                    "id": "martinize_ed",
+                    "description": "Martinize extended regions",
+                    "input_type": "radio",
+                    "default": "false",
+                    "information": "NA",
+                    "class": "advanced",
+                    "is_martini_option":true,
+                    "options": [
+                        {
+                            "label" : "Dihedrals",
+                            "value" : "true"
+                        },
+                        {
+                            "label" : "Elastic bonds",
+                            "value" : "false"
+                        }
+                    ]
+                },
+                { 
+                    "id": "martinize_sep",
+                    "description": "Martinize separate topologies for identical chains",
+                    "input_type": "radio",
+                    "default": "false",
+                    "information": "NA",
+                    "class": "advanced",
+                    "is_martini_option":true,
+                    "options": [
+                        {
+                            "label" : "Yes",
+                            "value" : "true"
+                        },
+                        {
+                            "label" : "No",
+                            "value" : "false"
+                        }
+                    ]
+                },
+                { 
+                    "id": "martinize_ff",
+                    "description": "Martinize force field",
+                    "input_type": "select",
+                    "default": "martini22",
+                    "information": "NA",
+                    "class": "advanced",
+                    "is_martini_option":true,
+                    "options": [
+                        {
+                            "label" : "martini22",
+                            "value" : "martini22"
+                        },
+                        {
+                            "label" : "martini22p",
+                            "value" : "martini22p"
+                        },
+                        {
+                            "label" : "martini21",
+                            "value" : "martini21"
+                        },
+                        {
+                            "label" : "martini21p",
+                            "value" : "martini21p"
+                        },
+                        {
+                            "label" : "elnedyn",
+                            "value" : "elnedyn"
+                        },
+                        {
+                            "label" : "elnedyn22",
+                            "value" : "elnedyn22"
+                        },
+                        {
+                            "label" : "elnedyn22p",
+                            "value" : "elnedyn22p"
+                        }
+                    ]
                 }
             ]
         },
