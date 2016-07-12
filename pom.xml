@@ -8,6 +8,7 @@
     <packaging>war</packaging>
 
     <name>InsaneModel</name>
+    <description>A web application build around Insane, a Python program from the Martini package, to create various 3D models. The web application can be used for creating and viewing bilayer membranes with or without proteins and/or solvents.</description>
 
     <developers>
         <developer>
@@ -54,6 +55,7 @@
     </dependencies>
 
     <build>
+        <defaultGoal>install</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -102,6 +104,4 @@
             </plugin>
         </plugins>
     </build>
-    <description>A web application build around Insane, a Python program from the Martini package, to create various 3D models.
-The web application can be used for creating and viewing bilayer membranes with or without proteins and/or solvents.</description>
 </project>

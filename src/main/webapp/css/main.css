@@ -7,6 +7,57 @@
     This css file contains all settings for the INSANE MODEL web tool.
 */
 
+/* All font faces necessary. */
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 100;
+    src: local('Lato Hairline'), local('Lato-Hairline'), url(../fonts/lato/Kom15zUm24dIPfIRiNogNuvvDin1pK8aKteLpeZ5c0A.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Lato Light'), local('Lato-Light'), url(../fonts/lato/kcf5uOXucLcbFOydGU24WALUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Lato Regular'), local('Lato-Regular'), url(../fonts/lato/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Lato Bold'), local('Lato-Bold'), url(../fonts/lato/qdgUG4U09HnJwhYI-uK18wLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 900;
+    src: local('Lato Black'), local('Lato-Black'), url(../fonts/lato/G2uphNnNqGFMHLRsO_72ngLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Lobster Two';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Lobster Two Italic'), local('LobsterTwo-Italic'), url(../fonts/lobstertwo/Ul_16MSbfayQv1I4QhLEoIo3ZslTYfJv0R05CazkwN8.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Lobster Two';
+    font-style: italic;
+    font-weight: 700;
+    src: local('Lobster Two Bold Italic'), local('LobsterTwo-BoldItalic'), url(../fonts/lobstertwo/LEkN2_no_6kFvRfiBZ8xpCHgNb6vKVPdRA9LSAKGxzw.woff) format('woff');
+}
+
+/* The css tags necessary. */
 html, body{
     font-family: 'Lato', sans-serif;
     font-size: 100%;
@@ -666,7 +717,7 @@ a.hero-adres-text:hover {
     color: #ec971f;
 }
 
-#betatag {
+#versiontag {
     position: absolute;
     background-color: #31b0d5;
     border-radius: 14px;
@@ -675,18 +726,13 @@ a.hero-adres-text:hover {
     height: 28px;
     top: 4px;
     right: 0;
-    -webkit-transform: rotate(6deg);
-    -moz-transform: rotate(6deg);
-    -ms-transform: rotate(6deg);
-    -o-transform: rotate(6deg);
-    transform: rotate(6deg);
     box-shadow: 0 0 2px 2px rgba(60,60,60, .6);
     -moz-box-shadow: 0 0 2px 2px rgba(60,60,60, .6);
     -webkit-box-shadow: 0 0 2px 2px rgba(60,60,60, .6);
     -o-box-shadow: 0 0 2px 2px rgba(60, 60,60, .6);
 }
 
-#betatag p {
+#versiontag p {
     text-align: center;
     font-family: 'Lobster Two', cursive;
     color: rgb(255, 255, 255);
