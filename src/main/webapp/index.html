@@ -102,12 +102,12 @@ All rights reserved.
                             <uib-accordion-heading ng-click="menu.expanded=!menu.expanded">
                                 <div class="panelitems">
                                     {{menu.name}}
-                                    <button class="pull-right btn btn-info" ng-click="$event.preventDefault(); $event.stopPropagation(); advancedDisabled = !advancedDisabled" ng-disabled="!menu.expanded">{{option.general.advanced}}<span class="glyphicon glyphicon-triangle-bottom"></span></button>
+                                    <button class="pull-right btn btn-info" ng-click="$event.preventDefault(); $event.stopPropagation(); showAdvancedOptions = !showAdvancedOptions" ng-disabled="!menu.expanded">{{option.general.advanced}}<span class="glyphicon glyphicon-triangle-bottom"></span></button>
                                 </div>
                             </uib-accordion-heading>
 
                             <!-- Body for the proper panel heading. -->
-                            <div class="btn-sm" ng-repeat="setting in menu.inputs" ng-show="setting.class !== 'advanced'" ng-hide="setting.class === 'advanced' && advancedDisabled">
+                            <div class="btn-sm" ng-repeat="setting in menu.inputs" ng-show="setting.class !== 'advanced'" ng-hide="setting.class === 'advanced' && !showAdvancedOptions">
 
                                 <!-- Switch for each type of input available, defined in JSON file. -->
                                 <div class="col-lg-9 menuitems" ng-switch="setting.input_type">
