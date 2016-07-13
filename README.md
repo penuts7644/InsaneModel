@@ -1,11 +1,11 @@
-# INSANE MODEL #
+# Insane Model #
 
 ---------------------
 
 ### About this project ###
 
 * Authors: Lonneke Scheffer & Wout van Helvoirt
-* Version: 1.1
+* Version: 1.0
 * This web application makes use of Insane (included in this repository), a Python program from the
 [Martini](http://md.chem.rug.nl/) package, to create various 3D models. Models created by Insane can be modified and
 viewed from within the web browser to suit your needs.
@@ -14,7 +14,7 @@ viewed from within the web browser to suit your needs.
 
 * This web application requires at least [Java 8](https://www.oracle.com/downloads/index.html) to function.
 * [Python 2](https://www.python.org/downloads/release/python-2711/) is needed to run insane.
-* [Apache Tomcat](http://tomcat.apache.org/download-80.cgi) version 8.0.28 has been used to create a local host server.
+* [Apache Tomcat](http://tomcat.apache.org/download-80.cgi) version 8 has been used to create a local host server.
 Newer versions might work too, but have not been tested.
 * There are a few paths that must exist in order for Insane Model to work. To temporarily store the user input files
 you need the directory '<your home folder>/insanemodelfiles/userInputFiles'. Also, your 'NetBeansProjects' folder must
@@ -54,4 +54,4 @@ recommended since they do not work very well together with JSmol. JSmol tends to
 Chrome/Chromium, and these browsers sometimes refresh the page when updating the JSmol view.**
 
 **Note 4: The Firefox add-on 'Privacy Badger' must be disabled completely for Jmol to work.
-[See this page.](http://wiki.jmol.org/index.php/Compatibility)**
+[See this page](http://wiki.jmol.org/index.php/Compatibility)**
