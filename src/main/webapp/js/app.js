@@ -75,7 +75,7 @@
         $scope.duplicateSelectTag = function(input, value, emptyOption) {
             //$scope.default = [[null, null, "1:1"], ["", "", "", "1:1"]];
             input[value].push(angular.copy(emptyOption));
-	};
+        };
 
         /*
          * Remove the corresponding input field created with duplicateSelectTag

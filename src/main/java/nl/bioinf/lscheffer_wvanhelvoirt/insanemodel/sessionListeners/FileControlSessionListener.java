@@ -5,12 +5,13 @@
  */
 package nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.sessionListeners;
 
+import nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.configuration.ConfigurationPaths;
+import org.apache.commons.io.FileUtils;
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import javax.servlet.http.HttpSessionEvent;
-import javax.servlet.http.HttpSessionListener;
-import nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.configuration.ConfigurationPaths;
 
 /**
  *
@@ -28,7 +29,7 @@ public class FileControlSessionListener implements HttpSessionListener {
         try {
             // Try to delete any associated input- and outputfiles
             Files.deleteIfExists(Paths.get(ConfigurationPaths.getAbsoluteInFilePath(se.getSession().getId())));
-            Files.deleteIfExists(Paths.get(ConfigurationPaths.getAbsoluteOutFilePath(se.getSession().getId())));
+            FileUtils.deleteDirectory(FileUtils.getFile(ConfigurationPaths.getAbsoluteOutFilePath(se.getSession().getId())));
         } catch (IOException ex) {
 
             // DOE HIER IETS??

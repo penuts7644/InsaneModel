@@ -5,11 +5,18 @@
  */
 package nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.servlets;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.configuration.ConfigurationPaths;
+import nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.model.SimulationBuilder;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,22 +24,6 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-import nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.configuration.ConfigurationPaths;
-import nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.model.SimulationBuilder;
-import org.json.simple.JSONArray;
-
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -108,10 +99,14 @@ public class InsaneModelServlet extends HttpServlet {
         try {
             JSONObject insaneSettings = this.parseFormInputPart(masterPart);
 
+            File outputDir = new File(ConfigurationPaths.getAbsoluteOutFilePath(session.getId()));
+            if (!outputDir.exists()) {
+                outputDir.mkdir();
+            }
             SimulationBuilder simbuild = new SimulationBuilder(insaneSettings,
                     ConfigurationPaths.getPathToInsane(),
                     infilePath,
-                    ConfigurationPaths.getAbsoluteOutFilePath(session.getId()));
+                    outputDir.getPath() + System.getProperty("file.separator") + "output_insane.gro");
 
             Process insaneProcess = simbuild.build();
             insaneProcess.waitFor();
@@ -129,7 +124,8 @@ public class InsaneModelServlet extends HttpServlet {
                 outputJson.put("display", false);
             } else {
                 outputJson.put("errorMessages", JSONArray.toJSONString(simbuild.getErrorMessages()));
-                outputJson.put("outfile", ConfigurationPaths.getWebOutFilePath(session.getId()));
+                outputJson.put("outfile", ConfigurationPaths.getWebOutFilePath(session.getId()
+                        + System.getProperty("file.separator")+ "output_insane.gro"));
                 outputJson.put("download", true);
                 // Only display if the grid is not too big
                 if (simbuild.isTooBig()){

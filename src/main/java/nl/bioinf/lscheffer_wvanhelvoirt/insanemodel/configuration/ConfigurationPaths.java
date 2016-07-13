@@ -24,7 +24,7 @@ public final class ConfigurationPaths {
      * "NetBeansProjects"
      */
     static final private String INSANEFOLDER = String.join(System.getProperty("file.separator"),
-            System.getProperty("user.home"), "NetBeansProjects", "insanemodel", "src", "main", "webapp", "insane");
+            System.getProperty("user.home"), "Documents", "IdeaProjects", "InsaneModel", "src", "main", "webapp", "insane");
     /**
      * This is the absolute path to the folder containing insane.py, INSIDE your project.
      * This is the INSANEFOLDER path, with a file separator at the end.
@@ -40,8 +40,8 @@ public final class ConfigurationPaths {
      * This is the relative path to the folder where output files will be stored.
      * It is relative from your project root. If you change this path, you also have to change OUTFILE.
      */
-    static final private String WEBOUTFILE = String.join(
-            System.getProperty("file.separator"), "insane", "userOutputFiles", "");
+    static final private String WEBOUTFILE = String.join(System.getProperty("file.separator"),
+            "insane", "userOutputFiles", "");
     /**
      * This is the absolute path to the folder where input files will be stored, OUTSIDE your project.
      * You can change this path to anything you like, as long as the path exists and is not inside your project folder.
@@ -58,7 +58,7 @@ public final class ConfigurationPaths {
      */
     public static String getRootPath() {
         System.out.println(INSANEROOT);
-        System.out.println(INSANEFOLDER);        
+        System.out.println(INSANEFOLDER);
         return ConfigurationPaths.INSANEROOT;
     }
 
