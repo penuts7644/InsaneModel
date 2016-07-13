@@ -27,7 +27,8 @@
         
         $scope.oneAtATime = false;
         $scope.isFirstOpen = false;
-        $scope.advancedDisabled = true;
+        $scope.showAdvancedOptions = false;
+        $scope.showMartiniOptions = true;
         $scope.radio = false;
         $scope.submitDisabled = false;
         $scope.downloadButton = false;

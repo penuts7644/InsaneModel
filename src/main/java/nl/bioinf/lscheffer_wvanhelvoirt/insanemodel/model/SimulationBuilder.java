@@ -71,12 +71,12 @@ public class SimulationBuilder {
      */
     private GridSize defineGridSize() {
         return new GridSize(this.errorMessages,
-                            this.getParameterDouble("parameter_d"),
-                            this.getParameterDouble("parameter_x"),
-                            this.getParameterDouble("parameter_y"),
-                            this.getParameterDouble("parameter_z"),
-                            this.getParameterBool("parameter_dz"),
-                            this.getParameterString("parameter_pbc"));
+                            this.getParameterDouble("insane_d"),
+                            this.getParameterDouble("insane_x"),
+                            this.getParameterDouble("insane_y"),
+                            this.getParameterDouble("insane_z"),
+                            this.getParameterBool("insane_dz"),
+                            this.getParameterString("insane_pbc"));
     }
 
     private Integer[] getValidRatios(String ratioString) {
@@ -116,14 +116,14 @@ public class SimulationBuilder {
     /**
      * Define the StandardLipids for this simulation.
      *
-     * @return the created array of StandardLipids("parameter_d"
+     * @return the created array of StandardLipids("insane_d"
      */
     private StandardLipid[] defineStandardLipids() {
         ValidLipidType type;
         Integer[] upperLowerRatio;
 
         // [["supertype", "subtype", "ratio"], ["supertype", "subtype", "ratio"], ["supertype", "subtype", "ratio"]]
-        JSONArray lipidArray = (JSONArray) this.insaneSettings.get("parameter_l");
+        JSONArray lipidArray = (JSONArray) this.insaneSettings.get("insane_l");
         List<StandardLipid> listStandLip = new LinkedList();
 
         for (Object lipid : lipidArray) {
@@ -169,7 +169,7 @@ public class SimulationBuilder {
         AdditionalLipid.resetCounter();
 
         // [["head", "linker", "tail", "ratio"], ["head", "linker", "tail", "ratio"]]
-        JSONArray lipidArray = (JSONArray) this.insaneSettings.get("parameter_al");
+        JSONArray lipidArray = (JSONArray) this.insaneSettings.get("insane_al");
         List<AdditionalLipid> listAddLip = new LinkedList();
 
         for (Object lipid : lipidArray) {
@@ -201,13 +201,13 @@ public class SimulationBuilder {
                             this.defineStandardLipids(),
                             this.defineAdditionalLipids(),
                             this.gridSize,
-                            this.getParameterDouble("parameter_rand"),
-                            this.getParameterDouble("parameter_a"),
-                            this.getParameterDouble("parameter_au"),
-                            this.getParameterInt("parameter_asym"),
-                            this.getParameterDouble("parameter_hole"),
-                            this.getParameterDouble("parameter_disc"),
-                            this.getParameterDouble("parameter_bd"));
+                            this.getParameterDouble("insane_rand"),
+                            this.getParameterDouble("insane_a"),
+                            this.getParameterDouble("insane_au"),
+                            this.getParameterInt("insane_asym"),
+                            this.getParameterDouble("insane_hole"),
+                            this.getParameterDouble("insane_disc"),
+                            this.getParameterDouble("insane_bd"));
     }
 
     /**
@@ -219,11 +219,11 @@ public class SimulationBuilder {
         return new Protein(this.errorMessages,
                             this.infilePath,
                             this.gridSize,
-                            this.getParameterBool("parameter_ring"),
-                            this.getParameterBool("parameter_center"),
-                            this.getParameterString("parameter_rotate"),
-                            this.getParameterDouble("parameter_fudge", -1),
-                            this.getParameterDouble("parameter_dm"));
+                            this.getParameterBool("insane_ring"),
+                            this.getParameterBool("insane_center"),
+                            this.getParameterString("insane_rotate"),
+                            this.getParameterDouble("insane_fudge", -1),
+                            this.getParameterDouble("insane_dm"));
     }
 
 
@@ -234,7 +234,7 @@ public class SimulationBuilder {
      */
     private Solvent defineSolvent() {
         // solventArray contains [[supertype, subtype, ratio], [supertype, subtype, ratio]]
-        JSONArray solventArray = (JSONArray) insaneSettings.get("parameter_sol");
+        JSONArray solventArray = (JSONArray) insaneSettings.get("insane_sol");
 
         List<ValidSolventType> solventTypes = new LinkedList();
         List<Integer> solventRatios = new LinkedList();
@@ -263,10 +263,10 @@ public class SimulationBuilder {
         return new Solvent(this.errorMessages,
                             solArray,
                             intArray,
-                            this.getParameterDouble("parameter_solr"),
-                            this.getParameterDouble("parameter_sold"),
-                            this.getParameterDouble("parameter_salt"),
-                            this.getParameterInt("parameter_charge"));
+                            this.getParameterDouble("insane_solr"),
+                            this.getParameterDouble("insane_sold"),
+                            this.getParameterDouble("insane_salt"),
+                            this.getParameterInt("insane_charge"));
     }
 
     private void testIfSimple() {
