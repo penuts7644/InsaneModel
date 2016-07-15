@@ -17,13 +17,8 @@ import org.json.simple.JSONObject;
  * @author Lonneke Scheffer
  * @version 1.0.0
  */
-public class InsaneSimulationBuilder {
-    /** The error message list all classes add error messages to. */
-    private final List<String> errorMessages;
-    /** The argument list all classes add arguments to. */
-    private final List<String> arguments;
-    /** The JSONObject containing all insaneSettings. */
-    private final JSONObject insaneSettings;
+public class InsaneSimulationBuilder extends SimulationBuilder {
+    
     /** The GridSize for this simulation. */
     private final GridSize gridSize;
     /** The Membrane for this simulation. */
@@ -34,33 +29,26 @@ public class InsaneSimulationBuilder {
     private final Solvent solvent;
     /** The absolute(!) path to insane.py. */
     private final String insanePath;
-    /** The absolute(!) path to the input file. */
-    private final String infilePath;
-    /** The absolute(!) path to the output file. */
-    private final String outfilePath;
+    
 
     /**
      * Create a new SimulationBuilder, given the insane settings, the path to insane and the output file path.
      *
-     * @param insaneSettings JSONObject containing all insane settings
+     * @param settings JSONObject containing all insane settings
      * @param insanePath     the absolute(!) path to insane
      * @param infilePath     the absolute(!) path to the input file.
      * @param outfilePath    the absolute(!) path to the output file
      */
-    public InsaneSimulationBuilder(final JSONObject insaneSettings,
-                             final String insanePath,
+    public InsaneSimulationBuilder(final JSONObject settings,
                              final String infilePath,
-                             final String outfilePath) {
-        this.errorMessages = new LinkedList();
-        this.arguments = new LinkedList();
-        this.insaneSettings = insaneSettings; // insanesettings must be set before gridsize/membrane/protein/solvent!
+                             final String outfilePath,
+                             final String insanePath) {
+        super(settings, infilePath, outfilePath); // settings must be set before gridsize/membrane/protein/solvent!
         this.gridSize = this.defineGridSize(); // gridsize must be set before membrane/solvent!
         this.membrane = this.defineMembrane();
-        this.infilePath = infilePath; // infilepath must be set before defineProtein!
         this.protein = this.defineProtein();
         this.solvent = this.defineSolvent();
         this.insanePath = insanePath;
-        this.outfilePath = outfilePath;
         this.testIfSimple();
     }
 
@@ -79,40 +67,6 @@ public class InsaneSimulationBuilder {
                             this.getParameterString("insane_pbc"));
     }
 
-    private Integer[] getValidRatios(String ratioString) {
-        Integer[] ratios = new Integer[2];
-        String[] ratioStringArray = ratioString.split(":");
-
-        switch (ratioStringArray.length) {
-            case 1:
-                // there is no 'ratio' given, just one single number. use that number
-                ratios[0] = this.getRatioInt(ratioStringArray[0]);
-                ratios[1] = this.getRatioInt(ratioStringArray[0]);
-                break;
-            case 2:
-                // there are 2 values given (#:#)
-                ratios[0] = this.getRatioInt(ratioStringArray[0]);
-                ratios[1] = this.getRatioInt(ratioStringArray[1]);
-                break;
-            default:
-                // if someone tries to give an invalid ratio (for instance 3:4:5)
-                this.errorMessages.add("Relative abundance " + ratioString + " is not valid and has been set to 1.");
-                ratios[0] = 1;
-                ratios[1] = 1;
-                break;
-        }
-
-        return ratios;
-    }
-
-    private int getRatioInt(String stringForm) {
-        try {
-            return Integer.parseInt(stringForm);
-        } catch (NumberFormatException nf) {
-            return 1;
-        }
-    }
-
     /**
      * Define the StandardLipids for this simulation.
      *
@@ -123,7 +77,7 @@ public class InsaneSimulationBuilder {
         Integer[] upperLowerRatio;
 
         // [["supertype", "subtype", "ratio"], ["supertype", "subtype", "ratio"], ["supertype", "subtype", "ratio"]]
-        JSONArray lipidArray = (JSONArray) this.insaneSettings.get("insane_l");
+        JSONArray lipidArray = (JSONArray) this.settings.get("insane_l");
         List<StandardLipid> listStandLip = new LinkedList();
 
         for (Object lipid : lipidArray) {
@@ -169,7 +123,7 @@ public class InsaneSimulationBuilder {
         AdditionalLipid.resetCounter();
 
         // [["head", "linker", "tail", "ratio"], ["head", "linker", "tail", "ratio"]]
-        JSONArray lipidArray = (JSONArray) this.insaneSettings.get("insane_al");
+        JSONArray lipidArray = (JSONArray) this.settings.get("insane_al");
         List<AdditionalLipid> listAddLip = new LinkedList();
 
         for (Object lipid : lipidArray) {
@@ -234,7 +188,7 @@ public class InsaneSimulationBuilder {
      */
     private Solvent defineSolvent() {
         // solventArray contains [[supertype, subtype, ratio], [supertype, subtype, ratio]]
-        JSONArray solventArray = (JSONArray) insaneSettings.get("insane_sol");
+        JSONArray solventArray = (JSONArray) settings.get("insane_sol");
 
         List<ValidSolventType> solventTypes = new LinkedList();
         List<Integer> solventRatios = new LinkedList();
@@ -277,79 +231,7 @@ public class InsaneSimulationBuilder {
         }
     }
 
-    /**
-     * Try to convert the user input to a double, if it fails, return the given default value.
-     *
-     * @param parameterName the name of this parameter
-     * @param defaultValue  default value if the conversion fails
-     * @return              a valid double
-     */
-    private double getParameterDouble(final String parameterName, final double defaultValue) {
-        try {
-            return Double.parseDouble(this.insaneSettings.get(parameterName).toString());
-        } catch (java.lang.NumberFormatException | NullPointerException ex) {
-            return defaultValue;
-        }
-    }
 
-    /**
-     * Try to convert the user input to a double, if it fails, return 0.
-     *
-     * @param parameterName the name of this parameter
-     * @return              a valid double
-     */
-    private double getParameterDouble(final String parameterName) {
-        return getParameterDouble(parameterName, 0);
-    }
-
-    /**
-     * Try to convert the user input to an integer, if it fails, return the given default value.
-     *
-     * @param parameterName the name of this parameter
-     * @param defaultValue  default value if the conversion fails
-     * @return              a valid integer
-     */
-    private int getParameterInt(final String parameterName, final double defaultValue) {
-        return (int) Math.round(getParameterDouble(parameterName, defaultValue));
-    }
-
-    /**
-     * Try to convert the user input to an integer, if it fails, return 0.
-     *
-     * @param parameterName the name of this parameter
-     * @return              a valid integer
-     */
-    private int getParameterInt(final String parameterName) {
-        return getParameterInt(parameterName, 0);
-    }
-
-    /**
-     * Try to convert the user input to a boolean value, if it fails, return false.
-     *
-     * @param parameterName the name of this parameter
-     * @return              a boolean value
-     */
-    private boolean getParameterBool(final String parameterName) {
-        try {
-            return Boolean.parseBoolean(this.insaneSettings.get(parameterName).toString());
-        } catch (NullPointerException np) {
-            return false;
-        }
-    }
-
-    /**
-     * Try to convert the user input to a String, if it fails, return an empty String.
-     *
-     * @param parameterName the name of this parameter
-     * @return              a String
-     */
-    private String getParameterString(final String parameterName) {
-        try {
-            return this.insaneSettings.get(parameterName).toString();
-        } catch (IllegalArgumentException | NullPointerException ex) {
-            return "";
-        }
-    }
 
     /**
      * Build the simulation, start the process and return the process.

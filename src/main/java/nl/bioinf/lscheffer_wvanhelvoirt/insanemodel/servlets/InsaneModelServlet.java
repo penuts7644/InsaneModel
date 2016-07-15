@@ -104,9 +104,9 @@ public class InsaneModelServlet extends HttpServlet {
                 outputDir.mkdir();
             }
             InsaneSimulationBuilder simbuild = new InsaneSimulationBuilder(insaneSettings,
-                    ConfigurationPaths.getPathToInsane(),
                     infilePath,
-                    outputDir.getPath() + System.getProperty("file.separator") + "output_insane.gro");
+                    outputDir.getPath() + System.getProperty("file.separator") + "output_insane.gro",
+                    ConfigurationPaths.getPathToInsane());
 
             Process insaneProcess = simbuild.build();
             insaneProcess.waitFor();
