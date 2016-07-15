@@ -5,6 +5,7 @@
  */
 package nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.model;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import org.json.simple.JSONObject;
@@ -32,6 +33,15 @@ public abstract class SimulationBuilder {
         this.infilePath = infilePath; 
         this.outfilePath = outfilePath;
     }
+    
+    /**
+     * Build the simulation, start the process and return the process.
+     *
+     * @return the process
+     * @throws IOException if an I/O error occurs
+     */
+    public abstract Process build() throws IOException;
+    
     
     protected int getRatioInt(String stringForm) {
         try {
@@ -139,5 +149,23 @@ public abstract class SimulationBuilder {
         } catch (IllegalArgumentException | NullPointerException ex) {
             return "";
         }
+    }
+    
+    /**
+     * Get the error messages list containing the error messages of the whole simulation.
+     *
+     * @return List containing all error messages
+     */
+    public List<String> getErrorMessages() {
+        return this.errorMessages;
+    }
+
+    /**
+     * Get the argument list containing the command line arguments of the whole simulation.
+     *
+     * @return List containing all command line arguments
+     */
+    public List<String> getArguments() {
+        return this.arguments;
     }
 }

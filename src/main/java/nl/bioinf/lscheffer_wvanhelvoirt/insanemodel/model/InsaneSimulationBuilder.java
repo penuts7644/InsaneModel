@@ -239,6 +239,7 @@ public class InsaneSimulationBuilder extends SimulationBuilder {
      * @return the process
      * @throws IOException if an I/O error occurs
      */
+    @Override
     public Process build() throws IOException {
         this.arguments.add(this.insanePath);
         this.arguments.add("-o");
@@ -252,23 +253,7 @@ public class InsaneSimulationBuilder extends SimulationBuilder {
         return processBuilder.start();
     }
 
-    /**
-     * Get the error messages list containing the error messages of the whole simulation.
-     *
-     * @return List containing all error messages
-     */
-    public List<String> getErrorMessages() {
-        return this.errorMessages;
-    }
 
-    /**
-     * Get the argument list containing the command line arguments of the whole simulation.
-     *
-     * @return List containing all command line arguments
-     */
-    public List<String> getArguments() {
-        return this.arguments;
-    }
 
     /**
      * Checks if the given grid size is 'too big' for JSmol to view.

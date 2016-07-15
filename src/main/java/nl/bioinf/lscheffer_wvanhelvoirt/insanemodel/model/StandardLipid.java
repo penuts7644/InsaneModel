@@ -5,6 +5,7 @@
  */
 package nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  * @author Lonneke Scheffer
  * @version 1.0.0
  */
-public class StandardLipid {
+public class StandardLipid extends SettingManager {
     /** The type of the standard lipid. */
     private final ValidLipidType type;
     /** The ratio of the lipids in the upper membrane leaflet. */
@@ -32,6 +33,7 @@ public class StandardLipid {
     public StandardLipid(final ValidLipidType type,
                          final int upperLeafletRatio,
                          final int lowerLeafletRatio) {
+        super(new LinkedList()); // Standardlipid can't really give errors, but is still a settingmanager
         this.type = type;
         this.upperLeafletRatio = upperLeafletRatio;
         this.lowerLeafletRatio = lowerLeafletRatio;
@@ -42,6 +44,7 @@ public class StandardLipid {
      *
      * @param arguments the given list of arguments
      */
+    @Override
     public void addArguments(final List<String> arguments) {
         // add lower leaflet lipids
         if (this.lowerLeafletRatio > 0) {

@@ -13,7 +13,7 @@ import java.util.List;
  * @author Lonneke Scheffer
  * @version 1.0.0
  */
-public class Protein {
+public class Protein extends SettingManager {
     /** The pdb file location. */
     private final String fileLocation;
     /** Is it a ring shaped protein. */
@@ -29,8 +29,6 @@ public class Protein {
     /** The gridsize for the simulation. */
     private final GridSize grid;
 
-    /** The list to add error messages to. */
-    private final List<String> errorMessages;
 
     /**
      * Create a new protein given a pdb file + insane parameters.
@@ -52,7 +50,7 @@ public class Protein {
                    final String rotate,
                    final double fudge,
                    final double verticalShift) {
-        this.errorMessages = errorMessages;
+        super(errorMessages);
         this.grid = grid;
         this.fileLocation = fileLocation;
         this.ring = ring;
@@ -117,6 +115,7 @@ public class Protein {
      *
      * @param arguments the given list of arguments
      */
+    @Override
     public void addArguments(final List<String> arguments) {
         // no given file means no protein means no arguments
         if (!this.isFileGiven()) {

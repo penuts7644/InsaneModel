@@ -15,7 +15,7 @@ import java.util.List;
  * @author Lonneke Scheffer
  * @version 1.0.0
  */
-public class Membrane {
+public class Membrane extends SettingManager {
     /** The array of StandardLipids. */
     private final StandardLipid[] standardLipids;
     /** The array of AdditionalLipids. */
@@ -37,8 +37,6 @@ public class Membrane {
     /** The distance between the membrane beads. */
     private final double beadDistance;
 
-    /** The list to add error messages to. */
-    private final List<String> errorMessages;
 
     /**
      * Create a new Membrane.
@@ -66,7 +64,7 @@ public class Membrane {
                     final double hole,
                     final double disc,
                     final double beadDistance) {
-        this.errorMessages = errorMessages;
+        super(errorMessages);
         this.standardLipids = standardLipids;
         this.additionalLipids = additionalLipids;
         this.grid = grid;
@@ -148,6 +146,7 @@ public class Membrane {
      *
      * @param arguments the given list of arguments
      */
+    @Override
     public void addArguments(final List<String> arguments) {
         // if there are no lipids, there is no membrane.
         // add only '-excl -1' so the solvent can be in the place of the membrane
