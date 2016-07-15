@@ -44,8 +44,9 @@ public class InsaneSimulationBuilder extends SimulationBuilder {
     public InsaneSimulationBuilder(final JSONObject settings,
                              final String infilePath,
                              final String outfilePath,
-                             final String insanePath) {
-        super(settings, infilePath); // settings must be set before gridsize/membrane/protein/solvent!
+                             final String insanePath,
+                             LinkedList errorMessages) {
+        super(settings, infilePath, errorMessages); // settings must be set before gridsize/membrane/protein/solvent!
         this.outfilePath = outfilePath;
         this.gridSize = this.defineGridSize(); // gridsize must be set before membrane/solvent!
         this.membrane = this.defineMembrane();

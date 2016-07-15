@@ -26,8 +26,17 @@ public abstract class SimulationBuilder {
     
 
     public SimulationBuilder(JSONObject settings, String infilePath) {
+        this(settings, infilePath, new LinkedList());
+//        this.settings = settings;
+//        this.errorMessages = new LinkedList();
+//        this.arguments = new LinkedList();
+//        this.infilePath = infilePath; 
+        
+    }
+    
+     public SimulationBuilder(JSONObject settings, String infilePath, LinkedList errorMessages) {
         this.settings = settings;
-        this.errorMessages = new LinkedList();
+        this.errorMessages = errorMessages;
         this.arguments = new LinkedList();
         this.infilePath = infilePath; 
         

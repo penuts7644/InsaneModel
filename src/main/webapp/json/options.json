@@ -932,6 +932,7 @@
                     "description": "Martinize position restraints force constant",
                     "input_type": "number",
                     "default": "1000",
+                    "min":"0",
                     "information": "NA",
                     "class": "advanced",
                     "is_martini_option":true

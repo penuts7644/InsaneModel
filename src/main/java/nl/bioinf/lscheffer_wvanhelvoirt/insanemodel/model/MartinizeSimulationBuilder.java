@@ -6,6 +6,7 @@
 package nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.model;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 import org.apache.commons.io.FilenameUtils;
 import org.json.simple.JSONObject;
@@ -23,12 +24,16 @@ public class MartinizeSimulationBuilder extends SimulationBuilder {
     private final String outPdbPath;
     private final String outIndexPath;
 
-    public MartinizeSimulationBuilder(JSONObject settings, String infilePath, String martinizePath) {
-        super(settings, infilePath);
+    public MartinizeSimulationBuilder(JSONObject settings,
+                                      String infilePath,
+                                      String outfilePath,
+                                      String martinizePath,
+                                      LinkedList errorMessages) {
+        super(settings, infilePath, errorMessages);
         this.martinizePath = martinizePath;
-        this.outTopologyPath = this.replaceExtension(infilePath, "-cg.top");
-        this.outPdbPath = this.replaceExtension(infilePath, "-mart.pdb");
-        this.outIndexPath = this.replaceExtension(infilePath, "-mart.ndx");
+        this.outTopologyPath = this.replaceExtension(outfilePath, "-cg.top");
+        this.outPdbPath = this.replaceExtension(outfilePath, "-mart.pdb");
+        this.outIndexPath = this.replaceExtension(outfilePath, "-mart.ndx");
         this.martinize = this.defineMartinize();
     }
     
@@ -70,20 +75,9 @@ public class MartinizeSimulationBuilder extends SimulationBuilder {
         this.arguments.add(this.outIndexPath);
         
         this.martinize.addArguments(arguments);
-        
-        for (String argument : this.arguments){
-            System.out.println(argument);
-        }
-
 
         ProcessBuilder processBuilder = new ProcessBuilder(this.arguments);
         return processBuilder.start();
-    }
-    
-    
-    public static void main(String [] args) throws IOException{
-        MartinizeSimulationBuilder msb = new MartinizeSimulationBuilder(new JSONObject(), "infile.pdb", "martinize.py");
-        msb.build();
     }
 
 }
