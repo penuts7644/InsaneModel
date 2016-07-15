@@ -29,6 +29,8 @@ public class InsaneSimulationBuilder extends SimulationBuilder {
     private final Solvent solvent;
     /** The absolute(!) path to insane.py. */
     private final String insanePath;
+    /** The absolute(!) path to the output file. */
+    protected final String outfilePath;
     
 
     /**
@@ -43,7 +45,8 @@ public class InsaneSimulationBuilder extends SimulationBuilder {
                              final String infilePath,
                              final String outfilePath,
                              final String insanePath) {
-        super(settings, infilePath, outfilePath); // settings must be set before gridsize/membrane/protein/solvent!
+        super(settings, infilePath); // settings must be set before gridsize/membrane/protein/solvent!
+        this.outfilePath = outfilePath;
         this.gridSize = this.defineGridSize(); // gridsize must be set before membrane/solvent!
         this.membrane = this.defineMembrane();
         this.protein = this.defineProtein();

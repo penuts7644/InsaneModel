@@ -23,15 +23,14 @@ public abstract class SimulationBuilder {
     protected final JSONObject settings;
     /** The absolute(!) path to the input file. */
     protected final String infilePath;
-    /** The absolute(!) path to the output file. */
-    protected final String outfilePath;
+    
 
-    public SimulationBuilder(JSONObject settings, String infilePath, String outfilePath) {
+    public SimulationBuilder(JSONObject settings, String infilePath) {
         this.settings = settings;
         this.errorMessages = new LinkedList();
         this.arguments = new LinkedList();
         this.infilePath = infilePath; 
-        this.outfilePath = outfilePath;
+        
     }
     
     /**
