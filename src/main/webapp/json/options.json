@@ -939,7 +939,7 @@
                 { 
                     "id": "martinize_ed",
                     "description": "Martinize extended regions",
-                    "input_type": "radio",
+                    "input_type": "select",
                     "default": "false",
                     "information": "NA",
                     "class": "advanced",
