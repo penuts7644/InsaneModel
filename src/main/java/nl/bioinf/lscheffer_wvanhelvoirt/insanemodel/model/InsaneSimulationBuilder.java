@@ -17,7 +17,7 @@ import org.json.simple.JSONObject;
  * @author Lonneke Scheffer
  * @version 1.0.0
  */
-public class SimulationBuilder {
+public class InsaneSimulationBuilder {
     /** The error message list all classes add error messages to. */
     private final List<String> errorMessages;
     /** The argument list all classes add arguments to. */
@@ -47,7 +47,7 @@ public class SimulationBuilder {
      * @param infilePath     the absolute(!) path to the input file.
      * @param outfilePath    the absolute(!) path to the output file
      */
-    public SimulationBuilder(final JSONObject insaneSettings,
+    public InsaneSimulationBuilder(final JSONObject insaneSettings,
                              final String insanePath,
                              final String infilePath,
                              final String outfilePath) {

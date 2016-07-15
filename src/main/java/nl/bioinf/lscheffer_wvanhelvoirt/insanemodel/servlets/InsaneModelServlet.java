@@ -6,7 +6,7 @@
 package nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.servlets;
 
 import nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.configuration.ConfigurationPaths;
-import nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.model.SimulationBuilder;
+import nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.model.InsaneSimulationBuilder;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -103,7 +103,7 @@ public class InsaneModelServlet extends HttpServlet {
             if (!outputDir.exists()) {
                 outputDir.mkdir();
             }
-            SimulationBuilder simbuild = new SimulationBuilder(insaneSettings,
+            InsaneSimulationBuilder simbuild = new InsaneSimulationBuilder(insaneSettings,
                     ConfigurationPaths.getPathToInsane(),
                     infilePath,
                     outputDir.getPath() + System.getProperty("file.separator") + "output_insane.gro");
