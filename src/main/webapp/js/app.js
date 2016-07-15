@@ -62,6 +62,7 @@
         $scope.update = function(input) {
             $scope.master = angular.copy(input);
             console.log("Update called");
+            console.log($scope.master);
             /*
              * Disable the update button temporarily.
              */
@@ -132,7 +133,7 @@
                  * Create an object that contains the model and files which will
                  * be transformed in the above transformRequest method.
                  */
-                data: { master: $scope.master, proteinFile: $scope.file.parameter_f }
+                data: { master: $scope.master, proteinFile: $scope.file.insane_f }
             }).
             success(function (data, status, headers, config) {
                 /*

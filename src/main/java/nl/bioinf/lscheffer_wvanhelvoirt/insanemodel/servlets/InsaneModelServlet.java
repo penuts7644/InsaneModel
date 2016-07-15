@@ -24,6 +24,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.model.MartinizeSimulationBuilder;
 
 /**
  *
@@ -79,6 +80,7 @@ public class InsaneModelServlet extends HttpServlet {
         String infilePath = "";
         Part filePart;
         Part masterPart;
+        boolean runMartinize = false;
 
         session = request.getSession();
 
@@ -97,13 +99,30 @@ public class InsaneModelServlet extends HttpServlet {
         masterPart = request.getPart("master");
 
         try {
-            JSONObject insaneSettings = this.parseFormInputPart(masterPart);
+            JSONObject settings = this.parseFormInputPart(masterPart);
 
             File outputDir = new File(ConfigurationPaths.getAbsoluteOutFilePath(session.getId()));
             if (!outputDir.exists()) {
                 outputDir.mkdir();
             }
-            InsaneSimulationBuilder simbuild = new InsaneSimulationBuilder(insaneSettings,
+            
+            try {
+                runMartinize = Boolean.parseBoolean(settings.get("martinize").toString());
+            } catch (IllegalArgumentException | NullPointerException ex) { } // runMartinize remains false
+            
+            if ("true".equals(fileGiven) && runMartinize){
+                MartinizeSimulationBuilder martbuild = new MartinizeSimulationBuilder(settings, 
+                        infilePath, 
+                        ConfigurationPaths.getPathToMartinize());
+                Process martinizeProcess = martbuild.build();
+                martinizeProcess.waitFor();
+                Thread.sleep(2500);
+                infilePath = martbuild.getOutputPdbPath();
+            }
+
+            
+            
+            InsaneSimulationBuilder simbuild = new InsaneSimulationBuilder(settings,
                     infilePath,
                     outputDir.getPath() + System.getProperty("file.separator") + "output_insane.gro",
                     ConfigurationPaths.getPathToInsane());
@@ -111,41 +130,46 @@ public class InsaneModelServlet extends HttpServlet {
             Process insaneProcess = simbuild.build();
             insaneProcess.waitFor();
             Thread.sleep(2500);
-
-            JSONObject outputJson = new JSONObject();
-
-            if (insaneProcess.exitValue() != 0) {
-                List<String> errors = simbuild.getErrorMessages();
-                errors.add("insane.py exited with a non-zero exit value, so no output file has been written. Please"
-                        + " check your given arguments and/or input file and try again.");
-                outputJson.put("errorMessages", JSONArray.toJSONString(errors));
-                outputJson.put("outfile", "no_output_available");
-                outputJson.put("download", false);
-                outputJson.put("display", false);
-            } else {
-                outputJson.put("errorMessages", JSONArray.toJSONString(simbuild.getErrorMessages()));
-                outputJson.put("outfile", ConfigurationPaths.getWebOutFilePath(session.getId()
-                        + System.getProperty("file.separator")+ "output_insane.gro"));
-                outputJson.put("download", true);
-                // Only display if the grid is not too big
-                if (simbuild.isTooBig()){
-                    outputJson.put("display", false);
-                } else {
-                    outputJson.put("display", true);
-                }
-            }
-
-            response.setContentType("text/html");
-            PrintWriter out = response.getWriter();
-            out.write(outputJson.toString());
-            out.flush();
-            out.close();
+            
+            this.returnOutput(response, session, insaneProcess.exitValue(), simbuild);
+            
         } catch (ParseException ex) {
             //Logger.getLogger(InsaneModelServlet.class.getName()).log(Level.SEVERE, null, ex);
             // iets aan de warnings toevoegen?
         } catch (InterruptedException ex) {
             Logger.getLogger(InsaneModelServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void returnOutput(HttpServletResponse response, HttpSession session, int insaneExitValue, InsaneSimulationBuilder simbuild) throws IOException{
+        JSONObject outputJson = new JSONObject();
+
+        if (insaneExitValue != 0) {
+            List<String> errors = simbuild.getErrorMessages();
+            errors.add("insane.py exited with a non-zero exit value, so no output file has been written. Please"
+                + " check your given arguments and/or input file and try again.");
+            outputJson.put("errorMessages", JSONArray.toJSONString(errors));
+            outputJson.put("outfile", "no_output_available");
+            outputJson.put("download", false);
+            outputJson.put("display", false);
+        } else {
+            outputJson.put("errorMessages", JSONArray.toJSONString(simbuild.getErrorMessages()));
+            outputJson.put("outfile", ConfigurationPaths.getWebOutFilePath(session.getId()
+                    + System.getProperty("file.separator")+ "output_insane.gro"));
+            outputJson.put("download", true);
+            // Only display if the grid is not too big
+            if (simbuild.isTooBig()){
+                outputJson.put("display", false);
+            } else {
+                outputJson.put("display", true);
+           }
+        }
+
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.write(outputJson.toString());
+        out.flush();
+        out.close();
     }
 
     /**

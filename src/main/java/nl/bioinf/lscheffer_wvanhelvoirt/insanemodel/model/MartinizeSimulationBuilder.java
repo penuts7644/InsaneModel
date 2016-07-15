@@ -52,6 +52,10 @@ public class MartinizeSimulationBuilder extends SimulationBuilder {
     private String replaceExtension(String filename, String newExtension){
         return FilenameUtils.removeExtension(filename) + newExtension;
     }
+    
+    public String getOutputPdbPath(){
+        return this.outPdbPath;
+    }
 
     @Override
     public Process build() throws IOException {
