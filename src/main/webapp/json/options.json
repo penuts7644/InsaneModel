@@ -292,7 +292,7 @@
                         ],
                         "Inositollipids": [
                             {
-                                "label":"phosphatidylinositol",
+                                "label":"Phosphatidylinositol",
                                 "value":"",
                                 "disabled":"disabled"
                             },
@@ -317,7 +317,7 @@
                                 "value":"PUPI"
                             },
                             {
-                                "label":"phosphatidylinositol phosphate",
+                                "label":"Phosphatidylinositol phosphate",
                                 "value":"",
                                 "disabled":"disabled"
                             },
@@ -326,7 +326,7 @@
                                 "value":"POP1"
                             },
                             {
-                                "label":"phosphatidylinositol bisphosphate",
+                                "label":"Phosphatidylinositol bisphosphate",
                                 "value":"",
                                 "disabled":"disabled"
                             },
@@ -335,7 +335,7 @@
                                 "value":"POP2"
                             },
                             {
-                                "label":"phosphatidylinositol trisphosphate",
+                                "label":"Phosphatidylinositol trisphosphate",
                                 "value":"",
                                 "disabled":"disabled"
                             },
@@ -932,6 +932,7 @@
                     "description": "Martinize position restraints force constant",
                     "input_type": "number",
                     "default": "1000",
+                    "min":"0",
                     "information": "NA",
                     "class": "advanced",
                     "is_martini_option":true
@@ -939,7 +940,7 @@
                 { 
                     "id": "martinize_ed",
                     "description": "Martinize extended regions",
-                    "input_type": "radio",
+                    "input_type": "select",
                     "default": "false",
                     "information": "NA",
                     "class": "advanced",

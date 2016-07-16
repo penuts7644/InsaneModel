@@ -13,7 +13,7 @@ import java.util.List;
  * @author Lonneke Scheffer
  * @version 1.0.0
  */
-public final class GridSize {
+public final class GridSize extends SettingManager {
     /** The maximum axis size that will be used to run insane. */
     private static final double MAX_GRID_SIZE = 100;
     /** The maximum axis size that will be used to show output. */
@@ -34,9 +34,6 @@ public final class GridSize {
     /** This boolean tells if the created output is too big to display (>MAX_GRID_SIZE_WITH_VIEW).*/
     private boolean tooBigToDisplay;
 
-    /** The list to add error messages to. */
-    private final List<String> errorMessages;
-
     /**
      * Create a new grid size.
      *
@@ -55,7 +52,7 @@ public final class GridSize {
                     final double z,
                     final boolean dz,
                     final String pbc) {
-        this.errorMessages = errorMessages;
+        super(errorMessages);
         this.tooBigToDisplay = false;
         this.d = this.validateAnyDistance(Math.abs(d), 10);
         this.x = this.validateAnyDistance(Math.abs(x), this.d);
@@ -161,6 +158,7 @@ public final class GridSize {
      *
      * @param arguments the given list of arguments
      */
+    @Override
     public void addArguments(final List<String> arguments) {
         // always add the -d value
         arguments.add("-d");

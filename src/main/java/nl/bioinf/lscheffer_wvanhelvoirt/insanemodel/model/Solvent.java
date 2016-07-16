@@ -14,7 +14,7 @@ import java.util.List;
  * @author Lonneke Scheffer
  * @version 1.0.0
  */
-public class Solvent {
+public class Solvent extends SettingManager {
     /** The solvent types to use. */
     private final ValidSolventType[] types;
     /** The ratios of the solvent types above. */
@@ -27,8 +27,7 @@ public class Solvent {
     private final double concentration;
     /** The overall charge. */
     private final int charge;
-    /** The list to add error messages to. */
-    private final List<String> errorMessages;
+
 
     /**
      * Create a new Solvent, containing all the different solvent types and ratios, and other parameters.
@@ -48,7 +47,7 @@ public class Solvent {
                    final double diameter,
                    final double concentration,
                    final int charge) {
-        this.errorMessages = errorMessages;
+        super(errorMessages);
         this.types = types;
         this.ratios = ratios;
         this.randomKick = randomKick;
@@ -103,6 +102,7 @@ public class Solvent {
      *
      * @param arguments the given list of arguments
      */
+    @Override
     public void addArguments(final List<String> arguments) {
         // add all solvents
         for (int i = 0; i < this.types.length; i++) {

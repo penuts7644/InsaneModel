@@ -16,7 +16,7 @@ import java.util.Set;
  * @author Lonneke Scheffer
  * @version 1.0.0
  */
-public class AdditionalLipid {
+public class AdditionalLipid extends SettingManager {
     /** The AdditionalLipids are counted to create unique names. */
     private static int count = 0;
     /** The set of valid head groups. */
@@ -52,8 +52,7 @@ public class AdditionalLipid {
     /** The ratio of lipids in the lower membrane leaflet. */
     private final int lowerLeafletRatio;
 
-    /** The list to add error messages to. */
-    private final List<String> errorMessages;
+
 
     /**
      * Create a new AdditionalLipid given the head-, linker- and tailgroups, and the membrane leaflet ratios.
@@ -71,9 +70,9 @@ public class AdditionalLipid {
                            final String[] tailGroups,
                            final int upperLeafletRatio,
                            final int lowerLeafletRatio) {
+        super(errorMessages);
         AdditionalLipid.count++;
         this.name = this.defineName();
-        this.errorMessages = errorMessages;
         this.headGroups = this.validateHeadGroups(headGroups);
         this.linkerGroups = this.validateLinkerGroups(linkerGroups);
         this.tailGroups = this.validateTailGroups(tailGroups);
@@ -219,6 +218,7 @@ public class AdditionalLipid {
      *
      * @param arguments the given list of arguments
      */
+    @Override
     public void addArguments(final List<String> arguments) {
         if (this.headGroups.length == 0 && this.linkerGroups.length == 0 && this.tailGroups.length == 0) {
             // the lipid has no headgroups, linker groups or tail groups: don't add it

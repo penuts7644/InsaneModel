@@ -62,6 +62,7 @@
         $scope.update = function(input) {
             $scope.master = angular.copy(input);
             console.log("Update called");
+            console.log($scope.master);
             /*
              * Disable the update button temporarily.
              */

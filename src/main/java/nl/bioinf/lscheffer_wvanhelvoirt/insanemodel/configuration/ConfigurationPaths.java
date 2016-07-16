@@ -24,12 +24,12 @@ public final class ConfigurationPaths {
      * "NetBeansProjects"
      */
     static final private String INSANEFOLDER = String.join(System.getProperty("file.separator"),
-            System.getProperty("user.home"), "Documents", "IdeaProjects", "InsaneModel", "src", "main", "webapp", "insane");
+            System.getProperty("user.home"), "NetBeansProjects", "InsaneModel", "src", "main", "webapp", "insane");
     /**
      * This is the absolute path to the folder containing insane.py, INSIDE your project.
      * This is the INSANEFOLDER path, with a file separator at the end.
      */
-    static final private String INSANEROOT = String.join(System.getProperty("file.separator"), INSANEFOLDER, "");
+    static final private String PROGRAMROOT = String.join(System.getProperty("file.separator"), INSANEFOLDER, "");
     /**
      * This is the absolute path to the folder where output files will be stored, INSIDE your project.
      * If you change this path, you also have to change the path WEBOUTFILE so the absolute and relative paths match.
@@ -54,12 +54,12 @@ public final class ConfigurationPaths {
     /**
      * Get the root path of the insane folder.
      *
-     * @return INSANEROOT, see: {@link ConfigurationPaths#INSANEROOT}
+     * @return PROGRAMROOT, see: {@link ConfigurationPaths#PROGRAMROOT}
      */
     public static String getRootPath() {
-        System.out.println(INSANEROOT);
+        System.out.println(PROGRAMROOT);
         System.out.println(INSANEFOLDER);
-        return ConfigurationPaths.INSANEROOT;
+        return ConfigurationPaths.PROGRAMROOT;
     }
 
     /**
@@ -68,7 +68,16 @@ public final class ConfigurationPaths {
      * @return path to insane.py
      */
     public static String getPathToInsane() {
-        return ConfigurationPaths.INSANEROOT + "insane.py";
+        return ConfigurationPaths.PROGRAMROOT + "insane.py";
+    }
+    
+    /**
+     * Get the path to martinize.py.
+     *
+     * @return path to insane.py
+     */
+    public static String getPathToMartinize() {
+        return ConfigurationPaths.PROGRAMROOT + "martinize.py";
     }
 
     /**
