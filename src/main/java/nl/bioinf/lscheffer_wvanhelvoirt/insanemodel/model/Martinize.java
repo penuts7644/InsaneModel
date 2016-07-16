@@ -19,7 +19,7 @@ public class Martinize extends SettingManager {
     private final boolean collagen;
     private final boolean neutralTermini;
     private final boolean chargeChainBreaks;
-    private final boolean disulphide;
+    private final double disulphideDistance;
     private final boolean link;
     private final boolean mergeChains;
     private final String positionRestraints;
@@ -42,7 +42,7 @@ public class Martinize extends SettingManager {
                      final boolean collagen,
                      final boolean neutralTermini,
                      final boolean chargeChainBreaks,
-                     final boolean disulphide,
+                     final double disulphide,
                      final boolean link,
                      final boolean mergeChains,
                      final String positionRestraints,
@@ -56,7 +56,7 @@ public class Martinize extends SettingManager {
         this.collagen = collagen;
         this.neutralTermini = neutralTermini;
         this.chargeChainBreaks = chargeChainBreaks;
-        this.disulphide = disulphide;
+        this.disulphideDistance = disulphide;
         this.link = link;
         this.mergeChains = mergeChains;
         if (Martinize.VALID_POSITION_RESTRAINTS.contains(positionRestraints)){
@@ -93,8 +93,9 @@ public class Martinize extends SettingManager {
         if (this.chargeChainBreaks){
             arguments.add("-cb");
         }
-        if (this.disulphide){
+        if (this.disulphideDistance > 0){
             arguments.add("-cys");
+            arguments.add(Double.toString(this.disulphideDistance));
         }
         if (this.link){
             arguments.add("-link");
