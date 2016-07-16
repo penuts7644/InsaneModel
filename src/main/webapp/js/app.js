@@ -62,7 +62,6 @@
         $scope.update = function(input) {
             $scope.master = angular.copy(input);
             console.log("Update called");
-            console.log($scope.master);
             /*
              * Disable the update button temporarily.
              */
@@ -150,7 +149,7 @@
 
                 if (data.download){
                     $scope.downloadButton = true;
-                    $scope.outFilePath = data.outfile;
+                    $scope.outFilePath = data.outfileZip;
                 } else{
                     $scope.downloadButton = false;
                 }

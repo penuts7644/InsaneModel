@@ -30,7 +30,6 @@ All rights reserved.
         <script src="js/JSmol.min.js" type="text/javascript"></script>
         <script src="js/Blob.js" type="text/javascript"></script>
         <script src="js/FileSaver.min.js" type="text/javascript"></script>
-        <script src="js/jszip.min.js" type="text/javascript"></script>
 
         <!-- Add cascading styling sheets. -->
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -213,10 +212,7 @@ All rights reserved.
                         <div class="btn-group" uib-dropdown ng-show="outFilePath.length && downloadButton">
                             <button id="downloadButton" uib-dropdown-toggle class="btn btn-info" type="button"><span class="glyphicon glyphicon-cloud-download"></span>{{option.general.download[0]}}</button>
                             <ul uib-dropdown-menu role="menu" aria-labelledby="downloadButton">
-
-                                <a role="menuitem" output-download-zip="{{option.general.webadres}}{{outFilePath}}">{{option.general.download[1]}}</a>
-                                <!--<a role="menuitem" href="{{outFilePath}}" download="{{option.general.download_file}}" target="_blank">{{option.general.download[1]}}</a>-->
-
+                                <a role="menuitem" output-download-zip="{{outFilePath}}">{{option.general.download[1]}}</a>
                                 <li class="divider"></li>
                                 <a role="menuitem" config-download target="_blank">{{option.general.download[2]}}</a>
                             </ul>

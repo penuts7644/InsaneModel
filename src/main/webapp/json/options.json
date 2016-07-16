@@ -19,13 +19,12 @@
         "advanced": "Advanced Options",
         "download": [
             "Downloads",
-            "Insane Model files.",
+            "Insane Model ZIP file.",
             "Configuration JSON file."
         ],
-        "download_file": "output_insane.gro",
         "warning": "Warnings",
         "submit": "Create View",
-        "webadres": "http://localhost:8080/InsaneModel/"
+        "webadres": "./"
     },
     [
         { 

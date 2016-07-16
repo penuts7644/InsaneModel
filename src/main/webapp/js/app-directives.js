@@ -140,15 +140,17 @@
                         ).then(function successCallback(response) {
                         // This callback will be called asynchronously when the response is available.
                         // A link element is created with correct filename and blob url.
-                        var fileName = fileURL.substring(fileURL.lastIndexOf('/') + 1);
+                        var fileName = attrs.outputDownloadZip.substring(attrs.outputDownloadZip.lastIndexOf('/') + 1);
                         var blob = new Blob([response.data], {type: 'application/octet-stream'});
-                        var url = (window.URL || window.webkitURL).createObjectURL(blob);
-                        var anchor = angular.element('<a/>');
-                        anchor.attr({
-                            href : url,
-                            target : '_blank',
-                            download : fileName
-                        })[0].click();
+                        // Cross browser compatibility. Chrome works, Safari saves 'Unkown' file.
+                        saveAs(blob, fileName);
+                        // var url = (window.URL || window.webkitURL).createObjectURL(blob);
+                        // var anchor = angular.element('<a/>');
+                        // anchor.attr({
+                        //     href : url,
+                        //     target : '_blank',
+                        //     download : fileName
+                        // })[0].click();
                     }, function errorCallback(response) {
                         // Called asynchronously if an error occurs or server returns response with an error status.
                     });
@@ -167,7 +169,7 @@
             link: function(scope, element, attrs) {
                 element.bind('click', function () {
                     var blob = new Blob([JSON.stringify(scope.master)], {type: 'text/plain;charset=utf-8'});
-                    window.saveAs(blob, 'config_insane_model.json');
+                    saveAs(blob, 'config_insane_model.json');
                 });
             }
         };

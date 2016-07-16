@@ -24,7 +24,7 @@ public final class ConfigurationPaths {
      * "NetBeansProjects"
      */
     static final private String INSANEFOLDER = String.join(System.getProperty("file.separator"),
-            System.getProperty("user.home"), "NetBeansProjects", "InsaneModel", "src", "main", "webapp", "insane");
+            System.getProperty("user.home"), "Documents", "IdeaProjects", "InsaneModel", "src", "main", "webapp", "insane");
     /**
      * This is the absolute path to the folder containing insane.py, INSIDE your project.
      * This is the INSANEFOLDER path, with a file separator at the end.
