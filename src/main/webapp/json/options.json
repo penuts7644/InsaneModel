@@ -13,13 +13,13 @@
         "version": "v1.0",
         "title": "INSANE MODEL",
         "subtitle": "The INSANE Online Membrane Modeling Tool",
-        "description_large": "A new membrane, just a few clicks away ...",
-        "description_small": "A new membrane, just a 900 pixel wide display and a few clicks away ...",
+        "description_large": "A new membrane, just a few clicks away...",
+        "description_small": "A new membrane, just a 900 pixel wide display and a few clicks away...",
         "default_selected": "-- nothing selected",
         "advanced": "Advanced Options",
         "download": [
             "Downloads",
-            "Insane model Gromacs file.",
+            "Insane Model files.",
             "Configuration JSON file."
         ],
         "download_file": "output_insane.gro",
@@ -1215,6 +1215,7 @@
                     "min": "",
                     "max": "",
                     "step": "0.1",
+                    "default": "",
                     "placeholder": "e.g. 2, -1",
                     "information": "Gives the solvent particles a random kick, so it appears more natural.",
                     "class": "advanced"

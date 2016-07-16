@@ -66,7 +66,7 @@
              * Disable the update button temporarily.
              */
             $scope.submitDisabled = true;
-            $scope.option.general.submit = "Initializing ...";
+            $scope.option.general.submit = "Initializing...";
             $scope.createView();
         };
 
@@ -132,7 +132,7 @@
                  * Create an object that contains the model and files which will
                  * be transformed in the above transformRequest method.
                  */
-                data: { master: $scope.master, proteinFile: $scope.file.parameter_f }
+                data: { master: $scope.master, proteinFile: $scope.file.insane_f }
             }).
             success(function (data, status, headers, config) {
                 /*

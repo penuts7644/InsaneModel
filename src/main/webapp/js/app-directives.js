@@ -9,8 +9,7 @@
     'use strict';
     
     /*
-     * Create the module that can be imported in the main app.
-     * Set bottom of page reached to false.
+     * Create the module that can be imported in the main app. Set bottom of page reached to false.
      */
     var app = angular.module('app-directives', []);
     var bottomReached = false;
@@ -35,8 +34,7 @@
     });
 
     /*
-     * removeSelectedFile directive can be used for buttons within the same parent
-     * of the input that should be cleared.
+     * removeSelectedFile directive can be used for buttons within the same parent of the input that should be cleared.
      */
     app.directive('removeSelectedFile', function () {
         return {
@@ -54,8 +52,8 @@
     });
 
     /*
-     * setFullHeight directive, sets the height for corresponding element.
-     * Can be done either with or without sites header.
+     * setFullHeight directive, sets the height for corresponding element. Can be done either with or without sites
+     * header.
      */
     app.directive('setFullHeight', function($window) {
         return {
@@ -108,49 +106,75 @@
     });
 
     /*
-     * fadeOut directive which is able to get a value from 0.1 - 1.0 lets
-     * corresponding element it's opacity being faded when scrolling page.
-     * Default value is 1.
+     * fadeOut directive which is able to get a value from 0.1 - 1.0 lets corresponding element it's opacity being
+     * faded when scrolling page. Default value is 1.
      */
     app.directive('fadeOut', function($window){
         return{
             restrict: 'A',
             link: function(scope, element, attrs){
-                /*
-                 * Fade with default ore selected value. 0.1 means that after
-                 * 10% of the window height (excluding site header), has an opacity
-                 * of 0 or less when scrolling. 
-                 */
+                 // Fade with default ore selected value. 0.1 means that after 10% of the window height (excluding
+                 // site header), has an opacity of 0 or less when scrolling.
                 var fadelength = 1;
                 if (attrs.fadeOut !== '') {
                     fadelength = attrs.fadeOut;
                 }
                 $(window).scroll(function(){
-                    element.css("opacity", 1 - $(window).scrollTop() / (($window.innerHeight - $('#hero-header').outerHeight(true)) * fadelength));
+                    element.css('opacity', 1 - $(window).scrollTop() / (($window.innerHeight - $('#hero-header').outerHeight(true)) * fadelength));
                 });
             }
         };
     });
 
     /*
-     * configDownload directive which generates a config file containing all
-     * used setting for the model. File get created in memory.
+     * outputDownloadZip directive which downloads the zip file from the server. The zip file contains all files
+     * created via the Insane Model webpage.
+     */
+    app.directive('outputDownloadZip', function($http) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                element.bind('click', function () {
+                    $http.get(attrs.outputDownloadZip,
+                        {responseType: 'arraybuffer'}
+                        ).then(function successCallback(response) {
+                        // This callback will be called asynchronously when the response is available.
+                        // A link element is created with correct filename and blob url.
+                        var fileName = fileURL.substring(fileURL.lastIndexOf('/') + 1);
+                        var blob = new Blob([response.data], {type: 'application/octet-stream'});
+                        var url = (window.URL || window.webkitURL).createObjectURL(blob);
+                        var anchor = angular.element('<a/>');
+                        anchor.attr({
+                            href : url,
+                            target : '_blank',
+                            download : fileName
+                        })[0].click();
+                    }, function errorCallback(response) {
+                        // Called asynchronously if an error occurs or server returns response with an error status.
+                    });
+                });
+            }
+        };
+    });
+
+    /*
+     * configDownload directive which generates a config file containing all used setting for the model. File gets
+     * created in memory.
      */
     app.directive('configDownload', function() {
         return {
             restrict: 'A',
             link: function(scope, element, attrs) {
                 element.bind('click', function () {
-                    var blob = new Blob([JSON.stringify(scope.master)], {type: "text/plain;charset=utf-8"});
-                    saveAs(blob, "config_insane_model.json");
+                    var blob = new Blob([JSON.stringify(scope.master)], {type: 'text/plain;charset=utf-8'});
+                    window.saveAs(blob, 'config_insane_model.json');
                 });
             }
         };
     });
 
     /*
-     * configUpload directive which enables the configuration file to be
-     * uploaded by drag and drop or manual upload.
+     * configUpload directive which enables the configuration file to be uploaded by drag and drop or manual upload.
      */
     app.directive('configUpload', ['$http', function($http) {
         return {

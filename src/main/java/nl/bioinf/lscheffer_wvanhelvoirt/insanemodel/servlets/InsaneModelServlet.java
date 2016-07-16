@@ -125,7 +125,7 @@ public class InsaneModelServlet extends HttpServlet {
             } else {
                 outputJson.put("errorMessages", JSONArray.toJSONString(simbuild.getErrorMessages()));
                 outputJson.put("outfile", ConfigurationPaths.getWebOutFilePath(session.getId()
-                        + System.getProperty("file.separator")+ "output_insane.gro"));
+                        + System.getProperty("file.separator") + "output_insane.gro"));
                 outputJson.put("download", true);
                 // Only display if the grid is not too big
                 if (simbuild.isTooBig()){
