@@ -44,7 +44,7 @@ public class MartinizeSimulationBuilder extends SimulationBuilder {
                             this.getParameterBool("martinize_collagen"),
                             this.getParameterBool("martinize_nt"),
                             this.getParameterBool("martinize_cb"),
-                            this.getParameterBool("martinize_cys"),
+                            this.getParameterDouble("martinize_cys"),
                             this.getParameterBool("martinize_link"),
                             this.getParameterBool("martinize_merge"),
                             this.getParameterString("martinize_p"),

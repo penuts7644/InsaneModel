@@ -786,7 +786,7 @@
                     "description": "Martinize secondary structure",
                     "input_type": "text",
                     "default": "",
-                    "information": "NA",
+                    "information": "The secondary structure plays a central role in the assignment of atom types and bonded interactions in MARTINI. The secondary structure can be specified as a string, containing the following characters; F: collagenous fiber, E: extended structure (beta sheet), H: helix structure, 1: helix start (H-bond donor), 2: helix end (H-bond acceptor), 3: ambivalent helix type (short helices), T: turn, S: bend, C: coil.",
                     "class": "advanced",
                     "is_martini_option": true
                 },
@@ -795,7 +795,7 @@
                     "description": "Martinize collagen parameters",
                     "input_type": "radio",
                     "default": "false",
-                    "information": "NA",
+                    "information": "This option will set the whole structure to collagen. If this is not what you want (e.g. only part of the structure is collagen), you can give a secondary structure string and specifiy collagen as 'F'.",
                     "class": "advanced",
                     "is_martini_option": true,
                     "options": [
@@ -814,7 +814,7 @@
                     "description": "Martinize neutral termini",
                     "input_type": "radio",
                     "default": "false",
-                    "information": "NA",
+                    "information": "Use neutral termini instead of charged termini (charged termini are default).",
                     "class": "advanced",
                     "is_martini_option": true,
                     "options": [
@@ -833,7 +833,7 @@
                     "description": "Martinize charges at chain breaks",
                     "input_type": "radio",
                     "default": "false",
-                    "information": "NA",
+                    "information": "Make chain breaks charged instead of neutral (neutral chain breaks are default).",
                     "class": "advanced",
                     "is_martini_option": true,
                     "options": [
@@ -850,9 +850,11 @@
                 { 
                     "id": "martinize_cys",
                     "description": "Martinize disulphide bond",
-                    "input_type": "radio",
-                    "default": "false",
-                    "information": "NA",
+                    "input_type": "number",
+                    "default": "0.22",
+                    "min":"0.00",
+                    "step":"0.01",
+                    "information": "This option can be used to specify the distance between the cysteine residues of disulphide bridges, using the format 'chain/resn/resi,chain/resn/resi'. A cut-off distance (in nm) can be specified, which will trigger a search for pairs satisfying the distance criteron. The default distance is 0.22 nm, and the option can be turned off by setting the value to 0.",
                     "class": "advanced",
                     "is_martini_option": true,
                     "options": [
@@ -869,9 +871,9 @@
                 { 
                     "id": "martinize_link",
                     "description": "Martinize link",
-                    "input_type": "radio",
+                    "input_type": "text",
                     "default": "false",
-                    "information": "NA",
+                    "information": "With this option, links between atoms (other than cysteine bridges) can be specified, using the format chain/resi/resn/atom,chain/resi/resn/atom,bondlength,forceconstant. If only two atoms are given, a constraint will be added with length equal to the (average) distance in the coordinate file. If a bond length is added, but no force constant, then the bondlength will be used to set a constraint. Linking atoms requires that the atoms are part of the same moleculetype. Therefore any link between chains will cause the chains to be merged.",
                     "class": "advanced",
                     "is_martini_option": true,
                     "options": [
@@ -888,9 +890,9 @@
                 { 
                     "id": "martinize_merge",
                     "description": "Martinize merge chains",
-                    "input_type": "radio",
+                    "input_type": "text",
                     "default": "false",
-                    "information": "NA",
+                    "information": "Merges can be specified explicitly, using this option with a comma-separated list of chain identifiers to be joined into one moleculetype. ",
                     "class": "advanced",
                     "is_martini_option": true,
                     "options": [
@@ -909,7 +911,7 @@
                     "description": "Martinize output position restraints",
                     "input_type": "select",
                     "default": "None",
-                    "information": "NA",
+                    "information": "This option writes output position restraints, using the force constant specified below (default: None).",
                     "class": "advanced",
                     "is_martini_option": true,
                     "options": [
@@ -933,7 +935,7 @@
                     "input_type": "number",
                     "default": "1000",
                     "min":"0",
-                    "information": "NA",
+                    "information": "Force constant for the position restraints in kJ/mol/nm^2 (default: 1000 kJ/mol/nm^2).",
                     "class": "advanced",
                     "is_martini_option": true
                 },
@@ -942,7 +944,7 @@
                     "description": "Martinize extended regions",
                     "input_type": "select",
                     "default": "false",
-                    "information": "NA",
+                    "information": "For stability, either dihedrals or elastic bonds are used to retain the structure of extended strands. (elastic bonds is default).",
                     "class": "advanced",
                     "is_martini_option": true,
                     "options": [
@@ -961,7 +963,7 @@
                     "description": "Martinize separate topologies for identical chains",
                     "input_type": "radio",
                     "default": "false",
-                    "information": "NA",
+                    "information": "The moleculetype definitions are written to topology include (.itp) files, using a name consisting of the molecule class (e.g. Protein) and the chain identifier. By default, martinize only writes a moleculetype for each unique molecule, inferred from the sequence and the secondary structure definition. Setting this option to 'yes' forces writing of a moleculetype definition for every single molecule.",
                     "class": "advanced",
                     "is_martini_option": true,
                     "options": [
@@ -980,7 +982,7 @@
                     "description": "Martinize force field",
                     "input_type": "select",
                     "default": "martini22",
-                    "information": "NA",
+                    "information": "Different forcefields can be specified here. All the parameters and options belonging to that forcefield  will be set (eg. bonded interactions, BB-bead positions, Elastic Network, etc.). By default martini22 is used.",
                     "class": "advanced",
                     "is_martini_option": true,
                     "options": [
