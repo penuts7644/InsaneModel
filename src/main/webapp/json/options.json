@@ -19,12 +19,13 @@
         "advanced": "Advanced Options",
         "download": [
             "Downloads",
-            "Insane Model ZIP file.",
-            "Configuration JSON file."
+            "Insane Model output (ZIP)",
+            "Configuration file (JSON)"
         ],
         "warning": "Warnings",
         "submit": "Create View",
-        "webadres": "./"
+        "simulate": "Run Simulation",
+        "web_address": "./"
     },
     [
         { 
@@ -679,7 +680,7 @@
                 { 
                     "id": "martinize",
                     "description": "Course graining (with Martinize)",
-                    "input_type": "radio",
+                    "input_type": "radioMartinize",
                     "default": "false",
                     "information": "Martinize is a tool that can be used to simplify a high resolution protein file to a course grained model. This way the protein and membrane can be simulated for a short period of time. Setting this parameter to 'true' will make the martinize parameters available.",
                     "class": "standard",
@@ -787,7 +788,7 @@
                     "default": "",
                     "information": "NA",
                     "class": "advanced",
-                    "is_martini_option":true
+                    "is_martini_option": true
                 },
                 { 
                     "id": "martinize_collagen",
@@ -796,7 +797,7 @@
                     "default": "false",
                     "information": "NA",
                     "class": "advanced",
-                    "is_martini_option":true,
+                    "is_martini_option": true,
                     "options": [
                         {
                             "label" : "Yes",
@@ -815,7 +816,7 @@
                     "default": "false",
                     "information": "NA",
                     "class": "advanced",
-                    "is_martini_option":true,
+                    "is_martini_option": true,
                     "options": [
                         {
                             "label" : "Yes",
@@ -834,7 +835,7 @@
                     "default": "false",
                     "information": "NA",
                     "class": "advanced",
-                    "is_martini_option":true,
+                    "is_martini_option": true,
                     "options": [
                         {
                             "label" : "Yes",
@@ -853,7 +854,7 @@
                     "default": "false",
                     "information": "NA",
                     "class": "advanced",
-                    "is_martini_option":true,
+                    "is_martini_option": true,
                     "options": [
                         {
                             "label" : "Yes",
@@ -872,7 +873,7 @@
                     "default": "false",
                     "information": "NA",
                     "class": "advanced",
-                    "is_martini_option":true,
+                    "is_martini_option": true,
                     "options": [
                         {
                             "label" : "Yes",
@@ -891,7 +892,7 @@
                     "default": "false",
                     "information": "NA",
                     "class": "advanced",
-                    "is_martini_option":true,
+                    "is_martini_option": true,
                     "options": [
                         {
                             "label" : "Yes",
@@ -910,7 +911,7 @@
                     "default": "None",
                     "information": "NA",
                     "class": "advanced",
-                    "is_martini_option":true,
+                    "is_martini_option": true,
                     "options": [
                         {
                             "label" : "None",
@@ -934,7 +935,7 @@
                     "min":"0",
                     "information": "NA",
                     "class": "advanced",
-                    "is_martini_option":true
+                    "is_martini_option": true
                 },
                 { 
                     "id": "martinize_ed",
@@ -943,7 +944,7 @@
                     "default": "false",
                     "information": "NA",
                     "class": "advanced",
-                    "is_martini_option":true,
+                    "is_martini_option": true,
                     "options": [
                         {
                             "label" : "Dihedrals",
@@ -962,7 +963,7 @@
                     "default": "false",
                     "information": "NA",
                     "class": "advanced",
-                    "is_martini_option":true,
+                    "is_martini_option": true,
                     "options": [
                         {
                             "label" : "Yes",
@@ -981,7 +982,7 @@
                     "default": "martini22",
                     "information": "NA",
                     "class": "advanced",
-                    "is_martini_option":true,
+                    "is_martini_option": true,
                     "options": [
                         {
                             "label" : "martini22",

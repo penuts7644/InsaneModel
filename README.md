@@ -53,5 +53,13 @@ the right side of the 'Create View/Update View' button.
 recommended since they do not work very well together with JSmol. JSmol tends to be very slow when using
 Chrome/Chromium, and these browsers sometimes refresh the page when updating the JSmol view.**
 
-**Note 4: The Firefox add-on 'Privacy Badger' must be disabled completely for Jmol to work.
+**Note 4: The Firefox add-on 'Privacy Badger' must be disabled completely for JSmol to work.
 [See this page](http://wiki.jmol.org/index.php/Compatibility)**
+
+
+### Known issues ###
+
+Users are able to download a JSON file containing there used settings as well as a zip file with all the output files
+created by Insane Model. Both use [FileSaver.js](https://github.com/eligrey/FileSaver.js/) to download the files. Some
+browsers may not work correctly, like Safari. Safari opens the JSON file in a new browser window and downloads the zip
+file as 'Unknown', while also crashing the JSmol viewer. These are minor issues, but annoying.

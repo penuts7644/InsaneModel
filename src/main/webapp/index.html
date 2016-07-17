@@ -48,7 +48,7 @@ All rights reserved.
                 <!-- Site application name located top left. -->
                 <div id="hero-header-text" class="col-lg-5 pull-left">
                     <div id="hero-header-text-block">
-                        <a id="hero-header-text-link" href="{{option.general.webadres}}">
+                        <a id="hero-header-text-link" href="{{option.general.web_address}}">
                             <p id="hero-title">{{option.general.title}}</p>
                             <p id="hero-subtitle">{{option.general.subtitle}}</p>
                             <div id="versiontag">
@@ -107,7 +107,7 @@ All rights reserved.
                             </uib-accordion-heading>
 
                             <!-- Body for the proper panel heading. -->
-                            <div class="btn-sm" ng-repeat="setting in menu.inputs" ng-show="setting.class !== 'advanced'" ng-hide="(setting.class === 'advanced' && !showAdvancedOptions) || (setting.is_martini_option && !showMartiniOptions)">
+                            <div class="btn-sm" ng-repeat="setting in menu.inputs" ng-show="setting.class !== 'advanced'" ng-hide="setting.class === 'advanced' && !showAdvancedOptions">
 
                                 <!-- Switch for each type of input available, defined in JSON file. -->
                                 <div class="col-lg-9 menuitems" ng-switch="setting.input_type">
@@ -171,6 +171,13 @@ All rights reserved.
                                             <input ng-model="input[setting.id]" type="radio" name="{{setting.id}}" value="{{radio.value}}" />{{radio.label}}<br />
                                         </label>
                                     </div>
+
+                                    <!-- If input type is radioMartinize. -->
+                                    <div class="col-lg-12 radioitems" ng-switch-when="radioMartinize">
+                                        <label class="col-lg-6" ng-repeat="radio in setting.options">
+                                            <input ng-model="input[setting.id]" type="radio" name="{{setting.id}}" value="{{radio.value}}" />{{radio.label}}<br />
+                                        </label>
+                                    </div>
                                     
                                     <!-- If input type is enableMartinize. -->
 <!--                                    <div class="col-lg-12 radioitems" ng-switch-when="enableMartinize">
@@ -179,8 +186,7 @@ All rights reserved.
                                             <input type="radio" ng-model="input[setting.id]" value="false" ng-change="showAdvancedOptions = !showAdvancedOptions">false
                                         </label>
                                     </div>
-                                    -->
-<!--                                    <div class="col-lg-12 radioitems" ng-switch-when="enableMartinize">
+                                    <div class="col-lg-12 radioitems" ng-switch-when="enableMartinize">
                                         <label class="col-lg-6" ng-repeat="radio in setting.options">
                                             <input ng-model="input[setting.id]" type="radio" name="{{setting.id}}" value="{{radio.value}}" ng-change="showMartiniOptions = !showMartiniOptions"/>{{radio.label}}<br />
                                         </label>
@@ -226,6 +232,8 @@ All rights reserved.
                                 <li class="divider" ng-show="!$last" ng-repeat-end></li>
                             </ul>
                         </div>
+
+                        <button id="runSimulationButton" class="btn btn-info pull-right" type="button" ng-click="simulate()" ng-show="showSimulation" ng-hide="!showSimulation" ng-disabled="submitDisabled || optionForm.$invalid"><span class="glyphicon glyphicon-refresh"></span>{{option.general.simulate}}</button>
                     </div>
 
                     <!-- Container for Jmol web viewer. Yes, script to be below. -->
