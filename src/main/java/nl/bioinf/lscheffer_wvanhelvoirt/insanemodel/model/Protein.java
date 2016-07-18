@@ -156,8 +156,7 @@ public class Protein extends SettingManager {
             return;
         }
 
-        // always add the file location
-        arguments.add("--insane-f=" + this.fileLocation);
+        // do not add the file location (this is automatically added by martinate)
 
         // set '-ring' and '-center' if they were true
         if (this.ring) {
