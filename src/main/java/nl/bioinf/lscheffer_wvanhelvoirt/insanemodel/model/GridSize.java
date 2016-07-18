@@ -192,6 +192,10 @@ public final class GridSize extends SettingManager {
         }
 
     }
+    
+    
+    public void addMartinateArguments(final List<String> arguments) {
+    }
 
     /**
      * Checks if the given grid size is 'too big' for JSmol to view.

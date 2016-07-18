@@ -140,6 +140,9 @@ public class Solvent extends SettingManager {
             arguments.add(Integer.toString(this.charge));
         }
     }
+    
+    public void addMartinateArguments(final List<String> arguments) {
+    }
 
     /**
      * Test if there are only simple solvents given.

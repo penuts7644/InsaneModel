@@ -196,5 +196,8 @@ public class Membrane extends SettingManager {
         }
 
     }
+    
+    public void addMartinateArguments(final List<String> arguments) {
+    }
 
 }

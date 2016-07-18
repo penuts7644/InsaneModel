@@ -235,6 +235,16 @@ public class InsaneSimulationBuilder extends SimulationBuilder {
         }
     }
 
+    
+    private void buildArguments(){
+        this.arguments.add(this.insanePath);
+        this.arguments.add("-o");
+        this.arguments.add(this.outfilePath);
+        this.gridSize.addArguments(this.arguments);
+        this.membrane.addArguments(this.arguments);
+        this.protein.addArguments(this.arguments);
+        this.solvent.addArguments(this.arguments);
+    }
 
 
     /**
@@ -245,16 +255,22 @@ public class InsaneSimulationBuilder extends SimulationBuilder {
      */
     @Override
     public Process build() throws IOException {
-        this.arguments.add(this.insanePath);
-        this.arguments.add("-o");
-        this.arguments.add(this.outfilePath);
-        this.gridSize.addArguments(this.arguments);
-        this.membrane.addArguments(this.arguments);
-        this.protein.addArguments(this.arguments);
-        this.solvent.addArguments(this.arguments);
+        this.buildArguments();
 
         ProcessBuilder processBuilder = new ProcessBuilder(this.arguments);
+        
         return processBuilder.start();
+    }
+    
+    public List<String> getMartinateArguments(){
+        LinkedList<String> martinateArguments = new LinkedList();
+        return this.getMartinateArguments(martinateArguments);
+    }
+    
+    public List<String> getMartinateArguments(LinkedList<String> martinateArguments){
+        
+        
+        return martinateArguments;
     }
 
 

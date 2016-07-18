@@ -149,5 +149,8 @@ public class Protein extends SettingManager {
         }
 
     }
+    
+    public void addMartinateArguments(final List<String> arguments) {
+    }
 
 }
