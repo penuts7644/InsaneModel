@@ -254,4 +254,34 @@ public class AdditionalLipid extends SettingManager {
             arguments.add(this.name + ":" + this.upperLeafletRatio);
         }
     }
+    
+    public void addMartinateArguments(final List<String> arguments) {
+        if (this.headGroups.length == 0 && this.linkerGroups.length == 0 && this.tailGroups.length == 0) {
+            // the lipid has no headgroups, linker groups or tail groups: don't add it
+            return;
+        }
+
+        // add the head, tail and linker groups
+        arguments.add("--insane-alhead='" + String.join(" ", this.headGroups) + "'");
+
+        arguments.add("--insane-allink='" + String.join(" ", this.linkerGroups) + "'");
+
+        arguments.add("--insane-altail='" + String.join(" ", this.tailGroups) + "'");
+
+        // add the unique name
+        arguments.add("--insane-alname=" + this.name);
+
+        // if there is no valid ratio given, add no ratio
+        if (this.lowerLeafletRatio <= 0) {
+            arguments.add("--insane-l=" + this.name);
+        } else {
+            // if there is a ratio given (> 0), add it (NAME:#RATIO)
+            arguments.add("--insane-l=" + this.name + ":" + this.lowerLeafletRatio);
+        }
+
+        // if there is an upper leaflet ratio given, add it
+        if (this.upperLeafletRatio > 0) {
+            arguments.add("--insane-u=" + this.name + ":" + this.upperLeafletRatio);
+        }
+    }
 }

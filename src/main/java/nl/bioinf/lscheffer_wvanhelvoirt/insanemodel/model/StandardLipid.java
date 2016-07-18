@@ -59,6 +59,18 @@ public class StandardLipid extends SettingManager {
         }
     }
 
+    public void addMartinateArguments(final List<String> arguments) {
+        // add lower leaflet lipids
+        if (this.lowerLeafletRatio > 0) {
+            arguments.add("--insane-l=" + this.type.toString() + ":" + this.lowerLeafletRatio);
+        }
+
+        // add upper leaflet lipids
+        if (this.upperLeafletRatio > 0) {
+            arguments.add("--insane-u=" + this.type.toString() + ":" + this.upperLeafletRatio);
+        }
+    }
+    
     /**
      * Tells whether or not the lipid type of this StandardLipid is 'simple'.
      * Simple lipids types will not be showed by JSmol if there is no

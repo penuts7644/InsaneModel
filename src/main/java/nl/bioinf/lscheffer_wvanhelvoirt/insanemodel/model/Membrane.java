@@ -198,6 +198,42 @@ public class Membrane extends SettingManager {
     }
     
     public void addMartinateArguments(final List<String> arguments) {
+        if (this.standardLipids.length == 0 && this.additionalLipids.length == 0) {
+            arguments.add("--insane-excl=-1");
+            return;
+        }
+
+        // add the arguments of all standard lipids and additional lipids
+        for (StandardLipid lipid : this.standardLipids) {
+            lipid.addMartinateArguments(arguments);
+        }
+        for (AdditionalLipid lipid : this.additionalLipids) {
+            lipid.addMartinateArguments(arguments);
+        }
+
+        // add the arguments of all other variables if they are given (> 0)
+        if (this.randomKick > 0) {
+            arguments.add("--insane-rand=" + Double.toString(this.randomKick));
+        }
+        if (this.areaLowerLipids > 0) {
+            arguments.add("--insane-a=" + Double.toString(this.areaLowerLipids));
+        }
+        if (this.areaUpperLipids > 0) {
+            arguments.add("--insane-au=" + Double.toString(this.areaUpperLipids));
+        }
+        // not >0 but != 0 because membraneAssymetry can be set to a negative number
+        if (this.membraneAsymmetry != 0) {
+            arguments.add("--insane-asym" + Integer.toString(this.membraneAsymmetry));
+        }
+        if (this.hole > 0) {
+            arguments.add("--insane-hole" + Double.toString(this.hole));
+        }
+        if (this.disc > 0) {
+            arguments.add("--insane-disc" + Double.toString(this.disc));
+        }
+        if (this.beadDistance > 0) {
+            arguments.add("--insane-bd" + Double.toString(this.beadDistance));
+        }
     }
 
 }

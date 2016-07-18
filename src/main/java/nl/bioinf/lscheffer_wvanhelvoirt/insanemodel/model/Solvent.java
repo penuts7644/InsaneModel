@@ -142,6 +142,36 @@ public class Solvent extends SettingManager {
     }
     
     public void addMartinateArguments(final List<String> arguments) {
+        // add all solvents
+        for (int i = 0; i < this.types.length; i++) {
+
+            try {
+                // if the ratio at i is > 0, add SOLVENTNAME:#RATIO
+                if (this.ratios[i] > 0) {
+                    arguments.add("--insane-sol=" + this.types[i].toString() + ":" + Integer.toString(this.ratios[i]));
+                } else {
+                    // otherwise, add only SOLVENTNAME
+                    arguments.add("--insane-sol=" + this.types[i].toString());
+                }
+            } catch (IndexOutOfBoundsException ex) {
+                // no ratio at position i, add the solvent without ratio
+                arguments.add("--insane-sol=" + this.types[i].toString());
+            }
+        }
+
+        // add the parameters if given
+        if (this.diameter > 0) {
+            arguments.add("--insane-sold=" + Double.toString(this.diameter));
+        }
+        if (this.randomKick != 0) {
+            arguments.add("--insane-solr=" + Double.toString(this.randomKick));
+        }
+        if (this.concentration != 0) {
+            arguments.add("--insane-salt=" + Double.toString(this.concentration));
+        }
+        if (this.charge != 0) {
+            arguments.add("--insane-charge=" + Integer.toString(this.charge));
+        }
     }
 
     /**

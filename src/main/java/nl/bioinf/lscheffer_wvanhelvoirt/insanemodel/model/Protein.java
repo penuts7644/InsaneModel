@@ -151,6 +151,32 @@ public class Protein extends SettingManager {
     }
     
     public void addMartinateArguments(final List<String> arguments) {
+        // no given file means no protein means no arguments
+        if (!this.isFileGiven()) {
+            return;
+        }
+
+        // always add the file location
+        arguments.add("--insane-f=" + this.fileLocation);
+
+        // set '-ring' and '-center' if they were true
+        if (this.ring) {
+            arguments.add("--insane-ring");
+        }
+        if (this.center) {
+            arguments.add("--insane-center");
+        }
+
+        // add the parameters if given
+        if (!this.rotate.equals("")) {
+            arguments.add("--insane-rotate=" + this.rotate);
+        }
+        if (this.fudge >= 0) {
+            arguments.add("--insane-fudge=" + Double.toString(this.fudge));
+        }
+        if (this.verticalShift != 0) {
+            arguments.add("--insane-dm=" + Double.toString(this.verticalShift));
+        }
     }
 
 }

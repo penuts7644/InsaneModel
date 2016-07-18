@@ -256,6 +256,10 @@ public class InsaneSimulationBuilder extends SimulationBuilder {
     @Override
     public Process build() throws IOException {
         this.buildArguments();
+        
+        for (String argument : this.arguments){
+            System.out.println(argument);
+        }
 
         ProcessBuilder processBuilder = new ProcessBuilder(this.arguments);
         
@@ -268,12 +272,13 @@ public class InsaneSimulationBuilder extends SimulationBuilder {
     }
     
     public List<String> getMartinateArguments(LinkedList<String> martinateArguments){
-        
+        this.gridSize.addArguments(martinateArguments);
+        this.membrane.addArguments(martinateArguments);
+        this.protein.addArguments(martinateArguments);
+        this.solvent.addArguments(martinateArguments);
         
         return martinateArguments;
     }
-
-
 
     /**
      * Checks if the given grid size is 'too big' for JSmol to view.

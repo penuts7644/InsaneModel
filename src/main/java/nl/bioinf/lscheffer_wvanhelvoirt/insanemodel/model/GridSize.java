@@ -195,6 +195,30 @@ public final class GridSize extends SettingManager {
     
     
     public void addMartinateArguments(final List<String> arguments) {
+        // always add the -d value
+        arguments.add("--insane-d=" + Double.toString(this.d));
+
+        // if a unique x, y or z axis is given, add it
+        if (this.x != this.d) {
+            arguments.add("--insane-x=" + Double.toString(this.x));
+        }
+        if (this.y != this.d) {
+            arguments.add("--insane-y=" + Double.toString(this.y));
+        }
+
+        // always add z, to make the difference between dz and z
+        // if this.dz is set to true, use -dz (z = z + protein size)
+        if (this.dz) {
+            arguments.add("--insane-dz=" + Double.toString(this.z));
+        } else {
+            // otherwise, use -z (z = z)
+            arguments.add("--insane-z=" + Double.toString(this.z));
+        }
+
+        // if a -pbc value is given, add it
+        if (!this.pbc.equals("")) {
+            arguments.add("--insane-pbc=" + this.pbc);
+        }
     }
 
     /**
