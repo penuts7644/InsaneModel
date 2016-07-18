@@ -29,6 +29,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+import nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.model.MartinateSimulationBuilder;
 
 /**
  *
@@ -87,36 +88,71 @@ public class MartinateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         this.sessionId = request.getSession().getId();
-        this.errorMessages = new LinkedList();
         boolean fileGiven = this.getInputFile(request);
         boolean runMartinize = false;
 
         // parse the master json
         Part masterPart = request.getPart("master");
+        
 
         try {
+            
             JSONObject settings = this.parseFormInputPart(masterPart);
+            
 
             this.outputDir = new File(ConfigurationPaths.getAbsoluteOutFilePath(this.sessionId));
+
             if (!this.outputDir.exists()) {
                 this.outputDir.mkdir();
-            }
-            
-            try {
-                runMartinize = Boolean.parseBoolean(settings.get("martinize").toString());
-            } catch (IllegalArgumentException | NullPointerException ex) { } // runMartinize remains false
-            
-            if (fileGiven && runMartinize){
-                this.runMartinize(settings);
-            }
+            } // OUTPUTDIR OP EEN MANIER LEEG MAKEN OM ALLES TE OVERSCHRIJVEN/OF NOG MAKKELIJKER; IN DEZE MAP EEN NIEUWE OUTPUTMAP
 
-            int exitValInsane = this.runInsane(settings);
-            this.zipOutputFiles();
-            this.returnOutput(response, this.errorMessages, exitValInsane);
+            int exitValInsane = this.runMartinate(settings);
             
-        } catch (ParseException ex) {  // iets aan de warnings toevoegen?
-        } catch (InterruptedException ex) {}
+            System.out.println("ER IS NOG GEEN OUTPUT");
+            
+            
+//            try {
+//                runMartinize = Boolean.parseBoolean(settings.get("martinize").toString());
+//            } catch (IllegalArgumentException | NullPointerException ex) { } // runMartinize remains false
+//            
+//            if (fileGiven && runMartinize){
+//                this.runMartinize(settings);
+//            }
+//
+//            int exitValInsane = this.runInsane(settings);
+//            this.zipOutputFiles();
+//            this.returnOutput(response, this.errorMessages, exitValInsane);
+//            
+        } catch (ParseException | InterruptedException ex) {  // iets aan de warnings toevoegen?
+        }
     }
+    
+    private int runMartinate(JSONObject settings) throws IOException, InterruptedException {
+
+        MartinateSimulationBuilder martinateBuild = new MartinateSimulationBuilder(settings,
+                                this.infilePath,
+                                this.outputDir.getPath(),
+                                ConfigurationPaths.getPathToMartinate());
+
+        Process martinateProcess = martinateBuild.build();
+        martinateProcess.waitFor();
+        Thread.sleep(2500);
+        System.out.println(martinateProcess.exitValue() + "=exitval");
+        
+        return martinateProcess.exitValue();
+    }
+//        MartinizeSimulationBuilder martbuild = new MartinizeSimulationBuilder(settings, 
+//                        this.infilePath,
+//                        this.outputDir.getPath() + System.getProperty("file.separator") + "output_martinate",
+//                        ConfigurationPaths.getPathToMartinize(),
+//                        this.errorMessages);
+//        Process martinizeProcess = martbuild.build();
+//        martinizeProcess.waitFor();
+//        Thread.sleep(2500);
+//        this.infilePath = martbuild.getOutputPdbPath();
+//        return martinizeProcess.exitValue();
+    
+    
     
     private boolean getInputFile(HttpServletRequest request) throws IOException, ServletException {
         // test if there was an input file given
@@ -133,33 +169,33 @@ public class MartinateServlet extends HttpServlet {
         return fileGiven;
     }
     
-    private int runMartinize(JSONObject settings) throws IOException, InterruptedException {
-        MartinizeSimulationBuilder martbuild = new MartinizeSimulationBuilder(settings, 
-                        this.infilePath,
-                        this.outputDir.getPath() + System.getProperty("file.separator") + "output_martinate",
-                        ConfigurationPaths.getPathToMartinize(),
-                        this.errorMessages);
-        Process martinizeProcess = martbuild.build();
-        martinizeProcess.waitFor();
-        Thread.sleep(2500);
-        this.infilePath = martbuild.getOutputPdbPath();
-        return martinizeProcess.exitValue();
-    }
-    
-    private int runInsane(JSONObject settings) throws IOException, InterruptedException {
-        InsaneSimulationBuilder simbuild = new InsaneSimulationBuilder(settings,
-                    this.infilePath,
-                    this.outputDir.getPath() + System.getProperty("file.separator") + "output_insane.gro",
-                    ConfigurationPaths.getPathToInsane(),
-                    this.errorMessages);
-
-        Process insaneProcess = simbuild.build();
-        // Only display if the grid is not too big
-        this.display = !simbuild.isTooBig();
-        insaneProcess.waitFor();
-        Thread.sleep(2500);
-        return insaneProcess.exitValue();
-    }
+//    private int runMartinize(JSONObject settings) throws IOException, InterruptedException {
+//        MartinizeSimulationBuilder martbuild = new MartinizeSimulationBuilder(settings, 
+//                        this.infilePath,
+//                        this.outputDir.getPath() + System.getProperty("file.separator") + "output_martinate",
+//                        ConfigurationPaths.getPathToMartinize(),
+//                        this.errorMessages);
+//        Process martinizeProcess = martbuild.build();
+//        martinizeProcess.waitFor();
+//        Thread.sleep(2500);
+//        this.infilePath = martbuild.getOutputPdbPath();
+//        return martinizeProcess.exitValue();
+//    }
+//    
+//    private int runInsane(JSONObject settings) throws IOException, InterruptedException {
+//        InsaneSimulationBuilder simbuild = new InsaneSimulationBuilder(settings,
+//                    this.infilePath,
+//                    this.outputDir.getPath() + System.getProperty("file.separator") + "output_insane.gro",
+//                    ConfigurationPaths.getPathToInsane(),
+//                    this.errorMessages);
+//
+//        Process insaneProcess = simbuild.build();
+//        // Only display if the grid is not too big
+//        this.display = !simbuild.isTooBig();
+//        insaneProcess.waitFor();
+//        Thread.sleep(2500);
+//        return insaneProcess.exitValue();
+//    }
 
     private void zipOutputFiles() throws IOException {
         // Make file from directory and search it for files.
@@ -192,33 +228,33 @@ public class MartinateServlet extends HttpServlet {
         zout.close();
     }
     
-    private void returnOutput(HttpServletResponse response, List<String> errors, int insaneExitValue) throws IOException {
-        JSONObject outputJson = new JSONObject();
-
-        if (insaneExitValue != 0) {
-            //List<String> errors = simbuild.getErrorMessages();
-            errors.add("insane.py exited with a non-zero exit value, so no output file has been written. Please"
-                + " check your given arguments and/or input file and try again.");
-            outputJson.put("errorMessages", JSONArray.toJSONString(errors));
-            outputJson.put("outfile", "no_output_available");
-            outputJson.put("outfileZip", "no_output_available");
-            outputJson.put("download", false);
-            outputJson.put("display", false);
-        } else {
-            outputJson.put("errorMessages", JSONArray.toJSONString(errors));
-            outputJson.put("outfile", ConfigurationPaths.getWebOutFilePath(this.sessionId
-                    + System.getProperty("file.separator") + "output_insane.gro"));
-            outputJson.put("outfileZip", ConfigurationPaths.getWebOutFilePath(this.sessionId
-                    + System.getProperty("file.separator") + "insane_model.zip"));
-            outputJson.put("download", true);
-            outputJson.put("display", this.display);
-        }
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        out.write(outputJson.toString());
-        out.flush();
-        out.close();
-    }
+//    private void returnOutput(HttpServletResponse response, List<String> errors, int insaneExitValue) throws IOException {
+//        JSONObject outputJson = new JSONObject();
+//
+//        if (insaneExitValue != 0) {
+//            //List<String> errors = simbuild.getErrorMessages();
+//            errors.add("insane.py exited with a non-zero exit value, so no output file has been written. Please"
+//                + " check your given arguments and/or input file and try again.");
+//            outputJson.put("errorMessages", JSONArray.toJSONString(errors));
+//            outputJson.put("outfile", "no_output_available");
+//            outputJson.put("outfileZip", "no_output_available");
+//            outputJson.put("download", false);
+//            outputJson.put("display", false);
+//        } else {
+//            outputJson.put("errorMessages", JSONArray.toJSONString(errors));
+//            outputJson.put("outfile", ConfigurationPaths.getWebOutFilePath(this.sessionId
+//                    + System.getProperty("file.separator") + "output_insane.gro"));
+//            outputJson.put("outfileZip", ConfigurationPaths.getWebOutFilePath(this.sessionId
+//                    + System.getProperty("file.separator") + "insane_model.zip"));
+//            outputJson.put("download", true);
+//            outputJson.put("display", this.display);
+//        }
+//        response.setContentType("text/html");
+//        PrintWriter out = response.getWriter();
+//        out.write(outputJson.toString());
+//        out.flush();
+//        out.close();
+//    }
 
     /**
      * Returns a short description of the servlet.

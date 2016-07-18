@@ -82,6 +82,15 @@ public final class ConfigurationPaths {
     }
 
     /**
+     * Get the path to martinate.sh.
+     *
+     * @return path to insane.py
+     */
+    public static String getPathToMartinate() {
+        return ConfigurationPaths.PROGRAMROOT + "martinate.sh";
+    }
+    
+    /**
      * Get the absolute input file path, given the name of the file.
      *
      * @param inFile name of the input file

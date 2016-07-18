@@ -24,6 +24,8 @@ public abstract class SimulationBuilder {
     /** The absolute(!) path to the input file. */
     protected final String infilePath;
     
+    protected boolean isBuildable;
+    
 
     public SimulationBuilder(JSONObject settings, String infilePath) {
         this(settings, infilePath, new LinkedList());
@@ -48,7 +50,15 @@ public abstract class SimulationBuilder {
      * @return the process
      * @throws IOException if an I/O error occurs
      */
-    public abstract Process build() throws IOException;
+    public Process build() throws IOException {
+        if (this.isBuildable){
+            ProcessBuilder processBuilder = new ProcessBuilder(this.arguments);
+            return processBuilder.start();
+        } else {
+            throw new UnsupportedOperationException("Can not build a SimulationBuilder that has been instantiated with only an input JSONObject!");
+        }
+
+    }
     
     
     protected int getRatioInt(String stringForm) {

@@ -29,15 +29,30 @@ public class MartinizeSimulationBuilder extends SimulationBuilder {
                                       String outfilePath,
                                       String martinizePath,
                                       LinkedList errorMessages) {
-        super(settings, infilePath, errorMessages);
+        super(settings, infilePath);
         this.martinizePath = martinizePath;
         this.outTopologyPath = this.replaceExtension(outfilePath, "-cg.top");
         this.outPdbPath = this.replaceExtension(outfilePath, "-mart.pdb");
         this.outIndexPath = this.replaceExtension(outfilePath, "-mart.ndx");
         this.martinize = this.defineMartinize();
+        this.buildArguments();
+        this.isBuildable = true;
+    }
+    
+    public MartinizeSimulationBuilder(JSONObject settings) {
+        super(settings, null);
+        this.martinizePath = null;
+        this.outTopologyPath = null;
+        this.outPdbPath = null;
+        this.outIndexPath = null;
+        this.martinize = this.defineMartinize();
+        this.isBuildable = false;
     }
     
 
+    
+
+    
     private Martinize defineMartinize(){
         return new Martinize(this.errorMessages,
                             this.getParameterString("martinize_ss"),
@@ -61,9 +76,8 @@ public class MartinizeSimulationBuilder extends SimulationBuilder {
     public String getOutputPdbPath(){
         return this.outPdbPath;
     }
-
-    @Override
-    public Process build() throws IOException {
+    
+    private void buildArguments(){
         this.arguments.add(this.martinizePath);
         this.arguments.add("-f");
         this.arguments.add(this.infilePath);
@@ -73,11 +87,32 @@ public class MartinizeSimulationBuilder extends SimulationBuilder {
         this.arguments.add(this.outPdbPath);
         this.arguments.add("-n");
         this.arguments.add(this.outIndexPath);
-        
-        this.martinize.addArguments(arguments);
-
-        ProcessBuilder processBuilder = new ProcessBuilder(this.arguments);
-        return processBuilder.start();
+        this.martinize.addArguments(this.arguments);
     }
 
+//    @Override
+//    public Process build() throws IOException {
+//        if (this.isBuildable){
+//            ProcessBuilder processBuilder = new ProcessBuilder(this.arguments);
+//            return processBuilder.start();
+//        } else {
+//            throw new UnsupportedOperationException("Can not build a SimulationBuilder that has been instantiated with only an input JSONObject!");
+//        }
+//    }
+    
+    
+    
+    public List<String> addMartinateArguments(){
+        LinkedList<String> martinateArguments = new LinkedList();
+        return this.addMartinateArguments(martinateArguments);
+    }
+    
+    public List<String> addMartinateArguments(List<String> martinateArguments){
+        this.martinize.addArguments(this.arguments);
+        
+        return martinateArguments;
+    }
+
+    
+    
 }

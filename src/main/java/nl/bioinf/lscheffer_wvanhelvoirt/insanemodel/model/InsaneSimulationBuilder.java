@@ -54,6 +54,19 @@ public class InsaneSimulationBuilder extends SimulationBuilder {
         this.solvent = this.defineSolvent();
         this.insanePath = insanePath;
         this.testIfSimple();
+        this.buildArguments();
+        this.isBuildable = true;
+    }
+    
+    public InsaneSimulationBuilder(final JSONObject settings){
+        super(settings, null);
+        this.outfilePath = null;
+        this.gridSize = this.defineGridSize(); // gridsize must be set before membrane/solvent!
+        this.membrane = this.defineMembrane();
+        this.protein = this.defineProtein();
+        this.solvent = this.defineSolvent();
+        this.insanePath = null;
+        this.isBuildable = false;
     }
 
     /**
@@ -247,27 +260,29 @@ public class InsaneSimulationBuilder extends SimulationBuilder {
     }
 
 
-    /**
-     * Build the simulation, start the process and return the process.
-     *
-     * @return the process
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    public Process build() throws IOException {
-        this.buildArguments();
-
-        ProcessBuilder processBuilder = new ProcessBuilder(this.arguments);
-        
-        return processBuilder.start();
-    }
+//    /**
+//     * Build the simulation, start the process and return the process.
+//     *
+//     * @return the process
+//     * @throws IOException if an I/O error occurs
+//     */
+//    @Override
+//    public Process build() throws IOException {
+//        if (this.isBuildable){
+//            ProcessBuilder processBuilder = new ProcessBuilder(this.arguments);
+//            return processBuilder.start();
+//        } else {
+//            throw new UnsupportedOperationException("Can not build a SimulationBuilder that has been instantiated with only an input JSONObject!");
+//        }
+//
+//    }
     
-    public List<String> getMartinateArguments(){
+    public List<String> addMartinateArguments(){
         LinkedList<String> martinateArguments = new LinkedList();
-        return this.getMartinateArguments(martinateArguments);
+        return this.addMartinateArguments(martinateArguments);
     }
     
-    public List<String> getMartinateArguments(LinkedList<String> martinateArguments){
+    public List<String> addMartinateArguments(List<String> martinateArguments){
         this.gridSize.addMartinateArguments(martinateArguments);
         this.membrane.addMartinateArguments(martinateArguments);
         this.protein.addMartinateArguments(martinateArguments);

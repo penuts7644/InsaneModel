@@ -29,6 +29,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+import nl.bioinf.lscheffer_wvanhelvoirt.insanemodel.model.MartinateSimulationBuilder;
 
 /**
  *
@@ -114,8 +115,8 @@ public class InsaneModelServlet extends HttpServlet {
             this.zipOutputFiles();
             this.returnOutput(response, this.errorMessages, exitValInsane);
             
-        } catch (ParseException ex) {  // iets aan de warnings toevoegen?
-        } catch (InterruptedException ex) {}
+        } catch (ParseException | InterruptedException ex) {  // iets aan de warnings toevoegen?
+        }
     }
     
     private boolean getInputFile(HttpServletRequest request) throws IOException, ServletException {
@@ -143,6 +144,7 @@ public class InsaneModelServlet extends HttpServlet {
         martinizeProcess.waitFor();
         Thread.sleep(2500);
         this.infilePath = martbuild.getOutputPdbPath();
+
         return martinizeProcess.exitValue();
     }
     
@@ -158,6 +160,13 @@ public class InsaneModelServlet extends HttpServlet {
         this.display = !simbuild.isTooBig();
         insaneProcess.waitFor();
         Thread.sleep(2500);
+        
+//        MartinateSimulationBuilder m = new MartinateSimulationBuilder(settings, this.infilePath, this.outputDir.getPath(), ConfigurationPaths.getPathToMartinate());
+//        Process p = m.build();
+//        p.waitFor();
+//        System.out.println("exval was" + p.exitValue()); <- exit val is 1!
+        
+        
         return insaneProcess.exitValue();
     }
 
