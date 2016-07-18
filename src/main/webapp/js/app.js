@@ -28,10 +28,11 @@
         $scope.oneAtATime = false;
         $scope.isFirstOpen = false;
         $scope.showAdvancedOptions = false;
-        $scope.showMartiniOptions = true;
+        $scope.showMartiniOptions = false;
         $scope.radio = false;
         $scope.submitDisabled = false;
         $scope.downloadButton = false;
+        $scope.showSimulation = false;
 
         /*
          * Retrieve the date from our external JSON file containing all settings.
@@ -57,7 +58,7 @@
 
         /*
          * update function that copies all user input to the master array, disables
-         * the submit button and calls creatView function.
+         * the submit button and calls createView function.
          */
         $scope.update = function(input) {
             $scope.master = angular.copy(input);
@@ -68,6 +69,19 @@
             $scope.submitDisabled = true;
             $scope.option.general.submit = "Initializing...";
             $scope.createView();
+        };
+
+        /*
+         * simulate function uses the  master array, disables
+         * the submit button and calls runSimulation function.
+         */
+        $scope.simulate = function() {
+            console.log("Simulate called");
+            /*
+             * Disable the simulate button temporarily.
+             */
+            $scope.option.general.simulate = "Running...";
+            $scope.runSimulation();
         };
 
         /*
@@ -133,8 +147,7 @@
                  * be transformed in the above transformRequest method.
                  */
                 data: { master: $scope.master, proteinFile: $scope.file.insane_f }
-            }).
-            success(function (data, status, headers, config) {
+            }).success(function (data, status, headers, config) {
                 /*
                  * Succesfully obtained date from servlet, load into Jmol script.
                  */
@@ -142,8 +155,10 @@
                 if (data.display){
                     jmol_applet_insane._loadFile(data.outfile);
                     Jmol.script(jmol_applet_insane, 'moveto 0.0 bottom');
+                    $scope.showSimulation = true;
                 } else {
                     jmol_applet_insane._loadFile("no_output_available");
+                    $scope.showSimulation = false;
                 }
                 
 
@@ -153,7 +168,7 @@
                 } else{
                     $scope.downloadButton = false;
                 }
-                
+
                 $scope.warningMessages = JSON.parse(data.errorMessages);
             }).error(function (data, status, headers, config) {
                 /*
@@ -168,6 +183,91 @@
                  */
                 $scope.submitDisabled = false;
                 $scope.option.general.submit = "Update View";
+            });
+        };
+
+        /*
+         * runSimulation function, called by simulate function. This function sends
+         * master array with protein upload file to servlet.
+         */
+        $scope.runSimulation = function() {
+            $http({
+                method: 'POST',
+                url: 'MartinateServlet',
+                headers: {'Content-Type': undefined},
+                /*
+                 * This method will change how the data is sent to the server.
+                 * The model date gets encapsulate in 'FormData'.
+                 */
+                transformRequest: function (data) {
+                    /*
+                     * Fix voor 'not well-formed' error in firefox?
+                     */
+                    $.ajaxSetup({ beforeSend: function(xhr) {
+                        if (xhr.overrideMimeType) {
+                            xhr.overrideMimeType("application/json");
+                        }
+                    }});
+
+                    var formData = new FormData();
+                    /*
+                     * Append the string version of the JSON master array
+                     */
+                    formData.append("master", JSON.stringify(data.master));
+
+                    /*
+                     * Add boolean value whether there was a file given.
+                     * This is very hard to check inside the servlet.
+                     */
+                    formData.append("wasFileGiven", data.proteinFile !== undefined);
+
+                    /*
+                     * Add the assigned protein file
+                     */
+                    formData.append("file", data.proteinFile);
+
+                    return formData;
+                },
+                /*
+                 * Create an object that contains the model and files which will
+                 * be transformed in the above transformRequest method.
+                 */
+                data: { master: $scope.master, proteinFile: $scope.file.insane_f }
+            }).
+            success(function (data, status, headers, config) {
+                /*
+                 * Succesfully obtained date from servlet, load into Jmol script.
+                 */
+                console.log("Successfully obtained data from server.");
+                if (data.display){
+                    jmol_applet_insane._loadFile(data.outfile);
+                    Jmol.script(jmol_applet_insane, 'moveto 0.0 bottom');
+                } else {
+                    jmol_applet_insane._loadFile("no_output_available");
+                }
+
+
+                if (data.download){
+                    $scope.downloadButton = true;
+                    $scope.outFilePath = data.outfileZip;
+                } else{
+                    $scope.downloadButton = false;
+                }
+
+                $scope.warningMessages = JSON.parse(data.errorMessages);
+            }).error(function (data, status, headers, config) {
+                /*
+                 * Something went wrong, no data.
+                 */
+                console.log("Failed to obtain data from server");
+                $scope.warningMessages = ["Failed to obtain data from the server, please try again."];
+            }).finally(function (data, status, headers, config) {
+                /*
+                 * Always enable the submit button. Users are now able to submit
+                 * new request.
+                 */
+                $scope.submitDisabled = false;
+                $scope.option.general.simulate = "Run Simulation";
             });
         };
     }]);
